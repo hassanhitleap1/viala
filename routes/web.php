@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/vaila', App\Http\Controllers\VailaController::class);
+Route::resource('/orders', App\Http\Controllers\OrderController::class);
+Route::resource('/customers', App\Http\Controllers\CustomersController::class);
+Route::resource('/merchant', App\Http\Controllers\MerchantController::class);
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -11,4 +11,4 @@ Route::group(['prefix' => 'auth' ], function () {
     Route::post('registration','App\Http\Controllers\AuthJwt\AuthController@registration');
 });
 
-Route::apiResource('vaila',\API\VailaController::class);
+Route::apiResource('/vaila',\App\Http\Controllers\API\VailaController::class);
