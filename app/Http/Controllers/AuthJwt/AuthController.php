@@ -4,8 +4,9 @@
 namespace App\Http\Controllers\AuthJwt;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegistrationRequest;
 use App\User;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Validator;
@@ -84,18 +85,8 @@ class AuthController extends Controller
 
 
 
-    public function registration(Request $request)
+    public function registration(RegistrationRequest  $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        if($validator->fails()){
-            return $validator->errors()->getMessages();
-        }
 
 
         return User::create([

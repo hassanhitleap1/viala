@@ -17,7 +17,7 @@ class CreateVaialaTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('desc');
-            $table->smallInteger('status');
+            $table->smallInteger('status')->default(0);
             $table->smallInteger('new_arrivals')->default(0);
             $table->smallInteger('special')->default(0);
             $table->integer('user_id');
