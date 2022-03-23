@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class VailaController extends Controller
+class GovernorateController extends Controller
 {
-    const VIEW='vaila.';
+    const VIEW='governorate.';
 
     public function  index(){
         return view(self::VIEW."index");

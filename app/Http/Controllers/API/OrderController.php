@@ -19,7 +19,7 @@ class OrderController extends Controller
 
 
     public function index(){
-        return OrderResource::collection(Admin::paginate(10));
+        return OrderResource::collection(Orders::paginate(10));
     }
 
     public function store(OrderRequest  $request){
@@ -37,26 +37,26 @@ class OrderController extends Controller
     }
 
 
-    public function show(Admin $admin){
-        return new AdminResource($admin);
+    public function show(Orders $order){
+        return new OrdersResource($order);
     }
 
-    public function update(Admin $admin,AdminRequest $request){
+    public function update(Orders $order,OrderRequest $request){
 
-        $admin= tap($admin)->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
+        $admin= tap($order)->update([
+            'form_date'=>$request->form_date,
+            'to_date'=>$request->to_date,
             'phone'=>$request->phone,
-            // 'type'=>User::ADMIN,
-            'address'=>$request->address
+            'type'=>$request->price,
+            'vaial_id'=>$request->vaial_id
         ]);
 
-        return new AdminResource($admin);
+        return new OrdersResource($admin);
     }
 
 
-    public function destroy(Admin $admin){
-        $admin->delete();
+    public function destroy(Orders $order){
+        $order->delete();
         return Response('',201);
     }
 

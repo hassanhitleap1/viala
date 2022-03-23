@@ -21,6 +21,7 @@ class CreateVaialaTable extends Migration
             $table->smallInteger('new_arrivals')->default(0);
             $table->smallInteger('special')->default(0);
             $table->integer('user_id');
+            $table->integer('governorate_id');
             $table->integer('has_pool');
             $table->integer('has_barbikio');
             $table->integer('has_parcking');
@@ -30,6 +31,9 @@ class CreateVaialaTable extends Migration
             $table->float('price_hoolday');
             $table->smallInteger('number_room');
             $table->string('thumb');
+            $table->integer('view')->default(0);
+            $table->string('lag')->nullable();
+            $table->string('lat')->nullable();
             $table->integer('number_booking')->default(0);
             $table->timestamps();
         });
