@@ -9,8 +9,9 @@
                     <div class="card-header">{{ __('create new viala') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ url('vaila') }}" enctype="multipart/form-data">
                             @csrf
+
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -138,6 +139,31 @@
                                         <label class="form-check-label"  name="for_shbab" for="flexSwitchCheckDefault">{{__('for shbab')}}</label>
                                     </div>
                                 </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  name="garden" for="flexSwitchCheckDefault">{{__('garden')}}</label>
+                                    </div>
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  name="conditioners" for="flexSwitchCheckDefault">{{__('conditioners')}}</label>
+                                    </div>
+
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  name="kitchen" for="flexSwitchCheckDefault">{{__('kitchen')}}</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  name="wifi" for="flexSwitchCheckDefault">{{__('wifi')}}</label>
+                                    </div>
+
+                                </div>
+
 
                             </div>
 

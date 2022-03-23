@@ -18,6 +18,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('/vaila', App\Http\Controllers\VailaController::class);
 Route::resource('/orders', App\Http\Controllers\OrderController::class);
 Route::resource('/customers', App\Http\Controllers\CustomersController::class);

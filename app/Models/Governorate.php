@@ -11,4 +11,12 @@ class  Governorate extends Model
 
     protected $guarded = [];
 
+    public  static function rules(){
+        return [
+            'name_en' => 'required',
+            'name_er' => 'required',
+
+        ];
+    }
+
 }

@@ -50,6 +50,11 @@ class AuthController extends Controller
 
     }
 
+
+
+    public function socialite(){
+
+    }
     /**
      * Get the authenticated User.
      *

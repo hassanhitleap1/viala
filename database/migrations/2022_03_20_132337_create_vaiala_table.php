@@ -30,6 +30,10 @@ class CreateVaialaTable extends Migration
             $table->float('price_weekend');
             $table->float('price_hoolday');
             $table->smallInteger('number_room');
+            $table->smallInteger('garden');
+            $table->smallInteger('conditioners');
+            $table->smallInteger('kitchen');
+            $table->smallInteger('wifi');
             $table->string('thumb');
             $table->integer('view')->default(0);
             $table->string('lag')->nullable();

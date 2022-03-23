@@ -9,15 +9,15 @@
                     <div class="card-header">{{ __('create new viala') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('governorate') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title') }}</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" name="title"  value="{{ old('title') }}"  aria-describedby="inputGroup-sizing-sm">
-                                        @error('title')
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_en') }}</span>
+                                        <input type="text" class="form-control @error('name_en') is-invalid @enderror" aria-label="Sizing example input" name="title"  value="{{ old('name_en') }}"  aria-describedby="inputGroup-sizing-sm">
+                                        @error('name_en')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -26,12 +26,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc') }}</span>
-                                        <textarea name="desc" class="form-control  @error('email') is-invalid @enderror" value="{{ old('desc') }}" rows="4" cols="50">
-                                                {{ old('desc') }}
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_ar') }}</span>
+                                        <textarea name="desc" class="form-control  @error('name_ar') is-invalid @enderror" value="{{ old('name_ar') }}" rows="4" cols="50">
+                                                {{ old('name_ar') }}
                                         </textarea>
 
-                                        @error('desc')
+                                        @error('name_ar')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -40,106 +40,9 @@
                                 </div>
                             </div>
 
-                            <div class="row">
 
 
 
-                                <div class="col-md-4">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('price') }}</span>
-                                        <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" aria-label="Sizing example input" value="{{ old('price') }}" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    @error('price')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('price weekend') }}</span>
-                                        <input type="text"  name="price_weekend"  class="form-control @error('price_weekend') is-invalid @enderror" aria-label="Sizing example input"  value="{{ old('price_weekend') }}" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    @error('price_weekend')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('price hoolday') }}</span>
-                                        <input type="text"  name="price_hoolday"  class="form-control @error('price_hoolday') is-invalid @enderror" aria-label="Sizing example input"  value="{{ old('price_hoolday') }}" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    @error('price_hoolday')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('number room') }}</span>
-                                        <input type="number" class="form-control  @error('number_room') is-invalid @enderror" name="number_room" aria-label="Sizing example input" value="{{ old('number_room') }}" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    @error('number_room')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('reagin') }}</span>
-                                        <input type="number" class="form-control  @error('reagin_id') is-invalid @enderror" name="reagin_id" aria-label="Sizing example input" value="{{ old('number_room') }}" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    @error('reagin_id')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                            <label class="form-check-label"  name="special" for="flexSwitchCheckDefault">{{__('special')}}</label>
-                                        </div>
-
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="new_arrivals" for="flexSwitchCheckDefault">{{__('new arrivals')}}</label>
-                                    </div>
-
-
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="has_pool" for="flexSwitchCheckDefault">{{__('has pool')}}</label>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="has_barbikio" for="flexSwitchCheckDefault">{{__('has barbikio')}}</label>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="has_parcking" for="flexSwitchCheckDefault">{{__('has parcking')}}</label>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="for_shbab" for="flexSwitchCheckDefault">{{__('for shbab')}}</label>
-                                    </div>
-                                </div>
-
-                            </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
