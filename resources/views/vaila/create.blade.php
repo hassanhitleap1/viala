@@ -17,7 +17,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title') }}</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" name="title"  value="{{ old('title') }}"  aria-describedby="inputGroup-sizing-sm">
+                                        <input type="text" class="form-control @error('title') is-invalid @enderror" aria-label="Sizing example input" name="title"  value="{{ old('title') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc') }}</span>
-                                        <textarea name="desc" class="form-control  @error('email') is-invalid @enderror" value="{{ old('desc') }}" rows="4" cols="50">
+                                        <textarea name="desc" class="form-control  @error('desc') is-invalid @enderror" value="{{ old('desc') }}" rows="4" cols="50">
                                                 {{ old('desc') }}
                                         </textarea>
 
@@ -98,7 +98,12 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('reagin') }}</span>
-                                        <input type="number" class="form-control  @error('reagin_id') is-invalid @enderror" name="reagin_id" aria-label="Sizing example input" value="{{ old('number_room') }}" aria-describedby="inputGroup-sizing-sm">
+                                        <select class="form-control  @error('reagin_id') is-invalid @enderror"  name="governorate" aria-describedby="inputGroup-sizing-sm" >
+                                            <option value="">--</option>
+                                            @foreach($governorates as $governorate)
+                                                <option value="{{$governorate->id}}">{{$governorate->name_ar}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     @error('reagin_id')
                                     <span class="invalid-feedback" role="alert">

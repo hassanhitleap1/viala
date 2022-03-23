@@ -14,7 +14,7 @@ class  Governorate extends Model
     public  static function rules(){
         return [
             'name_en' => 'required',
-            'name_er' => 'required',
+            'name_ar' => 'required',
 
         ];
     }

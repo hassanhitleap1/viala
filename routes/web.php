@@ -23,6 +23,6 @@ Route::resource('/vaila', App\Http\Controllers\VailaController::class);
 Route::resource('/orders', App\Http\Controllers\OrderController::class);
 Route::resource('/customers', App\Http\Controllers\CustomersController::class);
 Route::resource('/merchant', App\Http\Controllers\MerchantController::class);
-Route::resource('governorate',App\Http\Controllers\GovernorateController::class);
+Route::resource('/governorate',App\Http\Controllers\GovernorateController::class);
 
 

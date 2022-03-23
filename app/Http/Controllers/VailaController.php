@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VailaRequest;
+use App\Models\Governorate;
 use App\Models\Vaila;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class VailaController extends Controller
 
     }
     public function  create(){
-        return view(self::VIEW."create");
+        $governorates=Governorate::all();
+        return view(self::VIEW."create",compact('governorates'));
     }
 
     public function  edit(Vaila $vaila){

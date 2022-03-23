@@ -2,36 +2,35 @@
 
 @section('content')
 
+
     <div class="container">
-        <h1> orders </h1>
+        <h1> governorate </h1>
+        <a class="btn btn-secondary pull-right" href="{{url('governorate/create')}}"> {{__('create new governorate')}}</a>
         <hr />
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">name en</th>
+                <th scope="col">name ar</th>
+                <th scope="col">action</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
+
+            @foreach($governorates as  $key => $governorate)
+                <tr>
+                    <th scope="row">{{++$key}}</th>
+                    <td>{{$governorate->name_en}}</td>
+                    <td>{{$governorate->name_ar}}</td>
+                    <td>
+                        <a href="{{url("governorate/$governorate->id/edit")}}">edit</a>
+
+                    </td>
+
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
