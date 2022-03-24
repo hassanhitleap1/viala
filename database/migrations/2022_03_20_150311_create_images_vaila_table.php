@@ -16,6 +16,7 @@ class CreateImagesVailaTable extends Migration
         Schema::create('images_vaila', function (Blueprint $table) {
             $table->id();
             $table->string('path');
+            $table->integer('vaila_id');
             $table->timestamps();
         });
     }

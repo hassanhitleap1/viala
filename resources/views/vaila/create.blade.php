@@ -8,6 +8,12 @@
                 <div class="card">
                     <div class="card-header">{{ __('create new viala') }}</div>
 
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div>{{$error}}</div>
+                        @endforeach
+                    @endif
+
                     <div class="card-body">
                         <form method="post" action="{{ url('vaila') }}" enctype="multipart/form-data">
                             @csrf
@@ -48,7 +54,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('price') }}</span>
-                                        <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" aria-label="Sizing example input" value="{{ old('price') }}" aria-describedby="inputGroup-sizing-sm">
+                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" aria-label="Sizing example input" value="{{ old('price') }}" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +65,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('price weekend') }}</span>
-                                        <input type="text"  name="price_weekend"  class="form-control @error('price_weekend') is-invalid @enderror" aria-label="Sizing example input"  value="{{ old('price_weekend') }}" aria-describedby="inputGroup-sizing-sm">
+                                        <input type="number"  name="price_weekend"  class="form-control @error('price_weekend') is-invalid @enderror" aria-label="Sizing example input"  value="{{ old('price_weekend') }}" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                     @error('price_weekend')
                                     <span class="invalid-feedback" role="alert">
@@ -70,7 +76,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('price hoolday') }}</span>
-                                        <input type="text"  name="price_hoolday"  class="form-control @error('price_hoolday') is-invalid @enderror" aria-label="Sizing example input"  value="{{ old('price_hoolday') }}" aria-describedby="inputGroup-sizing-sm">
+                                        <input type="number"  name="price_hoolday"  class="form-control @error('price_hoolday') is-invalid @enderror" aria-label="Sizing example input"  value="{{ old('price_hoolday') }}" aria-describedby="inputGroup-sizing-sm">
                                     </div>
                                     @error('price_hoolday')
                                     <span class="invalid-feedback" role="alert">
@@ -98,14 +104,14 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('reagin') }}</span>
-                                        <select class="form-control  @error('reagin_id') is-invalid @enderror"  name="governorate" aria-describedby="inputGroup-sizing-sm" >
+                                        <select class="form-control  @error('governorate_id') is-invalid @enderror"  name="governorate_id" aria-describedby="inputGroup-sizing-sm" >
                                             <option value="">--</option>
                                             @foreach($governorates as $governorate)
                                                 <option value="{{$governorate->id}}">{{$governorate->name_ar}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    @error('reagin_id')
+                                    @error('governorate_id')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -117,61 +123,77 @@
                             <div class="row">
                                 <div class="col-md-6">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                            <label class="form-check-label"  name="special" for="flexSwitchCheckDefault">{{__('special')}}</label>
+                                            <input class="form-check-input"  name="special"  @if(old('special'))  checked @endif   type="checkbox" id="flexSwitchCheckDefault">
+                                            <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('special')}}</label>
                                         </div>
 
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="new_arrivals" for="flexSwitchCheckDefault">{{__('new arrivals')}}</label>
+                                        <input class="form-check-input"  name="new_arrivals"  @if(old('new_arrivals'))  checked @endif   type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('new arrivals')}}</label>
                                     </div>
 
 
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="has_pool" for="flexSwitchCheckDefault">{{__('has pool')}}</label>
+                                        <input class="form-check-input" name="has_pool"  @if(old('has_pool'))  checked @endif    type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('has pool')}}</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="has_barbikio" for="flexSwitchCheckDefault">{{__('has barbikio')}}</label>
+                                        <input class="form-check-input" name="has_barbikio"  @if(old('has_barbikio'))  checked @endif  type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('has barbikio')}}</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="has_parcking" for="flexSwitchCheckDefault">{{__('has parcking')}}</label>
+                                        <input class="form-check-input" name="has_parcking"  @if(old('has_parcking'))  checked @endif  type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">{{__('has parcking')}}</label>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="for_shbab" for="flexSwitchCheckDefault">{{__('for shbab')}}</label>
-                                    </div>
+
                                 </div>
 
 
                                 <div class="col-md-6">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="garden" for="flexSwitchCheckDefault">{{__('garden')}}</label>
+                                        <input class="form-check-input" name="garden"  @if(old('garden'))  checked @endif type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('garden')}}</label>
                                     </div>
 
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="conditioners" for="flexSwitchCheckDefault">{{__('conditioners')}}</label>
+                                        <input class="form-check-input" name="conditioners"  @if(old('conditioners'))  checked @endif  type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('conditioners')}}</label>
                                     </div>
 
 
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="kitchen" for="flexSwitchCheckDefault">{{__('kitchen')}}</label>
+                                        <input class="form-check-input" name="kitchen"  @if(old('kitchen'))  checked @endif  type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('kitchen')}}</label>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label"  name="wifi" for="flexSwitchCheckDefault">{{__('wifi')}}</label>
+                                        <input class="form-check-input" name="wifi"  @if(old('wifi'))  checked @endif  type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('wifi')}}</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" name="for_shbab"  @if(old('for_shbab'))  checked @endif  type="checkbox" id="flexSwitchCheckDefault">
+                                        <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('for shbab')}}</label>
                                     </div>
 
                                 </div>
 
 
                             </div>
+                            <div class="row mb-0">
+                                <div class="col-md-6 ">
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">thumb</label>
+                                        <input class="form-control" type="file"  name="thumb" id="formFile" >
+                                    </div>
+                                </div>
 
+                                <div class="col-md-6 ">
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">images</label>
+                                        <input class="form-control" type="file"  name="images"  multiple>
+
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
