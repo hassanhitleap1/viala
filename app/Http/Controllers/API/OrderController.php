@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\MakeOrderEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\VailaResource;
@@ -23,7 +24,23 @@ class OrderController extends Controller
     }
 
     public function store(OrderRequest  $request){
-        $admin= Orders::create([
+        $order= Orders::create([
+            'form_date'=>$request->form_date,
+            'to_date'=>$request->to_date,
+            'phone'=>$request->phone,
+            'type'=>$request->price,
+            'vaial_id'=>$request->vaial_id
+        ]);
+        //event(new MakeOrderEvent($order));
+        MakeOrderEvent::dispatch($order);
+
+        return new OrdersResource($order);
+    }
+
+
+    public function book_naw(OrderRequest  $request){
+
+        $order= Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
             'phone'=>$request->phone,
@@ -31,9 +48,9 @@ class OrderController extends Controller
             'vaial_id'=>$request->vaial_id
         ]);
 
-//        UserEvent::dispatch($admin);
 
-        return new OrdersResource($admin);
+        return new OrdersResource($order);
+
     }
 
 

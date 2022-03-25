@@ -6,19 +6,23 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User  extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
+    const CUSTOMER=1;
+    const ADMIN=3;
+    const Merchant=2;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','type','phone'
+        'name', 'email', 'password','type','phone','avatar'
     ];
 
     /**
@@ -61,5 +65,11 @@ class User  extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+
+    public static function  get_next_id(){
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'users'");
+        return $statement[0]->Auto_increment;
     }
 }

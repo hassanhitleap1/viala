@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VailaRequest;
 use App\Http\Resources\VailaResource;
+use App\Models\Orders;
 use App\Models\Vaila;
+use Illuminate\Http\Request;
 
 class VailaController extends Controller
 {
@@ -83,6 +85,15 @@ class VailaController extends Controller
     public function destroy(Vaila $vaila){
         $vaila->delete();
         return Response('',201);
+    }
+
+
+    public function check_avialable(Request $request){
+        $order =Orders::whereBetween('from', [$request->from, $request->to])->get();
+        if($order->count()){
+            return false;
+        }
+        return  true ;
     }
 
 
