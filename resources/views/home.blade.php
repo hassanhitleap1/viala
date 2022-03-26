@@ -9,7 +9,34 @@
                         <div class="card-header">{{ __('count order') }}</div>
 
                         <div class="card-body">
-                            {{ $orders_count }}
+                            {{ $total_order }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">{{ __('count this month order') }}</div>
+
+                        <div class="card-body">
+                            {{ $total_order_month }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">{{ __('count this week order') }}</div>
+
+                        <div class="card-body">
+                            {{ $total_order_week }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">{{ __('count today order') }}</div>
+
+                        <div class="card-body">
+                            {{ $total_order_today }}
                         </div>
                     </div>
                 </div>

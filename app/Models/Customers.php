@@ -7,13 +7,12 @@ use App\Scopes\FiltersUsers;
 
 class Customers extends  User
 {
-
-
+    protected $table="users";
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope(new CustomerScope());
-        static::addGlobalScope(new FiltersUsers());
+//        static::addGlobalScope(new FiltersUsers());
     }
 
     public  static function rules(){

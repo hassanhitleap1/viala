@@ -7,6 +7,7 @@ use App\Scopes\MerchantScope;
 
 class Merchant extends User
 {
+    protected $table="users";
     public  static function rules(){
         return [
             'name' => 'required',
@@ -17,6 +18,6 @@ class Merchant extends User
     {
         parent::boot();
         static::addGlobalScope(new MerchantScope());
-        static::addGlobalScope(new FiltersUsers());
+//        static::addGlobalScope(new FiltersUsers());
     }
 }

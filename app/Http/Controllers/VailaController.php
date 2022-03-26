@@ -63,7 +63,8 @@ class VailaController extends Controller
     }
 
     public function  edit(Vaila $vaila){
-        return view(self::VIEW."edit",compact('vaila'));
+        $governorates=Governorate::all();
+        return view(self::VIEW."edit",compact('vaila','governorates'));
     }
 
 

@@ -11,19 +11,35 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">title</th>
+                <th scope="col">desc</th>
+                <th scope="col">arrival</th>
+                <th scope="col">status</th>
+                <th scope="col">has pool</th>
+                <th scope="col">special</th>
+                <th scope="col">has barbikio</th>
+                <th scope="col">thumbnuil</th>
+                <th scope="col">action</th>
+
             </tr>
             </thead>
             <tbody>
 
-            @foreach($vailas as $vaila)
+            @foreach($vailas as $key => $vaila)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{$key}}</th>
+                    <td>{{$vaila->title}}</td>
+                    <td>{{$vaila->desc}}</td>
+                    <td>{{$vaila->new_arrivals ? 'new arrival': 'not new'}}</td>
+                    <td>{{\App\Helper\StatusHelper::keyword_status($vaila->status)}}</td>
+                    <th> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}</th>
+                    <th> {{\App\Helper\StatusHelper::has_attribuate($vaila->special)}}</th>
+                    <th> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</th>
+                    <th> <img src="{{asset($vaila->thumb)}}" width="250" height="25"> </th>
+                    <th>
+                        <a href="{{url("vaila/$vaila->id/edit")}}">edit</a>
+                        <a href="{{url("vaila/$vaila->id/show")}}">show</a>
+                    </th>
                 </tr>
             @endforeach
             </tbody>
