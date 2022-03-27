@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth' ], function () {
@@ -18,4 +18,6 @@ Route::get('/vaila/newarival', [\App\Http\Controllers\API\VailaController::class
 Route::get('/vaila/bestsell', [\App\Http\Controllers\API\VailaController::class, 'bestSell'])->name('bestSell');
 Route::apiResource('vaila',\App\Http\Controllers\API\VailaController::class);
 Route::apiResource('orders',\App\Http\Controllers\API\OrderController::class);
+Route::apiResource('comments',\App\Http\Controllers\API\CommentsController::class);
+Route::apiResource('rates',\App\Http\Controllers\API\RateController::class);
 

@@ -21,11 +21,11 @@ class VailaController extends Controller
 
 
     public function newArival(){
-        return VailaResource::collection(Vaila::paginate(10));
+        return VailaResource::collection(Vaila::newArival()->paginate(10));
     }
 
     public function bestSell(){
-        return VailaResource::collection(Vaila::paginate(10));
+        return VailaResource::collection(Vaila::bestSell()->paginate(10));
     }
 
 
@@ -34,7 +34,7 @@ class VailaController extends Controller
     }
 
     public function store(VailaRequest $request){
-        $admin= Vaila::create([
+        $vaila= Vaila::create([
             'title' => $request->name,
             'desc' => $request->name,
             'new_arrivals' =>$request->name,
@@ -52,7 +52,7 @@ class VailaController extends Controller
         ]);
 
 
-        return new AdminResource($admin);
+        return new VailaResource($vaila);
     }
 
 

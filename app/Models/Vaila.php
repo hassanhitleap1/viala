@@ -65,10 +65,26 @@ class Vaila extends  Model
     }
 
 
+    public static function newArival(){
+        return self::where('new_arrivals',1);
+    }
+
+
+    public static function bestSell(){
+        return self::orderBy('number_booking','DESC');
+    }
 
     public static function  get_next_id(){
         $statement = DB::select("SHOW TABLE STATUS LIKE 'vaila'");
         return $statement[0]->Auto_increment;
     }
 
+
+    public function comments(){
+        return $this->hasMany(Comments::class);
+    }
+
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 }

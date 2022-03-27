@@ -67,6 +67,9 @@ class VailaController extends Controller
         return view(self::VIEW."edit",compact('vaila','governorates'));
     }
 
+    public function show(Vaila $vaila){
+        return view(self::VIEW."show",compact('vaila'));
+    }
 
     public function  update(Vaila $vaila,Request $request){
         $roulas= Vaila::rules();

@@ -18,11 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique();
-            $table->smallInteger('type')->default(1);
+            $table->smallInteger('type')->default(\App\Models\User::CUSTOMER);
             $table->smallInteger('status')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar')->nullable();
             $table->string('password');
+            $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
+            $table->string('activation_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

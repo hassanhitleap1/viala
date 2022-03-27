@@ -9,6 +9,7 @@ use App\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 use Validator;
 
 class AuthController extends Controller
@@ -52,8 +53,76 @@ class AuthController extends Controller
 
 
 
-    public function socialite(){
+    public function loginWithFacebook()
+    {
+        try {
 
+//            $user = Socialite::driver('facebook')->user();
+            $user = Socialite::driver('facebook')->stateless()->user();
+
+            $isUser = User::where('facebook_id', $user->id)->first();
+
+            if($isUser){
+                $token = JWTAuth::fromUser($user);
+
+                return $this->respondWithToken($token);
+            }else{
+                $createUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'facebook_id' => $user->id,
+                    'password' => encrypt('123456789')
+                ]);
+
+                $token = JWTAuth::fromUser($createUser);
+                return $this->respondWithToken($token);
+            }
+
+        } catch (Exception $exception) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Could not create token.',
+                'errors'=>$exception->getMessage()
+            ], 500);
+
+        }
+    }
+
+    public function loginWithGoogle()
+    {
+        try {
+
+//            $user = Socialite::driver('facebook')->user();
+            $user = Socialite::driver('google')->stateless()->user();
+
+            $isUser = User::where('google_id', $user->id)->first();
+
+            if($isUser){
+                $token = JWTAuth::fromUser($user);
+
+                return $this->respondWithToken($token);
+            }else{
+                $createUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id' => $user->id,
+                    'password' => encrypt('123456789')
+                ]);
+
+                $token = JWTAuth::fromUser($createUser);
+                return $this->respondWithToken($token);
+            }
+
+        } catch (Exception $exception) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Could not create token.',
+                'errors'=>$exception->getMessage()
+            ], 500);
+
+        }
     }
     /**
      * Get the authenticated User.
@@ -92,8 +161,6 @@ class AuthController extends Controller
 
     public function registration(RegistrationRequest  $request)
     {
-
-
         return User::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
