@@ -32,14 +32,14 @@
                     <td>{{$vaila->desc}}</td>
                     <td>{{$vaila->new_arrivals ? 'new arrival': 'not new'}}</td>
                     <td>{{\App\Helper\StatusHelper::keyword_status($vaila->status)}}</td>
-                    <th> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}</th>
-                    <th> {{\App\Helper\StatusHelper::has_attribuate($vaila->special)}}</th>
-                    <th> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</th>
-                    <th> <img src="{{asset($vaila->thumb)}}" width="250" height="25"> </th>
-                    <th>
+                    <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}</td>
+                    <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->special)}}</td>
+                    <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</td>
+                    <td> <img src="{{asset($vaila->thumb)}}" width="250" height="25"> </td>
+                    <td>
                         <a href="{{url("vaila/$vaila->id/edit")}}">edit</a>
                         <a href="{{url("vaila/$vaila->id/show")}}">show</a>
-                    </th>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
