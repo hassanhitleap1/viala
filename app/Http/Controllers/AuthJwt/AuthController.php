@@ -5,10 +5,13 @@ namespace App\Http\Controllers\AuthJwt;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
+use App\Models\Vaila;
 use App\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 use Validator;
 
@@ -56,27 +59,18 @@ class AuthController extends Controller
     public function loginWithFacebook()
     {
         try {
+            $facebookUser = Socialite::driver('facebook')->user();
+            $user = User::updateOrCreate([
+                'facebook_id' => $facebookUser->id,
+            ], [
+                'name' => $facebookUser->name,
+                'email' => $facebookUser->email,
+                'avatar'=>  $facebookUser->getAvatar(),
 
-//            $user = Socialite::driver('facebook')->user();
-            $user = Socialite::driver('facebook')->stateless()->user();
-
-            $isUser = User::where('facebook_id', $user->id)->first();
-
-            if($isUser){
-                $token = JWTAuth::fromUser($user);
-
-                return $this->respondWithToken($token);
-            }else{
-                $createUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'facebook_id' => $user->id,
-                    'password' => encrypt('123456789')
-                ]);
-
-                $token = JWTAuth::fromUser($createUser);
-                return $this->respondWithToken($token);
-            }
+            ]);
+            $this->getSocialAvatar($facebookUser->getAvatar(), "avatar/$user->id" ,$facebookUser);
+            $token = JWTAuth::fromUser($user);
+            return $this->respondWithToken($token);
 
         } catch (Exception $exception) {
 
@@ -92,27 +86,18 @@ class AuthController extends Controller
     public function loginWithGoogle()
     {
         try {
+            $googleUser = Socialite::driver('google')->user();
+            $user = User::updateOrCreate([
+                'google_id' => $googleUser->id,
+            ], [
+                'name' => $googleUser->name,
+                'email' => $googleUser->email,
+                'avatar'=>  $googleUser->getAvatar(),
 
-//            $user = Socialite::driver('facebook')->user();
-            $user = Socialite::driver('google')->stateless()->user();
-
-            $isUser = User::where('google_id', $user->id)->first();
-
-            if($isUser){
-                $token = JWTAuth::fromUser($user);
-
-                return $this->respondWithToken($token);
-            }else{
-                $createUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id' => $user->id,
-                    'password' => encrypt('123456789')
-                ]);
-
-                $token = JWTAuth::fromUser($createUser);
-                return $this->respondWithToken($token);
-            }
+            ]);
+            $this->getSocialAvatar($googleUser->getAvatar(), "avatar/$user->id" ,$googleUser);
+            $token = JWTAuth::fromUser($user);
+            return $this->respondWithToken($token);
 
         } catch (Exception $exception) {
 
@@ -161,10 +146,16 @@ class AuthController extends Controller
 
     public function registration(RegistrationRequest  $request)
     {
+        $next_id=User::get_next_id();
+        $file = $request->file('avatar');
+        $fileData = $this->uploads($file,"avatar/$next_id");
+        $avatar = $fileData['filePath'] ."/".$fileData['fileName'];
         return User::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
+                'phone'=> $request['phone'],
+                'avatar'=>$avatar
             ]);
 
     }
@@ -185,5 +176,12 @@ class AuthController extends Controller
             'expires_in' => auth('api-jwt')->factory()->getTTL() * 60,
             'user' => auth('api-jwt')->user()
         ]);
+    }
+
+
+    public function getSocialAvatar($file, $path ,$user){
+        $fileContents = file_get_contents($file);
+        return Storage::disk('public')->put($path . $file, File::get($file));
+        //return File::put(public_path() . $path . $user->getId() . ".jpg", $fileContents);
     }
 }
