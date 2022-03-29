@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('google_id')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('activation_code')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

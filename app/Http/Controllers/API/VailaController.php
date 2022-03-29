@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VailaRequest;
 use App\Http\Resources\VailaResource;
+use App\Models\ImageVaila;
 use App\Models\Orders;
 use App\Models\Vaila;
 use Illuminate\Http\Request;
@@ -28,29 +29,43 @@ class VailaController extends Controller
         return VailaResource::collection(Vaila::bestSell()->paginate(10));
     }
 
+    public function myViala(){
+        return VailaResource::collection(Vaila::myViala()->paginate(10));
+    }
 
     public function index(){
         return VailaResource::collection(Vaila::paginate(10));
     }
 
     public function store(VailaRequest $request){
-        $vaila= Vaila::create([
-            'title' => $request->name,
-            'desc' => $request->name,
-            'new_arrivals' =>$request->name,
-            'special'=>$request->name,
-            'has_pool'=>$request->name,
-            'has_barbikio'=>$request->name,
-            'has_parcking'=>$request->name,
-            'for_shbab'=>$request->name,
-            'price'=>$request->name,
-            'price_weekend'=>$request->name,
-            'price_hoolday'=>$request->name,
-            'number_room'=>$request->name,
-            'number_booking'=>$request->name,
 
-        ]);
+        $request['number_booking']=0;
+        $request['status']=0;
+        $request['user_id']=auth("jwt")->user()->id;
+        $request['number_booking']=0;
+        $next_id=Vaila::get_next_id();
 
+        if($file = $request->file('thumb')) {
+            $fileData = $this->uploads($file,"vailas/$next_id");
+            $validatedData['thumb'] = $fileData['filePath'] ."/".$fileData['fileName'];
+        }
+        unset($request['images']);
+        $vaila= Vaila::create($request);
+
+        $images=[];
+        if($files = $request->file('images')) {
+            foreach ($files as $file){
+                $fileData = $this->uploads($file,"vailas/$next_id/images");
+                $images []=[
+                    'path' =>  $fileData['filePath'] ."/".$fileData['fileName'],
+                    'vaila_id'=> $vaila->id
+                ];
+
+            }
+
+            if(count($images))
+                ImageVaila::create($images);
+        }
 
         return new VailaResource($vaila);
     }
@@ -61,22 +76,24 @@ class VailaController extends Controller
     }
 
     public function update(Vaila $vaila,VailaRequest $request){
+        $vaila= tap($vaila)->update($request->all());
 
-        $vaila= tap($vaila)->update([
-            'title' => $request->name,
-            'desc' => $request->name,
-            'new_arrivals' =>$request->name,
-            'special'=>$request->name,
-            'has_pool'=>$request->name,
-            'has_barbikio'=>$request->name,
-            'has_parcking'=>$request->name,
-            'for_shbab'=>$request->name,
-            'price'=>$request->name,
-            'price_weekend'=>$request->name,
-            'price_hoolday'=>$request->name,
-            'number_room'=>$request->name,
-            'number_booking'=>$request->name,
-        ]);
+        if($files = $request->file('images')) {
+            foreach ($files as $file){
+                $fileData = $this->uploads($file,"vailas/$vaila->id/images");
+                $images []=[
+                    'path' =>  $fileData['filePath'] ."/".$fileData['fileName'],
+                    'vaila_id'=> $vaila->id
+                ];
+
+            }
+
+            if(count($images)){
+                ImageVaila::where('vaile_id',$vaila->id)->delete();
+                ImageVaila::create($images);
+            }
+
+        }
 
         return new VailaResource($vaila);
     }

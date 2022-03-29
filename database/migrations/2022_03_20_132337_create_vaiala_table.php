@@ -40,6 +40,7 @@ class CreateVaialaTable extends Migration
             $table->string('lat')->nullable();
             $table->integer('number_booking')->default(0);
             $table->tinyInteger('rates')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

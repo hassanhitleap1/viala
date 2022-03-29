@@ -15,6 +15,10 @@ class CreateFinanceTable extends Migration
     {
         Schema::create('finance', function (Blueprint $table) {
             $table->id();
+            $table->float('for_me');
+            $table->float('for_app');
+            $table->integer('user_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -66,6 +66,7 @@ class AuthController extends Controller
                 'name' => $facebookUser->name,
                 'email' => $facebookUser->email,
                 'avatar'=>  $facebookUser->getAvatar(),
+                'password'=>decrypt("pass@123")
 
             ]);
             $this->getSocialAvatar($facebookUser->getAvatar(), "avatar/$user->id" ,$facebookUser);
@@ -93,6 +94,7 @@ class AuthController extends Controller
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'avatar'=>  $googleUser->getAvatar(),
+                'password'=>decrypt("pass@123")
 
             ]);
             $this->getSocialAvatar($googleUser->getAvatar(), "avatar/$user->id" ,$googleUser);
@@ -184,4 +186,57 @@ class AuthController extends Controller
         return Storage::disk('public')->put($path . $file, File::get($file));
         //return File::put(public_path() . $path . $user->getId() . ".jpg", $fileContents);
     }
+
+
+
+    public function sendSMS($OTP, $mobileNumber){
+        $isError = 0;
+        $errorMessage = true;
+
+        //Your message to send, Adding URL encoding.
+        $message = urlencode("Welcome to www.codershood.info , Your OPT is : $OTP");
+
+
+        //Preparing post parameters
+        $postData = array(
+            'authkey' => $this->API_KEY,
+            'mobiles' => $mobileNumber,
+            'message' => $message,
+            'sender' => $this->SENDER_ID,
+            'route' => $this->ROUTE_NO,
+            'response' => $this->RESPONSE_TYPE
+        );
+
+        $url = "https://control.msg91.com/sendhttp.php";
+
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $postData
+        ));
+
+
+        //Ignore SSL certificate verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+
+        //get response
+        $output = curl_exec($ch);
+
+        //Print error if any
+        if (curl_errno($ch)) {
+            $isError = true;
+            $errorMessage = curl_error($ch);
+        }
+        curl_close($ch);
+        if($isError){
+            return array('error' => 1 , 'message' => $errorMessage);
+        }else{
+            return array('error' => 0 );
+        }
+    }
+
 }

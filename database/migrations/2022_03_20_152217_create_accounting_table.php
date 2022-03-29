@@ -18,6 +18,7 @@ class CreateAccountingTable extends Migration
             $table->float('for_me');
             $table->float('for_app');
             $table->integer('user_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

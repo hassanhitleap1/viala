@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merchant;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class MerchantController extends Controller
 
 
     public function store(Request $request){
-        $roulas= Merchants::rules();
+        $roulas= Merchant::rules();
         $validatedData = $request->validate($roulas);
         $next_id=User::get_next_id();
         if($file = $request->file('avatar')) {
@@ -30,7 +31,7 @@ class MerchantController extends Controller
             $validatedData['avatar'] = $fileData['filePath'] ."/".$fileData['fileName'];
         }
 
-        $model =Merchants::create($validatedData);
+        $model =Merchant::create($validatedData);
         return redirect('/merchants')->with('success', ' successfully saved');
 
     }
@@ -38,19 +39,19 @@ class MerchantController extends Controller
         return view(self::VIEW."create");
     }
 
-    public function  edit(Merchants $merchant){
+    public function  edit(Merchant $merchant){
         return view(self::VIEW."edit",compact('merchant'));
     }
 
 
-    public function  update(Merchants $merchant,Request $request){
+    public function  update(Merchant $merchant,Request $request){
         $roulas= Merchants::rules();
         $validatedData = $request->validate($roulas);
         $merchant->update($validatedData);
         return redirect('/merchants')->with('success', 'Game is successfully saved');
     }
 
-    public function destroy(Merchants $merchant)
+    public function destroy(Merchant $merchant)
     {
         $merchant->delete();
         return redirect('/merchants')->with('success', 'Game Data is successfully deleted');

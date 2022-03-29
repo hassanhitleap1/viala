@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->float('price');
             $table->integer('vaial_id');
             $table->enum('payment_type',['visa', 'cash']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

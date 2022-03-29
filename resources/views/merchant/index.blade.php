@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($customers as $key=> $merchant)
+            @foreach($merchants as $key=> $merchant)
                 <tr>
                     <th scope="row">{{++ $key}}</th>
                     <td>{{ $merchant->name}}</td>
@@ -26,15 +26,25 @@
                     <td>{{ $merchant->phone}}</td>
                     <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
                     <td>
+
                         <a href="{{url("merchant/$merchant->id/edit")}}">edit</a>
                         <a href="{{url("merchant/$merchant->id/show")}}">show</a>
+                        <form action="{{url("merchant/$merchant->id/destroy")}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                                <i class="fas fa-trash fa-lg text-danger"></i>
+                            </button>
+                        </form>
+
                     </td>
 
                 </tr>
             @endforeach
             </tbody>
         </table>
-        {{ $customers->links() }}
+        {{ $merchants->links() }}
     </div>
 
 @endsection

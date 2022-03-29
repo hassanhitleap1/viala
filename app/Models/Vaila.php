@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -35,7 +36,7 @@ use Illuminate\Support\Facades\DB;
 
 class Vaila extends  Model
 {
-
+    use SoftDeletes;
     protected  $table='vaila';
 
     protected $guarded = [];
@@ -74,6 +75,10 @@ class Vaila extends  Model
         return self::orderBy('number_booking','DESC');
     }
 
+    public static function myViala(){
+        return self::orderBy('user_id', auth('api-jwt')->user()->id);
+    }
+
     public static function  get_next_id(){
         $statement = DB::select("SHOW TABLE STATUS LIKE 'vaila'");
         return $statement[0]->Auto_increment;
@@ -87,4 +92,13 @@ class Vaila extends  Model
     public function user(){
         return $this->hasMany(User::class);
     }
+
+    public function imagevaila(){
+        return $this->hasMany(ImageVaila::class);
+    }
+    public function governorate(){
+        return $this->hasMany(Governorate::class);
+    }
+
+
 }

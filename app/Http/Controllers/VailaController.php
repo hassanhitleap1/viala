@@ -75,6 +75,22 @@ class VailaController extends Controller
         $roulas= Vaila::rules();
         $validatedData = $request->validate($roulas);
         $vaila->update($validatedData);
+        if($files = $request->file('images')) {
+            foreach ($files as $file){
+                $fileData = $this->uploads($file,"vailas/$vaila->id/images");
+                $images []=[
+                    'path' =>  $fileData['filePath'] ."/".$fileData['fileName'],
+                    'vaila_id'=> $vaila->id
+                ];
+
+            }
+
+            if(count($images)){
+                ImageVaila::where('vaile_id',$vaila->id)->delete();
+                ImageVaila::create($images);
+            }
+
+        }
         return redirect('/vaila')->with('success', 'Game is successfully saved');
     }
 
@@ -83,4 +99,7 @@ class VailaController extends Controller
         $vaila->delete();
         return redirect('/vaila')->with('success', 'Game Data is successfully deleted');
     }
+
+
+
 }

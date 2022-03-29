@@ -27,6 +27,14 @@
                     <td>
                         <a href="{{url("governorate/$governorate->id/edit")}}">edit</a>
 
+                        <form action="{{url("governorate/$governorate->id/destroy")}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                                <i class="fas fa-trash fa-lg text-danger"></i>
+                            </button>
+                        </form>
                     </td>
 
                 </tr>

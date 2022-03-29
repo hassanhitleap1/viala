@@ -11,12 +11,15 @@ Route::group(['prefix' => 'auth' ], function () {
     Route::post('refresh', 'App\Http\Controllers\AuthJwt\AuthController@refresh');
     Route::post('me', 'App\Http\Controllers\AuthJwt\AuthController@me');
     Route::post('registration','App\Http\Controllers\AuthJwt\AuthController@registration');
+    Route::post('/send-otp','App\Http\Controllers\AuthJwt\AuthController@sendOtp');
+    Route::post('/verify-otp','App\Http\Controllers\AuthJwt\AuthController@verifyOtp');
 });
 
 Route::post('book-naw',[\App\Http\Controllers\API\OrderController::class,'book_naw']);
 Route::post('/vaila/check-avialable',[\App\Http\Controllers\API\VailaController::class,'check_avialable']);
 Route::get('/vaila/newarival', [\App\Http\Controllers\API\VailaController::class, 'newArival'])->name('newArival');
-Route::get('/vaila/bestsell', [\App\Http\Controllers\API\VailaController::class, 'bestSell'])->name('bestSell');
+Route::get('vaila/bestsell', [\App\Http\Controllers\API\VailaController::class, 'bestSell'])->name('bestSell');
+Route::get('vaila/my-vaila', [\App\Http\Controllers\API\VailaController::class, 'myViala'])->name('myViala');
 Route::apiResource('vaila',\App\Http\Controllers\API\VailaController::class);
 Route::apiResource('orders',\App\Http\Controllers\API\OrderController::class);
 Route::apiResource('comments',\App\Http\Controllers\API\CommentsController::class);

@@ -39,6 +39,16 @@
                     <td>
                         <a href="{{url("vaila/$vaila->id/edit")}}">edit</a>
                         <a href="{{url("vaila/$vaila->id/show")}}">show</a>
+
+                        <form action="{{url("vaila/$vaila->id/destroy")}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                                <i class="fas fa-trash fa-lg text-danger"></i>
+                            </button>
+                        </form>
+
                     </td>
                 </tr>
             @endforeach
