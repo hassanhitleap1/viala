@@ -25,17 +25,17 @@
                     <td>{{ $customer->email}}</td>
                     <td>{{ $customer->phone}}</td>
                     <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
+                    <td> <img src="{{storage_path($customer->avatar)}}" width="250" height="25"> </td>
                     <td>
                         <a href="{{url("customers/$customer->id/edit")}}">edit</a>
                         <a href="{{url("customers/$customer->id/show")}}">show</a>
-                        <form action="{{url("customers/$customer->id/destroy")}}" method="POST">
+
+                        <form action="{{route("customers.destroy",$customer->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-
-                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                                <i class="fas fa-trash fa-lg text-danger"></i>
-                            </button>
+                            <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
+
                     </td>
 
                 </tr>

@@ -40,12 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
-            'hash' => false,
         ],
+        'api-jwt' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ]
+
     ],
 
     /*
@@ -71,14 +74,6 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'api' => [
-            'driver' => 'jwt',
-            'provider' => 'users',
-        ],
-        'api-jwt' => [
-            'driver' => 'jwt',
-            'provider' => 'users',
-        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -104,7 +99,7 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 60,
+            'expire' => 120,
             'throttle' => 60,
         ],
     ],
@@ -120,6 +115,6 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
+    'password_timeout' => 20800,
 
 ];

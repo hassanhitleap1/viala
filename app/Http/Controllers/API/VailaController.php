@@ -41,12 +41,12 @@ class VailaController extends Controller
 
         $request['number_booking']=0;
         $request['status']=0;
-        $request['user_id']=auth("jwt")->user()->id;
+        $request['user_id']=auth('api-jwt')->user()->id;
         $request['number_booking']=0;
         $next_id=Vaila::get_next_id();
 
         if($file = $request->file('thumb')) {
-            $fileData = $this->uploads($file,"vailas/$next_id");
+            $fileData = $this->uploads($file,"vailas/$next_id/");
             $validatedData['thumb'] = $fileData['filePath'] ."/".$fileData['fileName'];
         }
         unset($request['images']);
@@ -57,7 +57,7 @@ class VailaController extends Controller
             foreach ($files as $file){
                 $fileData = $this->uploads($file,"vailas/$next_id/images");
                 $images []=[
-                    'path' =>  $fileData['filePath'] ."/".$fileData['fileName'],
+                    'path' =>  $fileData['filePath'] ,
                     'vaila_id'=> $vaila->id
                 ];
 
@@ -82,7 +82,7 @@ class VailaController extends Controller
             foreach ($files as $file){
                 $fileData = $this->uploads($file,"vailas/$vaila->id/images");
                 $images []=[
-                    'path' =>  $fileData['filePath'] ."/".$fileData['fileName'],
+                    'path' =>  $fileData['filePath'] ,
                     'vaila_id'=> $vaila->id
                 ];
 

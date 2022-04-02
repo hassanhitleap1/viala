@@ -15,7 +15,7 @@ class OrderRequest  extends \App\Http\Requests\Api\FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,19 +26,13 @@ class OrderRequest  extends \App\Http\Requests\Api\FormRequest
     public function rules()
     {
         return  [
-            'title' => 'required',
-            'desc' => 'required',
-            'new_arrivals' => 'required',
-            'special'=>'required',
-            'has_pool'=>'required',
-            'has_barbikio'=>'required',
-            'has_parcking'=>'required',
-            'for_shbab'=>'required',
-            'price'=>'required',
-            'price_weekend'=>'required',
-            'price_hoolday'=>'required',
-            'number_room'=>'required',
-            'number_booking'=>'required',
+            'form_date' => 'required',
+            'to_date' => 'required',
+            'price' => 'required',
+            'vaial_id'=>'required',
+            'payment_type'=>'cash',
+
+
         ];
 
     }

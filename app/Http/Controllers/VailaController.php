@@ -25,7 +25,7 @@ class VailaController extends Controller
 
     public function store(Request $request){
         $roulas= Vaila::rules();
-        $validatedData = $request->validate($roulas);
+       $validatedData = $request->validate($roulas);
         $validatedData['number_booking']=0;
         $validatedData['status']=0;
         $validatedData['user_id']=auth()->user()->id;
@@ -33,8 +33,9 @@ class VailaController extends Controller
         $next_id=Vaila::get_next_id();
 
         if($file = $request->file('thumb')) {
-            $fileData = $this->uploads($file,"vailas/$next_id");
-            $validatedData['thumb'] = $fileData['filePath'] ."/".$fileData['fileName'];
+            $fileData = $this->uploads($file,"vailas/$next_id/");
+
+            $validatedData['thumb'] = $fileData['filePath'] ;
         }
         unset($validatedData['images']);
         $model =Vaila::create($validatedData);
@@ -74,12 +75,13 @@ class VailaController extends Controller
     public function  update(Vaila $vaila,Request $request){
         $roulas= Vaila::rules();
         $validatedData = $request->validate($roulas);
-        $vaila->update($validatedData);
+
+        $images=[];
         if($files = $request->file('images')) {
             foreach ($files as $file){
                 $fileData = $this->uploads($file,"vailas/$vaila->id/images");
                 $images []=[
-                    'path' =>  $fileData['filePath'] ."/".$fileData['fileName'],
+                    'path' =>  $fileData['filePath'],
                     'vaila_id'=> $vaila->id
                 ];
 
@@ -89,7 +91,8 @@ class VailaController extends Controller
                 ImageVaila::where('vaile_id',$vaila->id)->delete();
                 ImageVaila::create($images);
             }
-
+            unset($validatedData['images']);
+            $vaila->update($validatedData);
         }
         return redirect('/vaila')->with('success', 'Game is successfully saved');
     }

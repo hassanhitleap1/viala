@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\FiltersViala;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -66,6 +67,13 @@ class Vaila extends  Model
     }
 
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new FiltersViala());
+    }
+
+
     public static function newArival(){
         return self::where('new_arrivals',1);
     }
@@ -90,15 +98,18 @@ class Vaila extends  Model
     }
 
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function imagevaila(){
         return $this->hasMany(ImageVaila::class);
     }
     public function governorate(){
-        return $this->hasMany(Governorate::class);
+        return $this->belongsTo(Governorate::class);
     }
 
+    public function rates(){
+        return $this->hasMany(Rate::class);
+    }
 
 }

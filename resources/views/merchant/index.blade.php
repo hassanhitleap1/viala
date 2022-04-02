@@ -25,17 +25,15 @@
                     <td>{{ $merchant->email}}</td>
                     <td>{{ $merchant->phone}}</td>
                     <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
+                    <td> <img src="{{storage_path($merchant->avatar)}}" width="250" height="25"> </td>
                     <td>
 
                         <a href="{{url("merchant/$merchant->id/edit")}}">edit</a>
                         <a href="{{url("merchant/$merchant->id/show")}}">show</a>
-                        <form action="{{url("merchant/$merchant->id/destroy")}}" method="POST">
+                        <form action="{{route("merchant.destroy",$merchant->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-
-                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                                <i class="fas fa-trash fa-lg text-danger"></i>
-                            </button>
+                            <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
 
                     </td>

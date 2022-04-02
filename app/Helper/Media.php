@@ -9,13 +9,15 @@ trait Media {
 
     public function uploads($file, $path)
     {
+
         if($file) {
 
             $fileName   = time() . $file->getClientOriginalName();
             Storage::disk('public')->put($path . $fileName, File::get($file));
             $file_name  = $file->getClientOriginalName();
             $file_type  = $file->getClientOriginalExtension();
-            $filePath   = 'storage/'.$path . $fileName;
+            $filePath   = 'app/public/'.$path . $fileName;
+
 
             return $file = [
                 'fileName' => $file_name,

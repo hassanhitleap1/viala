@@ -35,19 +35,17 @@
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}</td>
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->special)}}</td>
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</td>
-                    <td> <img src="{{asset($vaila->thumb)}}" width="250" height="25"> </td>
+                    <td> <img src="{{storage_path($vaila->thumb)}}" width="250" height="25"> </td>
                     <td>
-                        <a href="{{url("vaila/$vaila->id/edit")}}">edit</a>
+                        <a  href="{{url("vaila/$vaila->id/edit")}}">edit</a>
                         <a href="{{url("vaila/$vaila->id/show")}}">show</a>
-
-                        <form action="{{url("vaila/$vaila->id/destroy")}}" method="POST">
+                         <form action="{{route("web.vaila.destroy",$vaila->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-
-                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                                <i class="fas fa-trash fa-lg text-danger"></i>
-                            </button>
+                            <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
+
+
 
                     </td>
                 </tr>

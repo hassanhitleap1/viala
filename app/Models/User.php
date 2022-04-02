@@ -75,6 +75,9 @@ class User  extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function getProfilePhotoUrlAttribute(){
+
+    }
 
     public static function  get_next_id(){
         $statement = DB::select("SHOW TABLE STATUS LIKE 'users'");

@@ -9,7 +9,7 @@ Route::group(['prefix' => 'auth' ], function () {
     Route::post('login/facebook', 'App\Http\Controllers\AuthJwt\AuthController@loginWithFacebook');
     Route::post('logout', 'App\Http\Controllers\AuthJwt\AuthController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthJwt\AuthController@refresh');
-    Route::post('me', 'App\Http\Controllers\AuthJwt\AuthController@me');
+    Route::get('me', 'App\Http\Controllers\AuthJwt\AuthController@me');
     Route::post('registration','App\Http\Controllers\AuthJwt\AuthController@registration');
     Route::post('/send-otp','App\Http\Controllers\AuthJwt\AuthController@sendOtp');
     Route::post('/verify-otp','App\Http\Controllers\AuthJwt\AuthController@verifyOtp');

@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/vaila', App\Http\Controllers\VailaController::class);
+Route::resource('/vaila', App\Http\Controllers\VailaController::class, ['as' => 'web']);
 Route::resource('/orders', App\Http\Controllers\OrderController::class);
 Route::resource('/customers', App\Http\Controllers\CustomersController::class);
 Route::resource('/merchant', App\Http\Controllers\MerchantController::class);

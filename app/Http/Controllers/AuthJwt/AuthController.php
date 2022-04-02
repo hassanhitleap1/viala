@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator;
 
 class AuthController extends Controller
@@ -24,7 +25,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.verify', ['except' => ['login','registration']]);
+      //  $this->middleware('jwt.verify', ['except' => ['login','registration']]);
     }
 
     /**
@@ -32,9 +33,8 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request) // LoginRequest
     {
-
        $credentials = $request->only('phone', 'password');
         try {
             if (! $token = auth('api-jwt')->attempt($credentials)) {
@@ -50,6 +50,7 @@ class AuthController extends Controller
                 'errors'=>[$credentials]
             ], 500);
         }
+
         return $this->respondWithToken($token);
 
     }
@@ -172,11 +173,12 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api-jwt')->factory()->getTTL() * 60,
-            'user' => auth('api-jwt')->user()
+           'user' => auth('api-jwt')->user()
         ]);
     }
 

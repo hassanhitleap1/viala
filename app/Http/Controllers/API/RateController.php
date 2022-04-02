@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RateRequest;
 use App\Http\Resources\RateResource;
 use App\Models\Rate;
+use App\Models\Vaila;
 
 
 class RateController extends Controller
@@ -14,7 +15,7 @@ class RateController extends Controller
 
     public function __construct()
     {
-        //  $this->middleware('jwt.verify')->only(['index','store','update','show','destroy']);
+        $this->middleware('jwt.verify')->only(['index','store','update','show','destroy']);
     }
 
 
@@ -22,8 +23,12 @@ class RateController extends Controller
         $rate= Rate::create([
             'vaila_id' => $request->vaila_id,
             'rate' => $request->rate,
-            'user_id'=>auth('api-jwt')->user()->id
+            'user_id'=> auth('api-jwt')->user()->id
         ]);
+         $avg= Rate::where('vaila_id',$request->vaila_id)->avg('rate');
+        $viala=Vaila::find($request->vaila_id);
+        $viala->rates=$avg;
+        $viala->save();
         return new RateResource($rate);
     }
 

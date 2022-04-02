@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\RateRequest;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\RateResource;
 use App\Models\Comments;
+use Illuminate\Http\Request;
 
 
 class CommentsController extends Controller
@@ -19,12 +22,13 @@ class CommentsController extends Controller
 
 
     public function store(CommentRequest $request){
+
         $comment= Comments::create([
             'vaila_id' => $request->vaila_id,
-            'body' => $request->rate,
-            'user_id'=>auth('api-jwt')->user()->id
+            'body' => $request->body,
+            'user_id'=> auth('api-jwt')->user()->id
         ]);
-        return new CommenteResource($comment);
+        return new CommentResource($comment);
     }
 
 
