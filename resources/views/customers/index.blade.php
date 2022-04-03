@@ -30,6 +30,12 @@
                         <a href="{{url("customers/$customer->id/edit")}}">edit</a>
                         <a href="{{url("customers/$customer->id/show")}}">show</a>
 
+                        @if($customer->status)
+                            <a href="{{route("customers.disactive",$customer->id)}}">disactive</a>
+                        @else
+                            <a href="{{route("customers.active",$customer->id)}}">active</a>
+                        @endif
+
                         <form action="{{route("customers.destroy",$customer->id)}}" method="POST">
                             @csrf
                             @method('DELETE')

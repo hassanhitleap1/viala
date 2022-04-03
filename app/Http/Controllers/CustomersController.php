@@ -54,6 +54,18 @@ class CustomersController extends  Controller
     public function destroy(Customers $customer)
     {
         $customer->delete();
-        return redirect('/vaila')->with('success', 'Game Data is successfully deleted');
+        return redirect('/customers')->with('success', 'Game Data is successfully deleted');
+    }
+
+    public function active(Customers $customer)
+    {
+        $customer->update(["status"=>1]);
+        return redirect('/customers')->with('success', 'Game Data is successfully ');
+    }
+
+    public function disactive(Customers $customer)
+    {
+        $customer->update(["status"=>0]);
+        return redirect('/customers')->with('success', 'Game Data is successfully ');
     }
 }

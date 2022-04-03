@@ -56,4 +56,16 @@ class MerchantController extends Controller
         $merchant->delete();
         return redirect('/merchants')->with('success', 'Game Data is successfully deleted');
     }
+
+    public function active(Merchant $merchant)
+    {
+        $merchant->update(["status"=>1]);
+        return redirect('/merchants')->with('success', 'Game Data is successfully ');
+    }
+
+    public function disactive(Merchant $merchant)
+    {
+        $merchant->update(["status"=>0]);
+        return redirect('/merchants')->with('success', 'Game Data is successfully ');
+    }
 }

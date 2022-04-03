@@ -103,6 +103,16 @@ class VailaController extends Controller
         return redirect('/vaila')->with('success', 'Game Data is successfully deleted');
     }
 
+    public function active(Vaila $vaila)
+    {
+        $vaila->update(["active"=>1]);
+        return redirect('/vaila')->with('success', 'Game Data is successfully ');
+    }
 
+    public function disactive(Vaila $vaila)
+    {
+        $vaila->update(["active"=>0]);
+        return redirect('/vaila')->with('success', 'Game Data is successfully ');
+    }
 
 }

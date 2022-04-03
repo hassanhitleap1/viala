@@ -39,11 +39,17 @@
                     <td>
                         <a  href="{{url("vaila/$vaila->id/edit")}}">edit</a>
                         <a href="{{url("vaila/$vaila->id/show")}}">show</a>
+                        @if($vaila->active)
+                             <a href="{{route("vaila.disactive",$vaila->id)}}">disactive</a>
+                        @else
+                            <a href="{{route("vaila.active",$vaila->id)}}">active</a>
+                        @endif
                          <form action="{{route("web.vaila.destroy",$vaila->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
+
 
 
 
