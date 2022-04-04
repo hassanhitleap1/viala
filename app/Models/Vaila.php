@@ -43,26 +43,28 @@ class Vaila extends  Model
     protected $guarded = [];
 
     public  static function rules(){
-        return [
+        return [ "create"=>[
             'title' => 'required',
             'desc' => 'required',
- //           'new_arrivals' => 'required',
- //           'special'=>'required',
-//            'has_pool'=>'required',
-//            'has_barbikio'=>'required',
-//            'has_parcking'=>'required',
-//            'for_shbab'=>'required',
             'price'=>'required|numeric',
             'price_weekend'=>'required|numeric',
             'price_hoolday'=>'required|numeric',
             'number_room'=>'required|numeric',
             'governorate_id'=>'required|numeric',
- //           'garden'=>'required',
-  //          'conditioners'=>'required',
-   //         'kitchen'=>'required',
-   //         'wifi'=>'required',
             'thumb'=>'required',
             'images'=>'required'
+        ],
+            "update"=>[
+                'title' => 'required',
+                'desc' => 'required',
+
+                'price'=>'required|numeric',
+                'price_weekend'=>'required|numeric',
+                'price_hoolday'=>'required|numeric',
+                'number_room'=>'required|numeric',
+                'governorate_id'=>'required|numeric',
+
+            ]
         ];
     }
 

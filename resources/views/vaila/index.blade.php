@@ -35,7 +35,7 @@
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}</td>
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->special)}}</td>
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</td>
-                    <td> <img src="{{storage_path($vaila->thumb)}}" width="250" height="25"> </td>
+                    <td> <img src="{{storage_path($vaila->thumb)}}  " width="250" height="25"> </td>
                     <td>
                         <a  href="{{url("vaila/$vaila->id/edit")}}"><i class="fas fa-edit"></i></a>
                         <a href="{{url("vaila/$vaila->id/show")}}"><i class="fas fa-eye"></i></a>

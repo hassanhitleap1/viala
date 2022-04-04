@@ -19,15 +19,15 @@ class VailaRequest extends \App\Http\Requests\Api\FormRequest
         return false;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+
+
     public function rules()
     {
-        $roulas= Vaila::rules();
-        return $roulas;
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            return  Vaila::rules()["create"];
+        }else{
+            return   Vaila::rules()["update"];;
+        }
 
     }
 

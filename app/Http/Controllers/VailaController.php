@@ -24,7 +24,7 @@ class VailaController extends Controller
 
 
     public function store(Request $request){
-        $roulas= Vaila::rules();
+        $roulas= Vaila::rules()["create"];;
        $validatedData = $request->validate($roulas);
         $validatedData['number_booking']=0;
         $validatedData['status']=0;
@@ -73,9 +73,9 @@ class VailaController extends Controller
     }
 
     public function  update(Vaila $vaila,Request $request){
-        $roulas= Vaila::rules();
-        $validatedData = $request->validate($roulas);
+        $roulas= Vaila::rules()["update"];
 
+        $validatedData = $request->validate($roulas);
         $images=[];
         if($files = $request->file('images')) {
             foreach ($files as $file){
