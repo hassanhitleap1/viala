@@ -37,8 +37,8 @@
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</td>
                     <td> <img src="{{storage_path($vaila->thumb)}}" width="250" height="25"> </td>
                     <td>
-                        <a  href="{{url("vaila/$vaila->id/edit")}}">edit</a>
-                        <a href="{{url("vaila/$vaila->id/show")}}">show</a>
+                        <a  href="{{url("vaila/$vaila->id/edit")}}"><i class="fas fa-edit"></i></a>
+                        <a href="{{url("vaila/$vaila->id/show")}}"><i class="fas fa-eye"></i></a>
                         @if($vaila->active)
                              <a href="{{route("vaila.disactive",$vaila->id)}}">disactive</a>
                         @else
@@ -47,7 +47,9 @@
                          <form action="{{route("web.vaila.destroy",$vaila->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                             <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                                 <i class="fas fa-trash fa-lg text-danger"></i>
+                             </button>
                         </form>
 
 

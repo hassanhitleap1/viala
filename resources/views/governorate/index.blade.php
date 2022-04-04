@@ -25,12 +25,11 @@
                     <td>{{$governorate->name_en}}</td>
                     <td>{{$governorate->name_ar}}</td>
                     <td>
-                        <a href="{{url("governorate/$governorate->id/edit")}}">edit</a>
+                        <a href="{{url("governorate/$governorate->id/edit")}}"><i class="fas fa-edit"></i> </a>
 
-                        <form action="{{url("governorate/$governorate->id/destroy")}}" method="POST">
+                        <form action="{{route("governorate.destroy",$governorate->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-
                             <button type="submit" title="delete" style="border: none; background-color:transparent;">
                                 <i class="fas fa-trash fa-lg text-danger"></i>
                             </button>

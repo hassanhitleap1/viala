@@ -27,8 +27,8 @@
                     <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
                     <td> <img src="{{storage_path($customer->avatar)}}" width="250" height="25"> </td>
                     <td>
-                        <a href="{{url("customers/$customer->id/edit")}}">edit</a>
-                        <a href="{{url("customers/$customer->id/show")}}">show</a>
+                        <a href="{{url("customers/$customer->id/edit")}}"><i class="fas fa-edit"></i></a>
+                        <a href="{{url("customers/$customer->id/show")}}"><i class="fas fa-eye"></i></a>
 
                         @if($customer->status)
                             <a href="{{route("customers.disactive",$customer->id)}}">disactive</a>
@@ -39,7 +39,9 @@
                         <form action="{{route("customers.destroy",$customer->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                                <i class="fas fa-trash fa-lg text-danger"></i>
+                            </button>
                         </form>
 
                     </td>
