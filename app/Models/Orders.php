@@ -12,4 +12,9 @@ class Orders  extends Model
 
     protected $guarded = [];
 
+
+    public function vaila(){
+        return $this->hasOne(Vaila::class,'id','vaial_id');
+    }
+
 }

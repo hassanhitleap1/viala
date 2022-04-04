@@ -9,23 +9,29 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">form date</th>
+                <th scope="col">to_date</th>
+                <th scope="col">price</th>
+                <th scope="col">payment_type</th>
+                <th scope="col">vaila</th>
+
             </tr>
             </thead>
             <tbody>
-            @foreach($orders as $order)
+            @foreach($orders as $key => $order)
                 <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{++$key}}</th>
+                <td>{{$order->form_date}}</td>
+                    <td>{{$order->form_date}}</td>
+                    <td>{{$order->price}}</td>
+                    <td>{{$order->payment_type}}</td>
+                    <td>{{$order->vaila->title}}</td>
             </tr>
             @endforeach
 
             </tbody>
         </table>
+        {{ $orders->links() }}
     </div>
 
 @endsection
