@@ -28,7 +28,7 @@ class RegistrationRequest extends \App\Http\Requests\Api\FormRequest
         return  [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ];
 
