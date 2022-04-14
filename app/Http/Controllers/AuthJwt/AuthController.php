@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\AuthJwt;
 
+use App\Helper\Media;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\Vaila;
@@ -18,6 +19,7 @@ use Validator;
 
 class AuthController extends Controller
 {
+    use Media;
     /**
      * Create a new AuthController instance.
      *
