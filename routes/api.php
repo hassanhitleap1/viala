@@ -13,6 +13,7 @@ Route::group(['prefix' => 'auth' ], function () {
     Route::post('registration','App\Http\Controllers\AuthJwt\AuthController@registration');
     Route::post('/send-otp','App\Http\Controllers\AuthJwt\AuthController@sendOtp');
     Route::post('/verify-otp','App\Http\Controllers\AuthJwt\AuthController@verifyOtp');
+    Route::post('set-fcm', 'App\Http\Controllers\AuthJwt\AuthController@setFcm');
 });
 
 Route::post('book-naw',[\App\Http\Controllers\API\OrderController::class,'book_naw']);

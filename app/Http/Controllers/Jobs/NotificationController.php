@@ -23,9 +23,10 @@ class NotificationController  extends Controller
         $date = Carbon::now();
         $title="";
         $body="";
-        $users=Orders::where('form_date',$date)->get();
+        $users=Orders::where('form_date',$date)->get()->pluck('fcm')->toArray();
         NotificationHelper::booking($users,$title,$body,1);
-        FCM::sendForUsers($users,$title,$body);
+        
+        FCM::sendForListUsers($users,$title,$body);
 
     }
 

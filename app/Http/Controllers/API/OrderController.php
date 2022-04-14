@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Events\MakeOrderEvent;
+
 use App\Helper\AccountingHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrdersResource;
 use App\Models\Accounting;
 use App\Models\Orders;
