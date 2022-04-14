@@ -6,7 +6,7 @@ namespace App\Http\Controllers\AuthJwt;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\Vaila;
-use App\User;
+use App\Models\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
