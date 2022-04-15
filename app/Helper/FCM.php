@@ -12,9 +12,9 @@ class FCM
 {
     public static $from="";
     public static  $login_name="";
-    public static  $login_password="";
+    public static  $login_password="AIzaSyDOe6Sh5Kozl346QRGqfWI-sG0vLi3_reU";
     public static  $baseURL="https://fcm.googleapis.com/fcm/send";
-    public static $secretlegalekey='';
+    public static $secretlegalekey='Key:AAAAnKp5W5c:APA91bFU_w6T-sQkBwZtToaOp8gm-bdHpdmQgdXk3CNxy1CZWQeedymXPuiOTMXnd-r2kHQcNAxgRqUXq6P1yIksiuiG3ZzjkFq0bc0y6WeurzsLCKMeHAoKsytD0tmsvSkkUY60FUik';
 
     public static  function  sendweb($to= "",$title= "",$messege= ""){
 

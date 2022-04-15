@@ -6,22 +6,20 @@ namespace App\Http\Controllers\AuthJwt;
 use App\Helper\Media;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
-
+use Illuminate\Http\Request;
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SocialiteRequest;
 use Exception;
-use GuzzleHttp\Psr7\Request as Psr7Request;
-use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Validator;
+
 
 class AuthController extends Controller
 {
@@ -141,7 +139,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth("'api-jwt'")->logout();
+        auth("api-jwt")->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -214,8 +212,36 @@ class AuthController extends Controller
        $user= User::find(auth('api-jwt')->user()->id);
        $user->fcm= $request->fcm;
        $user->save();
+       return response()->json(["successfully"]);
 
     }
+
+
+    public function updateprofile (Request $request){
+        $user= User::find(auth('api-jwt')->user()->id);
+        $user->name=$request->name;
+        $user->save();
+      return   response()->json(["successfully"]);
+ 
+     }
+
+     public function forgetPassword (Request $request){
+         
+        $user = User::where('email',$request->email)->first();
+        $user->password = Hash::make("pass@123");
+        $user->save();
+
+        $data = array('name'=>"Virat Gandhi");
+        
+        Mail::send(['text'=>'mail'], $data, function($message,$user) {
+            $message->to($user->email , 'new password is pass@123')->subject
+               ('Laravel Basic Testing Mail');
+            $message->from('xyz@gmail.com','Virat Gandhi');
+         });
+
+        return   response()->json(["successfully"]);
+     }
+     
 
 
     public function sendSMS($OTP, $mobileNumber){

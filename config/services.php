@@ -35,8 +35,8 @@ return [
         'redirect' => 'http://your-callback-url',
     ],
     'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'client_id' => '353308123421156',
+        'client_secret' => '09bacf00fa61cc2ca6c77761d13c7f4e',
         'redirect' => 'http://your-callback-url',
     ],
 

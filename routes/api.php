@@ -14,7 +14,13 @@ Route::group(['prefix' => 'auth' ], function () {
     Route::post('/send-otp','App\Http\Controllers\AuthJwt\AuthController@sendOtp');
     Route::post('/verify-otp','App\Http\Controllers\AuthJwt\AuthController@verifyOtp');
     Route::post('set-fcm', 'App\Http\Controllers\AuthJwt\AuthController@setFcm');
+    Route::post('updateprofile', 'App\Http\Controllers\AuthJwt\AuthController@updateprofile');
 });
+
+
+Route::get('terms-and-conditions', 'App\Http\Controllers\API\SettingsController@terms_and_conditions');
+Route::get('about', 'App\Http\Controllers\API\SettingsController@about');
+Route::get('privacy-policy', 'App\Http\Controllers\API\SettingsController@privacy_policy');
 
 Route::post('book-naw',[\App\Http\Controllers\API\OrderController::class,'book_naw']);
 Route::post('/vaila/check-avialable',[\App\Http\Controllers\API\VailaController::class,'check_avialable']);
