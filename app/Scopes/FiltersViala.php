@@ -24,6 +24,9 @@ class FiltersViala implements Scope
             $builder->where('name', 'like', "%".$_GET['title']."%");
         }
 
+
+     
+
         if(isset($_GET['new_arrivals']) && $_GET['new_arrivals'] == true){
             $builder->where('new_arrivals', '=', 1);
         }
@@ -93,6 +96,14 @@ class FiltersViala implements Scope
             $builder->where('user_id', '=', $_GET['user_id']);
         }
 
+
+        if(isset($_GET['main_price']) && $_GET['main_price'] != ""){
+            $builder->where('price', '<=', $_GET['main_price']);
+        }
+        
+        if(isset($_GET['max_price']) && $_GET['max_price'] != ""){
+            $builder->where('price', '> =', $_GET['max_price']);
+        }
 
     }
 }

@@ -34,6 +34,10 @@ class VailaController extends Controller
         return VailaResource::collection(Vaila::myViala()->paginate(10));
     }
 
+    public function nearby (){
+        return VailaResource::collection(Vaila::nearby()->paginate(10));
+    }
+
     public function index(){
         return VailaResource::collection(Vaila::paginate(10));
     }

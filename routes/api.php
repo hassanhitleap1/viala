@@ -28,6 +28,7 @@ Route::post('/vaila/check-avialable',[\App\Http\Controllers\API\VailaController:
 Route::get('/vaila/newarival', [\App\Http\Controllers\API\VailaController::class, 'newArival'])->name('newArival');
 Route::get('vaila/bestsell', [\App\Http\Controllers\API\VailaController::class, 'bestSell'])->name('bestSell');
 Route::get('vaila/my-vaila', [\App\Http\Controllers\API\VailaController::class, 'myViala'])->name('myViala');
+Route::get('vaila/nearby', [\App\Http\Controllers\API\VailaController::class, 'nearby'])->name('nearby');
 Route::apiResource('vaila',\App\Http\Controllers\API\VailaController::class);
 Route::apiResource('orders',\App\Http\Controllers\API\OrderController::class);
 Route::apiResource('comments',\App\Http\Controllers\API\CommentsController::class);

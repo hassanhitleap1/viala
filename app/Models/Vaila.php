@@ -89,10 +89,21 @@ class Vaila extends  Model
         return self::orderBy('user_id', auth('api-jwt')->user()->id);
     }
 
+
+    public static function nearby(){
+        $lag=$_GET["lag"];
+        $lat=$_GET["lat"];
+        return self::whereRaw("ACOS(SIN(RADIANS('lag'))*SIN(RADIANS($lag))+COS(RADIANS('lat'))*COS(RADIANS($lat))*COS(RADIANS('longitude')-RADIANS($lag)))*6380 < 10")
+        ->orderBy('number_booking','DESC');
+    }
+
+
     public static function  get_next_id(){
         $statement = DB::select("SHOW TABLE STATUS LIKE 'vaila'");
         return $statement[0]->Auto_increment;
     }
+
+
 
 
     public function comments(){
