@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helper\Media;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VailaRequest;
 use App\Http\Resources\VailaResource;
@@ -13,10 +14,10 @@ use Illuminate\Http\Request;
 class VailaController extends Controller
 {
 
-
+    use Media;
     public function __construct()
     {
-        //   $this->middleware('jwt.verify')->only(['index','store','update','show','destroy']);
+          $this->middleware('jwt.verify')->only(['store','update']);
     }
 
 
@@ -43,19 +44,31 @@ class VailaController extends Controller
         $request['status']=0;
         $request['user_id']=auth('api-jwt')->user()->id;
         $request['number_booking']=0;
+        $insert=$request->except(['images']);
+      
         $next_id=Vaila::get_next_id();
+     
 
+       
         if($file = $request->file('thumb')) {
             $fileData = $this->uploads($file,"vailas/$next_id/");
-            $validatedData['thumb'] = $fileData['filePath'] ."/".$fileData['fileName'];
+            $insert['thumb'] = $fileData['filePath'] ."/".$fileData['fileName'];
+          
         }
-        unset($request['images']);
-        $vaila= Vaila::create($request);
-
+        ;
+      
+     
+        $vaila= Vaila::create($insert);
+     
         $images=[];
-        if($files = $request->file('images')) {
-            foreach ($files as $file){
-                $fileData = $this->uploads($file,"vailas/$next_id/images");
+
+     
+        if($files = $request->file('images') ) {
+            
+            foreach ($files as $file){       
+               
+                $fileData = $this->uploads($file,"vailas/$vaila->id/images/");
+               
                 $images []=[
                     'path' =>  $fileData['filePath'] ,
                     'vaila_id'=> $vaila->id
@@ -63,10 +76,11 @@ class VailaController extends Controller
 
             }
 
-            if(count($images))
-                ImageVaila::create($images);
+            
         }
-
+         
+        if(count($images))
+                ImageVaila::create($images);
         return new VailaResource($vaila);
     }
 

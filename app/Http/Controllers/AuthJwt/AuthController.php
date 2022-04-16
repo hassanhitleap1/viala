@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\SocialiteRequest;
 use Exception;
 use Illuminate\Support\Facades\File;
@@ -31,7 +32,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-      //  $this->middleware('jwt.verify', ['except' => ['login','registration']]);
+        $this->middleware('jwt.verify', ['except' => ['login','registration','forgetPassword']]);
     }
 
     /**
@@ -46,6 +47,7 @@ class AuthController extends Controller
             if (! $token = auth('api-jwt')->attempt($credentials)) {
                 return response()->json([
                     'success' => false,
+                    "massage"=>'Login credentials are invalid',
                     'errors'=>['credentials'=>['Login credentials are invalid']]
                 ], 402);
             }
@@ -171,6 +173,7 @@ class AuthController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
                 'phone'=> $request['phone'],
+        
                 // 'avatar'=>$avatar
             ]);
 
@@ -191,6 +194,7 @@ class AuthController extends Controller
     {
 
         return response()->json([
+            'success' => true,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api-jwt')->factory()->getTTL() * 60,
@@ -212,7 +216,10 @@ class AuthController extends Controller
        $user= User::find(auth('api-jwt')->user()->id);
        $user->fcm= $request->fcm;
        $user->save();
-       return response()->json(["successfully"]);
+       return response()->json([
+        'success' => true,
+        'message' =>"successfully"
+    ]);
 
     }
 
@@ -220,26 +227,37 @@ class AuthController extends Controller
     public function updateprofile (Request $request){
         $user= User::find(auth('api-jwt')->user()->id);
         $user->name=$request->name;
+        $user->phone=$request->phone;
+        $user->email=$request->email;
+
+        if($file = $request->file('avater')) {
+            $fileData = $this->uploads($file,"users/$user->id/");
+            $user->avater = $fileData['filePath'] ."/".$fileData['fileName'];
+        }
         $user->save();
-      return   response()->json(["successfully"]);
+        return response()->json([
+            'success' => true,
+            'message' =>"successfully"
+        ]);
  
      }
 
-     public function forgetPassword (Request $request){
-         
+     public function forgetPassword(ForgetPasswordRequest $request){  
         $user = User::where('email',$request->email)->first();
         $user->password = Hash::make("pass@123");
         $user->save();
-
         $data = array('name'=>"Virat Gandhi");
         
-        Mail::send(['text'=>'mail'], $data, function($message,$user) {
-            $message->to($user->email , 'new password is pass@123')->subject
-               ('Laravel Basic Testing Mail');
-            $message->from('xyz@gmail.com','Virat Gandhi');
-         });
+        // Mail::send(['text'=>'mail'], $data, function($message,$user) {
+        //     $message->to($user->email , 'new password is pass@123')->subject
+        //        ('Laravel Basic Testing Mail');
+        //     $message->from('xyz@gmail.com','Virat Gandhi');
+        //  });
 
-        return   response()->json(["successfully"]);
+         return response()->json([
+            'success' => true,
+            'message' =>"successfully"
+        ]);
      }
      
 

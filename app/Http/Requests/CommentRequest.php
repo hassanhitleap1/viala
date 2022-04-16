@@ -43,6 +43,8 @@ class CommentRequest  extends \App\Http\Requests\Api\FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
+            'success'=>false,
+            "message" => $this->validator->errors()->first(),
             'errors' => $validator->errors(),
             'status' => 422
         ], 422));

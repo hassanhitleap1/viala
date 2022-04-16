@@ -5,7 +5,7 @@ use App\Http\Requests\Request;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SocialiteRequest extends \App\Http\Requests\Api\FormRequest
+class ForgetPasswordRequest  extends \App\Http\Requests\Api\FormRequest
 {
 
     /**
@@ -26,8 +26,9 @@ class SocialiteRequest extends \App\Http\Requests\Api\FormRequest
     public function rules()
     {
         return  [
-            'access_token' => 'required',
-        
+            'email' => 'required',
+            'email' => 'email',
+
         ];
 
     }
