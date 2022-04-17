@@ -81,7 +81,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title_he') }}</span>
-                                        <input type="text" class="form-control @error('title_he') is-invalid @enderror" aria-label="Sizing example input" name="title"  value="{{ old('title_he') }}"  aria-describedby="inputGroup-sizing-sm">
+                                        <input type="text" class="form-control @error('title_he') is-invalid @enderror" aria-label="Sizing example input" name="title_he"  value="{{ old('title_he') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('title_he')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

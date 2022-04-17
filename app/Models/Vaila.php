@@ -7,33 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
-/**
- * This is the model class for table "{{%vaila}}".
- * @property int $id
- * @property string $title
- * @property string $desc
- * @property bool $new_arrivals
- * @property  bool $special
- * @property bool $has_pool,
- * @property bool $has_barbikio
- * @property bool $has_parcking
- * @property bool $for_shbab
- * @property  float $price
- * @property float $price_weekend
- * @property  float $price_hoolday
- * @property  integer $number_room
- * @property integer $number_booking
- * @property  bool $status
- * @property  bool $user_id
- * @property  integer $governorate_id
- * @property  bool $garden
- * @property  bool conditioners
- * @property  bool $kitchen
- *  @property  bool $wifi
- * @property string $thumb
- *  @property string|null $lag
- *  @property string|null  $lat
- */
+
 
 class Vaila extends  Model
 {
