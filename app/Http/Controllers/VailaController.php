@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helper\Media;
 use App\Models\Governorate;
 use App\Models\ImageVaila;
+use App\Models\Services;
+use App\Models\VaialServices;
 use App\Models\Vaila;
 use Illuminate\Http\Request;
 
@@ -25,6 +27,9 @@ class VailaController extends Controller
 
     public function store(Request $request){
         $roulas= Vaila::rules()["create"];;
+        $services=$request->services;
+        
+     
        $validatedData = $request->validate($roulas);
         $validatedData['number_booking']=0;
         $validatedData['status']=0;
@@ -55,17 +60,35 @@ class VailaController extends Controller
                 ImageVaila::create($images);
         }
 
+        if($services){
+            $data_services=[];
+
+            foreach($services as $key => $service){
+           
+                $data_services=[
+                    'vaila_id'=>$model->id,
+                    'services_id'=> $key
+                ];
+            }
+            VaialServices::create($data_services);
+        }
+       
+
         return redirect('/vaila')->with('success', 'Game is successfully saved');
 
     }
     public function  create(){
+        $services=Services::all();
         $governorates=Governorate::all();
-        return view(self::VIEW."create",compact('governorates'));
+        return view(self::VIEW."create",compact('governorates','services'));
     }
 
     public function  edit(Vaila $vaila){
+        $services=Services::all();
         $governorates=Governorate::all();
-        return view(self::VIEW."edit",compact('vaila','governorates'));
+     
+    
+        return view(self::VIEW."edit",compact('vaila','governorates','services'));
     }
 
     public function show(Vaila $vaila){

@@ -247,6 +247,23 @@
 
 
                             </div>
+                            <hr/>
+
+                            <h1>services</h1>
+                            <div class="row">
+                                @foreach($services as $service)
+                                    <div class="col-md-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input"  name="services[{{$service->id}}]"    type="checkbox" id="{{$service->id}}">
+                                            <label class="form-check-label"  for="{{$service->id}}">{{ $service->name_ar}}</label>
+                                        </div>
+                                      
+                                    </div>
+                                @endforeach
+                             
+                            </div>
+                            
+                  
                             <div class="row mb-0">
                                 <div class="col-md-6 ">
                                     <div class="mb-3">

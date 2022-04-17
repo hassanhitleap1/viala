@@ -15,8 +15,8 @@ class CerateVailaServTable extends Migration
     {
         Schema::create('vaial_services', function (Blueprint $table) {
             $table->id();
-            $table->integer('vaial_id');
-            $table->integer('services_is');
+            $table->integer('vaila_id');
+            $table->integer('services_id');
             $table->timestamps();
         });
     }

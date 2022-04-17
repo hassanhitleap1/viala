@@ -93,6 +93,11 @@ class Vaila extends  Model
         return $this->hasMany(Comments::class);
     }
 
+    public function services(){
+        return $this->hasMany(VaialServices::class)
+            ->join('services','services.id','=','vaial_services.services_id');
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
