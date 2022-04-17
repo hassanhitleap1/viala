@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request) // LoginRequest
     {
-       $credentials = $request->only('phone', 'password');
+       $credentials = $request->only('email', 'password');
         try {
             if (! $token = auth('api-jwt')->attempt($credentials)) {
                 return response()->json([

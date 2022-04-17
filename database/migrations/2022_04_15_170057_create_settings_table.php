@@ -15,9 +15,15 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->text('terms_and_conditions');
-            $table->text('about');
-            $table->text('privacy_policy');
+            $table->text('terms_and_conditions_en');
+            $table->text('about_en');
+            $table->text('privacy_policy_en');
+            $table->text('terms_and_conditions_ar');
+            $table->text('about_ar');
+            $table->text('privacy_policy_ar');
+            $table->text('terms_and_conditions_he');
+            $table->text('about_he');
+            $table->text('privacy_policy_he');
             $table->timestamps();
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::get('/merchant/disactive/{merchant}', [App\Http\Controllers\MerchantContr
 Route::resource('/merchant', App\Http\Controllers\MerchantController::class);
 
 Route::resource('/governorate',App\Http\Controllers\GovernorateController::class);
+Route::resource('/services',App\Http\Controllers\ServicesController::class);
 Route::get('/accounting/{merchant}',[App\Http\Controllers\AccountingController::class,'index']);
 Route::delete('/accounting/{merchant}',[App\Http\Controllers\AccountingController::class,'delete']);
 

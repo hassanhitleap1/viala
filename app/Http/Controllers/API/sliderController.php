@@ -10,9 +10,7 @@ class sliderController extends Controller
 {
 
 
-    public function terms_and_conditions(){
-
-        $settings= Slider::first();
+    public function index(){
         return  SliderResource::collection(Slider::all());
     }
 

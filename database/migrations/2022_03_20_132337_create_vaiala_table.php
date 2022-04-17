@@ -15,8 +15,12 @@ class CreateVaialaTable extends Migration
     {
         Schema::create('vaila', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('desc');
+            $table->string('title_en');
+            $table->string('title_ar');
+            $table->string('title_he');
+            $table->string('desc_en');
+            $table->string('desc_ar');
+            $table->string('desc_he');
             $table->smallInteger('status')->default(0);
             $table->smallInteger('new_arrivals')->default(0);
             $table->smallInteger('special')->default(0);
@@ -26,6 +30,7 @@ class CreateVaialaTable extends Migration
             $table->integer('has_barbikio')->default(0);
             $table->integer('has_parcking')->default(0);
             $table->integer('for_shbab')->default(0);
+            $table->float('area')->default(0);
             $table->float('price');
             $table->float('price_weekend');
             $table->float('price_hoolday');

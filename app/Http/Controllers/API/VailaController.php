@@ -35,7 +35,7 @@ class VailaController extends Controller
     }
 
     public function nearby (){
-        return VailaResource::collection(Vaila::nearby()->paginate(10));
+        return VailaResource::collection(Vaila::nearby()->limit(10));
     }
 
     public function index(){
@@ -53,7 +53,7 @@ class VailaController extends Controller
         $next_id=Vaila::get_next_id();
      
 
-       
+    
         if($file = $request->file('thumb')) {
             $fileData = $this->uploads($file,"vailas/$next_id/");
             $insert['thumb'] = $fileData['filePath'] ."/".$fileData['fileName'];

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Requests;
-use App\Http\Requests\Request;
+
+use App\Models\Services;
+use App\Models\Vaila;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class RegistrationRequest extends \App\Http\Requests\Api\FormRequest
+class ServicesRequest extends \App\Http\Requests\Api\FormRequest
 {
 
     /**
@@ -18,19 +20,15 @@ class RegistrationRequest extends \App\Http\Requests\Api\FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+
+
     public function rules()
     {
-        return  [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required','string', 'email', 'max:255', 'unique:users'],
-            'phone' => [ 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-        ];
+        if (in_array($this->method(), ['PUT', 'PATCH'])) {
+            return  Services::rules();
+        }else{
+            return   Services::rules();;
+        }
 
     }
 
@@ -41,7 +39,7 @@ class RegistrationRequest extends \App\Http\Requests\Api\FormRequest
      * @param Validator $validator
      * @throws  HttpResponseException
      */
-  
+    
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

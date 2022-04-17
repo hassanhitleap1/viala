@@ -17,8 +17,12 @@ class CreateNotificationTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->smallInteger('type');
-            $table->string('title');
-            $table->string('body');
+            $table->string('title_en');
+            $table->string('title_ar');
+            $table->string('title_he');
+            $table->string('body_en');
+            $table->string('body_ar');
+            $table->string('body_he');
             $table->timestamps();
         });
     }

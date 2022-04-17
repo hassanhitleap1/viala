@@ -44,9 +44,14 @@ class Vaila extends  Model
 
     public  static function rules(){
         return [ "create"=>[
-            'title' => 'required',
-            'desc' => 'required',
+            'title_en' => 'required',
+            'title_ar' => 'required',
+            'title_he' => 'required',
+            'desc_en' => 'required',
+            'desc_ar' => 'required',
+            'desc_he' => 'required',
             'price'=>'required|numeric',
+            'area'=>'required|numeric',
             'price_weekend'=>'required|numeric',
             'price_hoolday'=>'required|numeric',
             'number_room'=>'required|numeric',
@@ -55,9 +60,13 @@ class Vaila extends  Model
             'images'=>'required'
         ],
             "update"=>[
-                'title' => 'required',
-                'desc' => 'required',
-
+                'title_en' => 'required',
+                'title_ar' => 'required',
+                'title_he' => 'required',
+                'desc_en' => 'required',
+                'desc_ar' => 'required',
+                'desc_he' => 'required',
+                'area'=>'required|numeric',
                 'price'=>'required|numeric',
                 'price_weekend'=>'required|numeric',
                 'price_hoolday'=>'required|numeric',

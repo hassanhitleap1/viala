@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGovernorateTable extends Migration
+class CerateVailaServTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateGovernorateTable extends Migration
      */
     public function up()
     {
-        Schema::create('governorate', function (Blueprint $table) {
+        Schema::create('vaial_services', function (Blueprint $table) {
             $table->id();
-            $table->string('name_en');
-            $table->string('name_ar');
-            $table->string('name_he');
-            $table->string('image');
-            $table->softDeletes();
+            $table->integer('vaial_id');
+            $table->integer('services_is');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateGovernorateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('governorate');
+        //
     }
 }

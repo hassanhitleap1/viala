@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGovernorateTable extends Migration
+class CreaterServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateGovernorateTable extends Migration
      */
     public function up()
     {
-        Schema::create('governorate', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
             $table->string('name_ar');
             $table->string('name_he');
-            $table->string('image');
+            $table->smallInteger('is_main')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateGovernorateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('governorate');
+        Schema::dropIfExists('services');
     }
 }

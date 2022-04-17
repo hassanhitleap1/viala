@@ -13,6 +13,7 @@
                 <th scope="col">#</th>
                 <th scope="col">name en</th>
                 <th scope="col">name ar</th>
+                <th scope="col">name he</th>
                 <th scope="col">action</th>
 
             </tr>
@@ -24,6 +25,7 @@
                     <th scope="row">{{++$key}}</th>
                     <td>{{$governorate->name_en}}</td>
                     <td>{{$governorate->name_ar}}</td>
+                    <td>{{$governorate->name_he}}</td>
                     <td>
                         <a href="{{url("governorate/$governorate->id/edit")}}"><i class="fas fa-edit"></i> </a>
 
