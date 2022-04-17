@@ -26,7 +26,7 @@ class LoginRequest extends \App\Http\Requests\Api\FormRequest
     public function rules()
     {
         return  [
-            'phone' => 'required',
+            'email' => 'required',
             'password' => 'required|string|min:6|max:50'
         ];
 
