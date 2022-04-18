@@ -23,6 +23,7 @@ Route::get('terms-and-conditions', 'App\Http\Controllers\API\SettingsController@
 Route::get('about', 'App\Http\Controllers\API\SettingsController@about');
 Route::get('privacy-policy', 'App\Http\Controllers\API\SettingsController@privacy_policy');
 Route::get('slider', 'App\Http\Controllers\API\sliderController@index');
+Route::get('governorates', 'App\Http\Controllers\API\GovernorateController@index');
 Route::post('book-naw',[\App\Http\Controllers\API\OrderController::class,'book_naw']);
 Route::post('/vaila/check-avialable',[\App\Http\Controllers\API\VailaController::class,'check_avialable']);
 Route::get('/vaila/newarival', [\App\Http\Controllers\API\VailaController::class, 'newArival'])->name('newArival');
@@ -30,7 +31,12 @@ Route::get('vaila/bestsell', [\App\Http\Controllers\API\VailaController::class, 
 Route::get('vaila/my-vaila', [\App\Http\Controllers\API\VailaController::class, 'myViala'])->name('myViala');
 Route::get('vaila/nearby', [\App\Http\Controllers\API\VailaController::class, 'nearby'])->name('nearby');
 Route::apiResource('vaila',\App\Http\Controllers\API\VailaController::class);
+
+Route::get('booking-history',[\App\Http\Controllers\API\OrderController::class,'booking_history']);
 Route::apiResource('orders',\App\Http\Controllers\API\OrderController::class);
 Route::apiResource('comments',\App\Http\Controllers\API\CommentsController::class);
 Route::apiResource('rates',\App\Http\Controllers\API\RateController::class);
+
+Route::get('myfavourite',[\App\Http\Controllers\API\FavouritesController::class,'myfavourite']);
+Route::apiResource('favourites',\App\Http\Controllers\API\FavouritesController::class);
 

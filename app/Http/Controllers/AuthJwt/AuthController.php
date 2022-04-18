@@ -229,6 +229,8 @@ class AuthController extends Controller
         $user->name=$request->name;
         $user->phone=$request->phone;
         $user->email=$request->email;
+        $user->lang=$request->lang;
+        $user->lat=$request->lat;
 
         if($file = $request->file('avater')) {
             $fileData = $this->uploads($file,"users/$user->id/");

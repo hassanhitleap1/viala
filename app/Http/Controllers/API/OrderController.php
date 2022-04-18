@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrdersResource;
+use App\Http\Resources\VailaResource;
 use App\Models\Accounting;
 use App\Models\Orders;
 use App\Models\Vaila;
@@ -18,10 +19,16 @@ class OrderController extends Controller
 
     public function __construct()
     {
-           $this->middleware('jwt.verify')->only(['index','store','update','show','destroy']);
+           $this->middleware('jwt.verify')->only(['index','store','update','show','booking_history','destroy']);
     }
 
 
+
+    public function booking_history(){
+        return VailaResource::collection(Vaila::where('id',function($q){
+            $q->select('vaial_id')->from( 'orders')->where( 'user_id',auth('api-jwt')->user()->id);
+        })->paginate(10));
+    }
 
     public function index(){
         return OrderResource::collection(Orders::paginate(10));
