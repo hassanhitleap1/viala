@@ -21,6 +21,7 @@ Route::group(['prefix' => 'auth' ], function () {
 
 Route::get('terms-and-conditions', 'App\Http\Controllers\API\SettingsController@terms_and_conditions');
 Route::get('about', 'App\Http\Controllers\API\SettingsController@about');
+Route::get('connectus', 'App\Http\Controllers\API\SettingsController@connectus');
 Route::get('privacy-policy', 'App\Http\Controllers\API\SettingsController@privacy_policy');
 Route::get('slider', 'App\Http\Controllers\API\sliderController@index');
 Route::get('governorates', 'App\Http\Controllers\API\GovernorateController@index');

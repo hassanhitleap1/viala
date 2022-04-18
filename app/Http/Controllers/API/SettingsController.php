@@ -47,5 +47,20 @@ class SettingsController extends Controller
     }
 
 
+    public function connectus (){
+
+        $settings= Settings::first();
+        $data=[
+            'phone'=>  $settings->phone ,
+            'email'=>  $settings->email ,
+            ];
+        return response()->json( $data);
+      
+    }
+
+
+
+
+
 
 }
