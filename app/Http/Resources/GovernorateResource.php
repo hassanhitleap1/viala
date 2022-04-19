@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class  GovernorateResource extends JsonResource
 {
@@ -17,9 +16,8 @@ class  GovernorateResource extends JsonResource
     {
 
         $resource=parent::toArray($request);
+        $resource['image']=storage_path($this->thumb);
         
-        $resource['image']= Storage::url($this->thumb);
-        
-        return  $resource;
+        return $resource;
     }
 }
