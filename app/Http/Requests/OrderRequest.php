@@ -30,7 +30,7 @@ class OrderRequest  extends \App\Http\Requests\Api\FormRequest
             'to_date' => 'required',
             'price' => 'required',
             'vaial_id'=>'required',
-            'payment_type'=>'cash',
+            'payment_type'=>'required',
 
 
         ];
