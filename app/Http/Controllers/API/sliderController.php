@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\SliderResource;
 use App\Models\Slider;
 
-class SliderController extends Controller
+class sliderController extends Controller
 {
 
 
