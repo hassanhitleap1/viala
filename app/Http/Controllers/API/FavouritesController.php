@@ -29,7 +29,12 @@ class FavouritesController extends Controller
     }
     public function store(FavouriteRequest $request){// 
       
-        $Favourite= Favourite::create([
+      
+
+        $Favourite = Favourite::updateOrCreate([
+            'vaila_id' => $request->vaila_id,
+            'user_id'=> auth('api-jwt')->user()->id
+        ], [
             'vaila_id' => $request->vaila_id,
             'user_id'=> auth('api-jwt')->user()->id
         ]);
