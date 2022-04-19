@@ -3,7 +3,6 @@
 namespace App\Helper;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 trait Media {
 
@@ -13,17 +12,16 @@ trait Media {
         if($file) {
 
             $fileName   = time() . $file->getClientOriginalName();
-            Storage::disk('public')->put($path . $fileName, File::get($file));
+            File::makeDirectory("images/$path", $mode = 0777, true, true);
+            $file->move("images/$path",$file->getClientOriginalName());
             $file_name  = $file->getClientOriginalName();
             $file_type  = $file->getClientOriginalExtension();
-            $filePath   = 'app/public/'.$path . $fileName;
-
-
+            $filePath   ="images/$path" . $file->getClientOriginalName();
             return $file = [
                 'fileName' => $file_name,
                 'fileType' => $file_type,
                 'filePath' => $filePath,
-                'fileSize' => $this->fileSize($file)
+           
             ];
         }
     }

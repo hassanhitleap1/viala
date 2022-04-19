@@ -22,7 +22,7 @@ class  VailaResource extends JsonResource
         $resource['governorate']= $this->governorate;
         $resource["services"]= $this->services;
         $resource["price_now"]=$this->price;
-        $resource['thumb']=storage_path($this->thumb);
+        $resource['thumb']=asset($this->thumb);
         return $resource;
     }
 }

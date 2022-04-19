@@ -14,7 +14,8 @@ class  ServicesResource extends JsonResource
      */
     public function toArray($request)
     {
-        
-        return parent::toArray($request);;
+        $resource= parent::toArray($request);;
+        $resource['image']=asset($this->thumb);
+        return  $resource;;
     }
 }

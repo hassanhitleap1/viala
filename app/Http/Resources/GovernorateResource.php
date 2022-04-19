@@ -15,9 +15,8 @@ class  GovernorateResource extends JsonResource
     public function toArray($request)
     {
 
-        $resource=parent::toArray($request);
-        
-        
-        return $resource;
+        $resource= parent::toArray($request);;
+        $resource['image']=asset($this->thumb);
+        return  $resource;;
     }
 }
