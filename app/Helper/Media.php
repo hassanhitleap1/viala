@@ -10,13 +10,14 @@ trait Media {
     {
 
         if($file) {
+           
 
-            $fileName   = time() . $file->getClientOriginalName();
+            $fileName   ='index.'.$file->getClientOriginalExtension();
             File::makeDirectory("images/$path", $mode = 0777, true, true);
-            $file->move("images/$path",$file->getClientOriginalName());
+            $file->move("images/$path", $fileName);
             $file_name  = $file->getClientOriginalName();
             $file_type  = $file->getClientOriginalExtension();
-            $filePath   ="images/$path" . $file->getClientOriginalName();
+            $filePath   ="images/$path" . $fileName  ;
             return $file = [
                 'fileName' => $file_name,
                 'fileType' => $file_type,
