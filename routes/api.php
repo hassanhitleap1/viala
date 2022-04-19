@@ -24,7 +24,7 @@ Route::get('about', 'App\Http\Controllers\API\SettingsController@about');
 Route::get('connectus', 'App\Http\Controllers\API\SettingsController@connectus');
 Route::get('privacy-policy', 'App\Http\Controllers\API\SettingsController@privacy_policy');
 
-Route::get('/slider',[\App\Http\Controllers\API\SliderController::class,'index']);
+Route::get('/slider',[\App\Http\Controllers\API\sliderController::class,'index']);
 Route::get('governorates', 'App\Http\Controllers\API\GovernorateController@index');
 Route::post('book-naw',[\App\Http\Controllers\API\OrderController::class,'book_naw']);
 Route::post('/vaila/check-avialable',[\App\Http\Controllers\API\VailaController::class,'check_avialable']);
