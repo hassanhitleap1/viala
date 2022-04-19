@@ -105,8 +105,8 @@ class FiltersViala implements Scope
            
             $builder->where('id',function($q){
                 $q->select('vaial_id')->from('orders')
-                ->whereNotBetween('from_date', [$_GET['from_date'] , $_GET['to_date'] ])
-                ->whereNotBetween('to_date', [$_GET['from_date'] , $_GET['to_date'] ]);
+                ->whereNotBetween('form_date', [$_GET['form_date'] , $_GET['to_date'] ])
+                ->whereNotBetween('to_date', [$_GET['form_date'] , $_GET['to_date'] ]);
             });
         }
 
