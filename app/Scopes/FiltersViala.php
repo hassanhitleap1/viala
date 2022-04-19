@@ -104,7 +104,7 @@ class FiltersViala implements Scope
         if(isset($_GET['from_date']) && $_GET['from_date'] != "" && isset($_GET['to_date']) && $_GET['to_date']){
            
             $builder->where('id',function($q){
-                $q->select('vaila_id')->from('orders')
+                $q->select('vaial_id')->from('orders')
                 ->whereNotBetween('from_date', [$_GET['from_date'] , $_GET['to_date'] ])
                 ->whereNotBetween('to_date', [$_GET['from_date'] , $_GET['to_date'] ]);
             });
