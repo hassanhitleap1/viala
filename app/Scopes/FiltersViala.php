@@ -20,12 +20,31 @@ class FiltersViala implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        if(isset($_GET['title']) && $_GET['title'] != ''){
-            $builder->where('name', 'like', "%".$_GET['title']."%");
+    
+
+        if(isset($_GET['search']) && $_GET['search'] != ''){
+            $builder->where(function($q){
+                $q->orwhere('title_en', 'like', "%".$_GET['search']."%");
+                $q->orwhere('title_ar', 'like', "%".$_GET['search']."%");
+                $q->orwhere('title_he', 'like', "%".$_GET['search']."%");
+                $q->orwhere('desc_en', 'like', "%".$_GET['search']."%");
+                $q->orwhere('desc_ar', 'like', "%".$_GET['search']."%");
+                $q->orwhere('desc_he', 'like', "%".$_GET['search']."%");
+            });
+            
+          
         }
 
 
-     
+
+        if(isset($_GET['services']) && is_array($_GET['services']) ){
+            $builder->where('id',function($q){
+                $q->select('vaila_id')->from('vaial_services')
+                ->whereIn('services_id', $_GET['services'] );
+               
+            });
+        }
+
 
         if(isset($_GET['new_arrivals']) && $_GET['new_arrivals'] == true){
             $builder->where('new_arrivals', '=', 1);

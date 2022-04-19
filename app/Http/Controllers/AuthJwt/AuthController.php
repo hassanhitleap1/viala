@@ -244,6 +244,20 @@ class AuthController extends Controller
  
      }
 
+     public function addlocaltion (Request $request){
+        $user= User::find(auth('api-jwt')->user()->id);
+        $user->lang=$request->lang;
+        $user->lat=$request->lat;
+        $user->save();
+        return response()->json([
+            'success' => true,
+            'message' =>"successfully"
+        ]);
+ 
+     }
+
+
+
      public function forgetPassword(ForgetPasswordRequest $request){  
         $user = User::where('email',$request->email)->first();
         $user->password = Hash::make("pass@123");

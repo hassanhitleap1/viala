@@ -16,6 +16,7 @@ Route::group(['prefix' => 'auth' ], function () {
     Route::post('set-fcm', 'App\Http\Controllers\AuthJwt\AuthController@setFcm');
     Route::post('forget-password', 'App\Http\Controllers\AuthJwt\AuthController@forgetPassword');
     Route::post('updateprofile', 'App\Http\Controllers\AuthJwt\AuthController@updateprofile');
+    Route::post('addlocaltion', 'App\Http\Controllers\AuthJwt\AuthController@addlocaltion');
 });
 
 
@@ -25,6 +26,8 @@ Route::get('connectus', 'App\Http\Controllers\API\SettingsController@connectus')
 Route::get('privacy-policy', 'App\Http\Controllers\API\SettingsController@privacy_policy');
 
 Route::get('/slider',[\App\Http\Controllers\API\sliderController::class,'index']);
+Route::get('/services',[\App\Http\Controllers\API\ServicesController::class,'index']);
+
 Route::get('governorates', 'App\Http\Controllers\API\GovernorateController@index');
 Route::post('book-naw',[\App\Http\Controllers\API\OrderController::class,'book_naw']);
 Route::post('/vaila/check-avialable',[\App\Http\Controllers\API\VailaController::class,'check_avialable']);
