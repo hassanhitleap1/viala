@@ -35,7 +35,7 @@ class VailaController extends Controller
     }
 
     public function nearby (){
-        return VailaResource::collection(Vaila::nearby()->limit(10));
+        return VailaResource::collection(Vaila::nearby()->limit(10)->get());
     }
 
     public function index(){

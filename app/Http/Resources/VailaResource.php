@@ -21,6 +21,7 @@ class  VailaResource extends JsonResource
         $resource['imagevaila']= $this->imagevaila;
         $resource['governorate']= $this->governorate;
         $resource["services"]= $this->services;
+        $resource["price_now"]=$this->price;
         return $resource;
     }
 }

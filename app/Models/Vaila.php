@@ -76,7 +76,10 @@ class Vaila extends  Model
     public static function nearby(){
         $lag=$_GET["lag"];
         $lat=$_GET["lat"];
-        return self::whereRaw("ACOS(SIN(RADIANS('lag'))*SIN(RADIANS($lag))+COS(RADIANS('lat'))*COS(RADIANS($lat))*COS(RADIANS('longitude')-RADIANS($lag)))*6380 < 10")
+        return self::
+        //sqrt(power(source_lat - lat, 2) + power(source_long - long, 2))
+       // whereNotNull('lag')->whereNotNull('lat')
+        whereRaw("ACOS(SIN(RADIANS('lag'))*SIN(RADIANS($lag))+COS(RADIANS('lat'))*COS(RADIANS($lat))*COS(RADIANS('lang')-RADIANS($lag)))*6380 < 10")
         ->orderBy('number_booking','DESC');
     }
 
@@ -97,6 +100,13 @@ class Vaila extends  Model
         return $this->hasMany(VaialServices::class)
             ->join('services','services.id','=','vaial_services.services_id');
     }
+
+
+    public function orders(){
+        return $this->hasMany(Orders::class)
+        ->whereBetween('form_date', [date('Y-m-01'), date('Y-m-t')]);
+    }
+
 
     public function user(){
         return $this->belongsTo(User::class);

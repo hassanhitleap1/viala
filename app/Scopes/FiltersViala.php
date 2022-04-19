@@ -101,9 +101,17 @@ class FiltersViala implements Scope
             $builder->where('price', '<=', $_GET['main_price']);
         }
         
-        if(isset($_GET['max_price']) && $_GET['max_price'] != ""){
-            $builder->where('price', '> =', $_GET['max_price']);
+        if(isset($_GET['from_date']) && $_GET['from_date'] != "" && isset($_GET['to_date']) && $_GET['to_date']){
+           
+            $builder->where('id',function($q){
+                $q->select('vaila_id')->from('orders')
+                ->whereNotBetween('from_date', [$_GET['from_date'] , $_GET['to_date'] ])
+                ->whereNotBetween('to_date', [$_GET['from_date'] , $_GET['to_date'] ]);
+            });
         }
+
+
+
 
     }
 }
