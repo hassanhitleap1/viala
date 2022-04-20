@@ -32,12 +32,12 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://your-callback-url',
+        'redirect' => 'https://tasheh.fasttechno.net',
     ],
     'facebook' => [
         'client_id' => '353308123421156',
         'client_secret' => '09bacf00fa61cc2ca6c77761d13c7f4e',
-        'redirect' => 'http://your-callback-url',
+        'redirect' => 'https://tasheh.fasttechno.net',
     ],
 
 ];
