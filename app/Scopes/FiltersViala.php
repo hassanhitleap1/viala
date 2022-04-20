@@ -38,7 +38,7 @@ class FiltersViala implements Scope
 
 
         if(isset($_GET['services']) && is_array($_GET['services']) ){
-            $builder->where('id',function($q){
+            $builder->whereIn('id',function($q){
                 $q->select('vaila_id')->from('vaial_services')
                 ->whereIn('services_id', $_GET['services'] );
                
