@@ -79,7 +79,8 @@ class Vaila extends  Model
         return self::
         //sqrt(power(source_lat - lat, 2) + power(source_long - long, 2))
        // whereNotNull('lag')->whereNotNull('lat')
-        whereRaw("ACOS(SIN(RADIANS('lag'))*SIN(RADIANS($lag))+COS(RADIANS('lat'))*COS(RADIANS($lat))*COS(RADIANS('lang')-RADIANS($lag)))*6380 < 10")
+        //whereRaw("ACOS(SIN(RADIANS('lag'))*SIN(RADIANS($lag))+COS(RADIANS('lat'))*COS(RADIANS($lat))*COS(RADIANS('lang')-RADIANS($lag)))*6380 < 10")
+        orderByRaw("sqrt(power(lat - $lat, 2) + power(lag - $lag, 2))")
         ->orderBy('number_booking','DESC');
     }
 
