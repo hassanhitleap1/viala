@@ -2,10 +2,12 @@
 
 namespace App\Scopes;
 
-
+use App\Helper\AuthHelper;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class FiltersViala implements Scope
 {
@@ -20,7 +22,38 @@ class FiltersViala implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-    
+       
+
+        // if(AuthHelper::checkAuth()){
+        //     dd("ddd");
+        // }
+
+        // $builder->select('vaila.*','favourites.id as is_fivarate');
+        // $builder->leftjoin('favourites', function($q){
+        //     $q->on('favourites.vaila_id','=','vaila.id');
+        //     $q->where('user_id',auth('api-jwt')->user()->id);
+        //     $q->limt(1);
+        // })  ; 
+
+   
+        // try {
+        //     if (! $token = JWTAuth::parseToken()) {
+               
+        //         $builder->select('vaila.*','favourites.id as is_fivarate');
+        //         $builder->leftjoin('favourites', function($q){
+        //             $q->on('favourites.vaila_id','=','vaila.id');
+        //             $q->where('user_id',auth('api-jwt')->user()->id);
+        //             $q->limt(1);
+        //         })  ; 
+        //     }
+
+        // } catch (Exception $e) {
+
+        // }
+      
+
+
+     
 
         if(isset($_GET['search']) && $_GET['search'] != ''){
             $builder->where(function($q){

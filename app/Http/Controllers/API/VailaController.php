@@ -23,6 +23,7 @@ class VailaController extends Controller
 
 
     public function newArival(){
+
         return VailaResource::collection(Vaila::newArival()->paginate(10));
     }
 

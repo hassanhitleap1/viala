@@ -18,6 +18,7 @@ class SocialiteRequest extends \App\Http\Requests\Api\FormRequest
         return true;
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,8 +27,9 @@ class SocialiteRequest extends \App\Http\Requests\Api\FormRequest
     public function rules()
     {
         return  [
-            'access_token' => 'required',
-        
+            'provider' => 'required',
+            'uiid' => 'required',
+            'name' => 'required',
         ];
 
     }

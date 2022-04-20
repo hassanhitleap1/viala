@@ -4,8 +4,8 @@
 
 
     <div class="container">
-        <h1> vaila </h1>
-        <a class="btn btn-secondary pull-right" href="{{url('services/create')}}"> {{__('create new vaila')}}</a>
+        <h1> services </h1>
+        <a class="btn btn-secondary pull-right" href="{{url('services/create')}}"> {{__('create new services')}}</a>
         <hr />
         <table class="table">
             <thead>

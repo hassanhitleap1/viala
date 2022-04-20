@@ -16,7 +16,7 @@ class FavouritesController extends Controller
 
     public function __construct()
     {
-       // $this->middleware('jwt.verify')->only(['index','store','update','show','destroy']);
+        $this->middleware('jwt.verify')->only(['myfavourite','index','store','update','show','destroy']);
     }
 
     

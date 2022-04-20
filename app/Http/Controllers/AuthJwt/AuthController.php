@@ -32,7 +32,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.verify', ['except' => ['login','registration','forgetPassword']]);
+        $this->middleware('jwt.verify', ['except' => ['login','social','registration','forgetPassword']]);
     }
 
     /**
@@ -65,65 +65,59 @@ class AuthController extends Controller
 
 
 
-    public function loginWithFacebook(SocialiteRequest $request)
-    {
+    // public function social(SocialiteRequest  $request)
+    // {
+      
+    //     $user=User::updateOrcreate([
+    //         'facebook_id' => $request->uiid,
+    //         'provider'=>$request->provider,
+    //     ], [
+    //         'provider' => $request->provider,
+    //         'name' => $request->name,
+    //         'password'=> Hash::make("pass1234"),
+           
+        
+    //     ]);
 
-  
-        try {
-         
-            $facebookUser = Socialite::driver('facebook')->userFromToken($request->access_token);
-         
+    //         $token = JWTAuth::fromUser($user);
+    //         return $this->respondWithToken($token);    
+
+    // }
+
+
+    public function social(SocialiteRequest $request)
+    {
+     
+        if($request->provider =="facebook"){
             $user = User::updateOrCreate([
-                'facebook_id' => $facebookUser->id,
+                'facebook_id' => $request->uiid,
+                'provider'=>$request->provider,
             ], [
-                'name' => $facebookUser->name,
-                'email' => $facebookUser->email,
-                // 'avatar'=>  $facebookUser->getAvatar(),
-                'password'=>decrypt("pass@123")
+                'provider' => $request->provider,
+                'name' => $request->name,
+                'password'=> Hash::make("pass1234"),
+            
+            ]);
+           
+        }else{
+            $user = User::updateOrCreate([
+                'google_id' => $request->uiid,
+                'provider'=>$request->provider,
+            ], [
+                'provider' => $request->provider,
+                'name' => $request->name,
+                'password'=> Hash::make("pass1234"),
 
             ]);
-            // $this->getSocialAvatar($facebookUser->getAvatar(), "avatar/$user->id" ,$facebookUser);
-            $token = JWTAuth::fromUser($user);
-            return $this->respondWithToken($token);
-
-        } catch (Exception $exception) {
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Could not create token.',
-                'errors'=>$exception->getMessage()
-            ], 500);
-
         }
+       
+      
+        $token = JWTAuth::fromUser($user);
+        return $this->respondWithToken($token);
     }
 
-    public function loginWithGoogle(SocialiteRequest $request)
-    {
-        try {
-            $googleUser = Socialite::driver('google')->userFromToken($request->access_token);
-            $user = User::updateOrCreate([
-                'google_id' => $googleUser->id,
-            ], [
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                // 'avatar'=>  $googleUser->getAvatar(),
-                'password'=>decrypt("pass@123")
 
-            ]);
-            // $this->getSocialAvatar($googleUser->getAvatar(), "avatar/$user->id" ,$googleUser);
-            $token = JWTAuth::fromUser($user);
-            return $this->respondWithToken($token);
 
-        } catch (Exception $exception) {
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Could not create token.',
-                'errors'=>$exception->getMessage()
-            ], 500);
-
-        }
-    }
     /**
      * Get the authenticated User.
      *

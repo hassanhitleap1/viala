@@ -57,7 +57,9 @@
             <li>
                 <a href="{{url('services')}}">services</a>
             </li>
-
+            <li>
+                <a href="{{url('sliders')}}">sliders</a>
+            </li>
             <li class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ Auth::user()->name }}
