@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth' ], function () {
     Route::post('login', 'App\Http\Controllers\AuthJwt\AuthController@login');
-    Route::post('login/google', 'App\Http\Controllers\AuthJwt\AuthController@loginWithGoogle');
-    Route::post('login/facebook', 'App\Http\Controllers\AuthJwt\AuthController@loginWithFacebook');
+
     Route::post('login/social', 'App\Http\Controllers\AuthJwt\AuthController@social');
     Route::post('logout', 'App\Http\Controllers\AuthJwt\AuthController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthJwt\AuthController@refresh');

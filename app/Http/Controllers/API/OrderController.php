@@ -35,6 +35,17 @@ class OrderController extends Controller
     }
 
     public function store(OrderRequest  $request){
+
+        $order =Orders::whereBetween('form_date', [$request->form_date, $request->to_date])->get();
+            if($order->count()){
+                return response()->json([
+                    'success'=>false,
+                    "message" => "this order is booked",
+                    'errors' => [],
+                    'status' => 422
+                ], 422);
+            }
+
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
