@@ -126,10 +126,18 @@ class VailaController extends Controller
 
     public function check_avialable(Request $request){
         $order =Orders::whereBetween('form_date', [$request->form_date, $request->to_date])->get();
+        
         if($order->count()){
             return response()->json([
                 'success'=>false,
-                "message" => "this order is booked",
+                "message" => "this vaiual not available",
+                'errors' => [],
+                'status' => 422
+            ], 422);
+        }else{
+            return response()->json([
+                'success'=>true,
+                "message" => "is avaialbel",
                 'errors' => [],
                 'status' => 422
             ], 422);
