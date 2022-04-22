@@ -38,8 +38,8 @@ class OrderController extends Controller
         $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
         $vaial=Vaila::find($request->vaial_id);
         if($order->count()){
-            $form_date=$order[0]->form_date;
-            $to_date=$order[0]->to_date;
+            $form_date=  date_format($order[0]->form_date,"Y/m/d"); ;
+            $to_date= date_format($order[0]->to_date,"Y/m/d"); ;
             return response()->json([
                 'success'=>false,
                 "message" => "this vaial not available booked from $form_date to $to_date",
