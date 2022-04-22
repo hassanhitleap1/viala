@@ -39,7 +39,7 @@ class OrderController extends Controller
         $vaial=Vaila::find($request->vaial_id);
         if($order->count()){
             $form_date=$order[0]->form_date;
-            $to_date=$order->to_date;
+            $to_date=$order[0]->to_date;
             return response()->json([
                 'success'=>false,
                 "message" => "this vaial not available booked from $form_date to $to_date",
