@@ -153,6 +153,19 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('insurance amount') }}</span>
+                                        <input type="number"  name="insurance_amount"  class="form-control @error('insurance_amount') is-invalid @enderror" aria-label="Sizing example input"  value="{{ old('insurance_amount') }}" aria-describedby="inputGroup-sizing-sm">
+                                    </div>
+                                    @error('insurance_amount')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                
                             </div>
 
 

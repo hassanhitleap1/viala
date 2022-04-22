@@ -25,10 +25,10 @@
                     <td>{{ $customer->email}}</td>
                     <td>{{ $customer->phone}}</td>
                     <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
-                    <td> <img src="{{storage_path($customer->avatar)}}" width="250" height="25"> </td>
+                    <td> <img src="{{asset($customer->avatar)}}" width="250" height="25"> </td>
                     <td>
                         <a href="{{url("customers/$customer->id/edit")}}"><i class="fas fa-edit"></i></a>
-                        <a href="{{url("customers/$customer->id/show")}}"><i class="fas fa-eye"></i></a>
+                        
 
                         @if($customer->status)
                             <a href="{{route("customers.disactive",$customer->id)}}">disactive</a>

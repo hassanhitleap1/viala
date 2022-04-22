@@ -14,6 +14,8 @@
                 <th scope="col">name en</th>
                 <th scope="col">name ar</th>
                 <th scope="col">name he</th>
+                <th scope="col">image</th>
+                
                 <th scope="col">action</th>
 
             </tr>
@@ -26,6 +28,7 @@
                     <td>{{$governorate->name_en}}</td>
                     <td>{{$governorate->name_ar}}</td>
                     <td>{{$governorate->name_he}}</td>
+                    <td> <img src="{{asset($governorate->image)}}" width="250" height="25"> </td>
                     <td>
                         <a href="{{url("governorate/$governorate->id/edit")}}"><i class="fas fa-edit"></i> </a>
 

@@ -11,9 +11,10 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name_he</th>
-                <th scope="col">desc</th>
-                <th scope="col">arrival</th>
+                <th scope="col">name ar</th>
+                <th scope="col">name en</th>
+                <th scope="col">name hr</th>
+                <th scope="col">image</th>
             
 
             </tr>
@@ -26,7 +27,18 @@
                     <td>{{$service->name_ar}}</td>
                     <td>{{$service->name_en}}</td>
                     <td>{{$service->name_he }}</td>
-                  
+                    <td> <img src="{{asset($service->image)}}" width="250" height="25"> </td>
+                    <td>
+                    <a href="{{url("services/$service->id/edit")}}"><i class="fas fa-edit"></i> </a>
+
+                    <form action="{{route("services.destroy",$service->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                            <i class="fas fa-trash fa-lg text-danger"></i>
+                        </button>
+                    </form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

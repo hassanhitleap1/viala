@@ -38,7 +38,8 @@
                     <td> <img src="{{asset($vaila->thumb)}}  " width="250" height="25"> </td>
                     <td>
                         <a  href="{{url("vaila/$vaila->id/edit")}}"><i class="fas fa-edit"></i></a>
-                        <a href="{{url("vaila/$vaila->id/show")}}"><i class="fas fa-eye"></i></a>
+                        
+                        <a href="{{route("web.vaila.show",$vaila->id)}}"><i class="fas fa-eye"></i></a>
                         @if($vaila->active)
                              <a href="{{route("vaila.disactive",$vaila->id)}}">disactive</a>
                         @else
