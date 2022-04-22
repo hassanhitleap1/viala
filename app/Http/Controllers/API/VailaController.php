@@ -9,6 +9,7 @@ use App\Http\Resources\VailaResource;
 use App\Models\ImageVaila;
 use App\Models\Orders;
 use App\Models\Vaila;
+use DateTime;
 use Illuminate\Http\Request;
 
 class VailaController extends Controller
@@ -126,16 +127,23 @@ class VailaController extends Controller
 
     public function check_avialable(Request $request){
         $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
-        $vaial=Vaila::find($request->vaial_id);
+        $vaial=Vaila::find($request->vaial_id)->toArray();
+        $earlier = new DateTime($request->from_date);
+        $later = new DateTime($request->to_date);
+        $dayes = $later->diff($earlier)->format("%a"); 
+        $total_price= $vaial['price'] * $dayes; 
+        $vaial['total_price']=$total_price;
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 
             $to_date= date("Y-m-d", strtotime($order[0]->to_date)); 
+
             return response()->json([
                 'success'=>false,
                 "message" => "this vaial not available booked from $form_date to $to_date",
                 'errors' => [],
                 'status' => 422,
-                'data'=>$vaial
+                'data'=>$vaial,
+        
             ], 422);
         }else{
             return response()->json([
@@ -143,7 +151,8 @@ class VailaController extends Controller
                 "message" => "is avaialbel",
                 'errors' => [],
                 'status' => 422,
-                'data'=>$vaial
+                'data'=>$vaial,
+                
             ], 422);
         }
 

@@ -20,6 +20,7 @@ class  BookingHistoryResource extends JsonResource
         $earlier = new DateTime($this->from_date);
         $later = new DateTime($this->to_date);
         $resource['dayes_order']= $later->diff($earlier)->format("%a"); 
+        $resource['total_price']=$this->price *$resource['dayes_order']; 
         return  $resource;;
     }
 }
