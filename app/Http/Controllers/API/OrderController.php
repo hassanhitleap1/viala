@@ -30,7 +30,7 @@ class OrderController extends Controller
         //         ->join('vaila','vaila.id','order.vaila_id')
         //         ->where( 'user_id',auth('api-jwt')->user()->id)->paginate(10);
 
-        $orders =Vaila::join('orders','order.vaila_id','vaila.id')
+        $orders =Vaila::join('orders','orders.vaila_id','vaila.id')
             ->where( 'orders.user_id',auth('api-jwt')->user()->id)
             ->paginate(10);
         return BookingHistoryResource::collection($orders);
