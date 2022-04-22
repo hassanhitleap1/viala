@@ -25,7 +25,7 @@ class OrderController extends Controller
 
 
     public function booking_history(){
-        return VailaResource::collection(Vaila::where('id',function($q){
+        return VailaResource::collection(Vaila::whereIn('id',function($q){
             $q->select('vaial_id')->from( 'orders')->where( 'user_id',auth('api-jwt')->user()->id);
         })->paginate(10));
     }
