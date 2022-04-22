@@ -47,6 +47,7 @@ class OrderController extends Controller
     public function store(OrderRequest  $request){
         $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
         $vaial=Vaila::find($request->vaial_id);
+
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 
             $to_date= date("Y-m-d", strtotime($order[0]->to_date)); 
@@ -58,6 +59,7 @@ class OrderController extends Controller
                 'data'=>$vaial
             ], 422);
         }
+
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
@@ -77,7 +79,14 @@ class OrderController extends Controller
         $viala->number_booking= $viala->number_booking + 1;
         $viala->save();
         //MakeOrderEvent::dispatch($order);
+        $order['merchant']=$order->merchant;
+        return response()->json([
+            'success'=>true,
+            'status' => 201,
+            'data'=>$order
+        ], 422);
 
+        
         return new OrdersResource($order);
     }
 
