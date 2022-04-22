@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use DateTime;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class  ServicesResource extends JsonResource
+class  BookingHistoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

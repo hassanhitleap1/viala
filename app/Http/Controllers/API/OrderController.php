@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Helper\AccountingHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Http\Resources\BookingHistoryResource;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\OrdersResource;
 use App\Http\Resources\VailaResource;
@@ -25,10 +26,14 @@ class OrderController extends Controller
 
 
     public function booking_history(){
-        $orders=Orders::select('vaila.*,orders.id as order_id,orders.form_date,orders.to_date,orders.price as price_order')->join('vaila','vaila.id','order.vaila_id')
-                ->where( 'user_id',auth('api-jwt')->user()->id)->paginate(10);
-                
-        return VailaResource::collection($orders);
+        // $orders=Orders::select('vaila.id,vaila.title_en,orders.id as order_id,orders.form_date,orders.to_date,orders.price as price_order')
+        //         ->join('vaila','vaila.id','order.vaila_id')
+        //         ->where( 'user_id',auth('api-jwt')->user()->id)->paginate(10);
+
+        $orders =Vaila::join('orders','order.vaila_id','vaila.id')
+            ->where( 'user_id',auth('api-jwt')->user()->id)
+            ->paginate(10);
+        return BookingHistoryResource::collection($orders);
        
         // return VailaResource::collection(Vaila::whereIn('id',function($q){
         //     $q->select('vaial_id')->from( 'orders')
