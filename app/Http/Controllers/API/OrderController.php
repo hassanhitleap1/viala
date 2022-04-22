@@ -35,8 +35,19 @@ class OrderController extends Controller
     }
 
     public function store(OrderRequest  $request){
-
-    
+        $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
+        $vaial=Vaila::find($request->vaial_id);
+        if($order->count()){
+            $form_date=$order[0]->form_date;
+            $to_date=$order->to_date;
+            return response()->json([
+                'success'=>false,
+                "message" => "this vaial not available booked from $form_date to $to_date",
+                'errors' => [],
+                'status' => 422,
+                'data'=>$vaial
+            ], 422);
+        }
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
