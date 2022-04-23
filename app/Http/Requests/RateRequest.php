@@ -15,7 +15,7 @@ class RateRequest  extends \App\Http\Requests\Api\FormRequest
      */
     public function authorize()
     {
-        return false;
+        return TRUE;
     }
 
     /**
