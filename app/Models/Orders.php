@@ -14,7 +14,8 @@ class Orders  extends Model
 
 
     public function vaila(){
-        return $this->hasOne(Vaila::class,'id','vaial_id')->join('users','users.id','vaial_id');
+        return $this->hasOne(Vaila::class,'id','vaial_id')
+        ->join('users','users.id','vaila.user_id');
     }
 
     public function merchant(){
