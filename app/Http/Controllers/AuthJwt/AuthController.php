@@ -191,7 +191,7 @@ class AuthController extends Controller
             'success' => true,
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api-jwt')->factory()->getTTL() * 60,
+            'expires_in' => auth('api-jwt')->factory()->getTTL() * 60*24*7*4,
            'user' => auth('api-jwt')->user()
         ]);
     }

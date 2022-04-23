@@ -15,6 +15,6 @@ class  SliderResource extends JsonResource
     public function toArray($request)
     {
         
-        return $this->path;
+        return  asset($this->path);
     }
 }
