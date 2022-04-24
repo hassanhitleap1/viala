@@ -58,7 +58,8 @@ class ServicesController extends Controller
         return view(self::VIEW."show",compact('services'));
     }
 
-    public function  update(Services $services,Request $request){
+    public function  update($id,Request $request){
+        $services =Services::find($id);
         $roulas= Services::rules();
         $validatedData = $request->validate($roulas);
         if($request->is_main =="on"){

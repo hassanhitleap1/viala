@@ -13,9 +13,9 @@
                             <div>{{$error}}</div>
                         @endforeach
                     @endif
-
+                    
                     <div class="card-body">
-                        <form method="post"  action="{{ url('services',$service->id) }}" enctype="multipart/form-data">
+                        <form method="post"  action="{{ route('services.update',$service->id) }}" enctype="multipart/form-data">
                         @csrf
                             @method('PATCH')
 
