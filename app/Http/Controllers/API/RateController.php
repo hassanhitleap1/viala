@@ -20,7 +20,10 @@ class RateController extends Controller
 
 
     public function store(RateRequest $request){
-        $rate= Rate::create([
+        $rate= Rate::updateOrCreate([
+            'vaila_id' => $request->vaila_id,
+            'user_id'=> auth('api-jwt')->user()->id,
+        ],[
             'vaila_id' => $request->vaila_id,
             'rate' => $request->rate,
             'user_id'=> auth('api-jwt')->user()->id
