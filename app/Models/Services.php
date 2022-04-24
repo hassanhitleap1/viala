@@ -19,6 +19,7 @@ class Services extends    Model
             'name_en' => 'required',
             'name_ar' => 'required',
             'name_he' => 'required',
+        
         ];
     }
 

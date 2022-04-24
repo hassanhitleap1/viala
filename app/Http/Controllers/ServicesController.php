@@ -25,10 +25,19 @@ class ServicesController extends Controller
     public function store(Request $request){
         $roulas= Services::rules();
         $validatedData = $request->validate($roulas);
+        if($request->is_main =="on"){
+            $validatedData ['is_main']=1;
+        }
         $next_id=Services::get_next_id();
         if($file = $request->file('file')) {
             $fileData = $this->uploads($file,"services/$next_id/");
             $validatedData['image'] = $fileData['filePath'] ;
+        }
+
+        if($request->is_main =="on"){
+            $validatedData['is_main']=1;
+        }else{
+            $validatedData['is_main']=0;
         }
 
         $model =Services::create($validatedData);    
@@ -42,7 +51,7 @@ class ServicesController extends Controller
 
     public function  edit(Services $service){
        
-        return view(self::VIEW."edit",compact('services'));
+        return view(self::VIEW."edit",compact('service'));
     }
 
     public function show(Services $services){
@@ -51,17 +60,22 @@ class ServicesController extends Controller
 
     public function  update(Services $services,Request $request){
         $roulas= Services::rules();
-
         $validatedData = $request->validate($roulas);
+        if($request->is_main =="on"){
+            $validatedData['is_main'] = 1;
+        }else{
+            $validatedData['is_main'] = 0;
+        }
+    
         $services->update($validatedData);
   
-        return redirect('/servicess')->with('success', 'Game is successfully saved');
+        return redirect('services')->with('success', 'Game is successfully saved');
     }
 
     public function destroy(Services $service)
     {
         $service->delete();
-        return redirect('/services')->with('success', 'Game Data is successfully deleted');
+        return redirect('services')->with('success', 'Game Data is successfully deleted');
     }
 
 
