@@ -45,20 +45,20 @@ class VailaController extends Controller
         unset($validatedData['images']);
         $model =Vaila::create($validatedData);
 
-        $images=[];
+
         if($files = $request->file('images')) {
+           
             foreach ($files as $file){
-                $fileData = $this->uploads($file,"vailas/$next_id/images");
-                $images []=[
-                        'path' =>  $fileData['filePath'] ."/".$fileData['fileName'],
-                        'vaila_id'=> $model->id
-                    ];
-
-            }
-
-            if(count($images))
-                ImageVaila::create($images);
+                $fileData = $this->uploads($file,"vailas/$model->id/images");
+                $ImageVaila = new ImageVaila();
+                $ImageVaila->path=$fileData['filePath'] ;
+                $ImageVaila->vaila_id= $model->id;
+                $ImageVaila->save();
+    
+            }  
         }
+
+    
 
         if($services){
             $data_services=[];
@@ -100,21 +100,16 @@ class VailaController extends Controller
         $roulas= Vaila::rules()["update"];
 
         $validatedData = $request->validate($roulas);
-        $images=[];
         if($files = $request->file('images')) {
+            ImageVaila::where('vaila_id',$vaila->id)->delete();
             foreach ($files as $file){
                 $fileData = $this->uploads($file,"vailas/$vaila->id/images");
-                $images []=[
-                    'path' =>  $fileData['filePath'],
-                    'vaila_id'=> $vaila->id
-                ];
+                $ImageVaila = new ImageVaila();
+                $ImageVaila->path=$fileData['filePath'] ;
+                $ImageVaila->vaila_id= $vaila->id;
+                $ImageVaila->save();
 
-            }
-
-            if(count($images)){
-                ImageVaila::where('vaile_id',$vaila->id)->delete();
-                ImageVaila::create($images);
-            }
+            }           
             unset($validatedData['images']);
             $vaila->update($validatedData);
         }

@@ -288,7 +288,7 @@
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">images</label>
-                                        <input class="form-control" type="file"  name="images"  multiple>
+                                        <input class="form-control"  type="file"  name="images[]" multiple>
 
                                     </div>
                                 </div>
