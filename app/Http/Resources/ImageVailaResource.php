@@ -16,6 +16,6 @@ class  ImageVailaResource extends JsonResource
     {
    
         
-        return  asset($this->image);
+        return  asset($this->path);
     }
 }
