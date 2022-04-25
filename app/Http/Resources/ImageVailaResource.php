@@ -14,8 +14,8 @@ class  ImageVailaResource extends JsonResource
      */
     public function toArray($request)
     {
-        $resource= parent::toArray($request);;
-        $resource['image']=asset($this->image);
-        return  $resource;;
+   
+        
+        return  asset($this->image);
     }
 }
