@@ -25,7 +25,7 @@
                     <td>{{$order->form_date}}</td>
                     <td>{{$order->price}}</td>
                     <td>{{$order->payment_type}}</td>
-                    <td>{{$order['vaila']['title']}}</td>
+                    <td>{{is_null($order['vaila'])?'':$order['vaila']['title']}}</td>
             </tr>
             @endforeach
 
