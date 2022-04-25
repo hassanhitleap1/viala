@@ -15,10 +15,11 @@ class  VailaResource extends JsonResource
     public function toArray($request)
     {
 
+        
         $resource=parent::toArray($request);
         $resource['comments']= $this->comments;
         $resource['user']= $this->user;
-        $resource['imagevaila']= $this->imagevaila;
+        $resource['imagevaila']= ImageVailaResource::collection($this->imagevaila);
         $resource['governorate']= $this->governorate;
         $resource["services"]= $this->services;
         $resource["price_now"]=$this->price;
