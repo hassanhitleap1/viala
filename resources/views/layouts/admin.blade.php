@@ -61,6 +61,9 @@
                 <a href="{{url('sliders')}}">sliders</a>
             </li>
             <li>
+                <a href="{{url('holiday')}}">holiday</a>
+            </li>
+            <li>
                 <a href="{{url('settings')}}">settings</a>
             </li>
             <li class="dropdown">

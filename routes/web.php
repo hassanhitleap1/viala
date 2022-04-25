@@ -36,6 +36,8 @@ Route::resource('/governorate',App\Http\Controllers\GovernorateController::class
 Route::resource('/services',App\Http\Controllers\ServicesController::class);
 Route::get('/accounting/{merchant}',[App\Http\Controllers\AccountingController::class,'index']);
 Route::delete('/accounting/{merchant}',[App\Http\Controllers\AccountingController::class,'delete']);
+Route::resource('/holiday',App\Http\Controllers\HolidayController::class);
 
 Route::get('/settings',[App\Http\Controllers\SettingsController::class,'index']);
 Route::post('/settings',[App\Http\Controllers\SettingsController::class,'store']);
+
