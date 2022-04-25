@@ -21,7 +21,7 @@ class  VailaResource extends JsonResource
         $resource['user']= $this->user;
         $resource['imagevaila']= ImageVailaResource::collection($this->imagevaila);
         $resource['governorate']= $this->governorate;
-        $resource["services"]= $this->services;
+        $resource["services"]= ServicesResource::collection($this->services);
         $resource["price_now"]=$this->price;
         $resource['thumb']=asset($this->thumb);
         $resource["IsFavorite"]=false;
