@@ -64,13 +64,13 @@ class VailaController extends Controller
             $data_services=[];
 
             foreach($services as $key => $service){
-           
-                $data_services=[
-                    'vaila_id'=>$model->id,
-                    'services_id'=> $key
-                ];
+                $mod_ser= new VaialServices();
+                $mod_ser->vaila_id=$model->id;
+                $mod_ser->services_id=$key;
+                $mod_ser->save();
+                
             }
-            VaialServices::create($data_services);
+        
         }
        
 
@@ -85,10 +85,11 @@ class VailaController extends Controller
 
     public function  edit(Vaila $vaila){
         $services=Services::all();
+        $selected_services=VaialServices::where('vaila_id',$vaila->id)->get()->pluck('services_id')->toArray();;
         $governorates=Governorate::all();
      
     
-        return view(self::VIEW."edit",compact('vaila','governorates','services'));
+        return view(self::VIEW."edit",compact('vaila','governorates','services','selected_services'));
     }
 
     public function show(Vaila $vaila){
@@ -99,7 +100,11 @@ class VailaController extends Controller
         $vaila = Vaila::find($id);
         $roulas= Vaila::rules()["update"];
 
+        $services=$request->services;
+     
         $validatedData = $request->validate($roulas);
+
+        unset($validatedData['services']);
         if($files = $request->file('images')) {
             ImageVaila::where('vaila_id',$vaila->id)->delete();
             foreach ($files as $file){
@@ -111,9 +116,30 @@ class VailaController extends Controller
 
             }           
             unset($validatedData['images']);
-            $vaila->update($validatedData);
+    
+
+           
         }
-        return redirect('/vaila')->with('success', 'Game is successfully saved');
+
+        $vaila->update($validatedData);
+        if($services){
+            $data_services=[];
+         
+            VaialServices::where('vaila_id',$vaila->id)->delete();
+            foreach($services as $key => $service){
+                
+                $mod_ser= new VaialServices();
+                $mod_ser->vaila_id = $vaila->id;
+                $mod_ser->services_id = $key;
+                $mod_ser->save();
+                
+            }
+            
+           
+        }
+
+
+        return redirect('vaila')->with('success', 'Game is successfully saved');
     }
 
     public function destroy(Vaila $vaila)
