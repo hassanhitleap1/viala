@@ -10,9 +10,9 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">form date</th>
-                <th scope="col">to_date</th>
+                <th scope="col">to date</th>
                 <th scope="col">price</th>
-                <th scope="col">payment_type</th>
+                <th scope="col">payment type</th>
                 <th scope="col">vaila</th>
 
             </tr>
@@ -25,7 +25,7 @@
                     <td>{{$order->form_date}}</td>
                     <td>{{$order->price}}</td>
                     <td>{{$order->payment_type}}</td>
-                    <td>{{$order->vaila->title}}</td>
+                    <td>{{$order['vaila']['title']}}</td>
             </tr>
             @endforeach
 
