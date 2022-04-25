@@ -95,7 +95,8 @@ class VailaController extends Controller
         return view(self::VIEW."show",compact('vaila'));
     }
 
-    public function  update(Vaila $vaila,Request $request){
+    public function  update($id,Request $request){
+        $vaila = Vaila::find($id);
         $roulas= Vaila::rules()["update"];
 
         $validatedData = $request->validate($roulas);
