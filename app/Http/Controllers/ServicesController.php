@@ -67,7 +67,11 @@ class ServicesController extends Controller
         }else{
             $validatedData['is_main'] = 0;
         }
-    
+        if($file = $request->file('file')) {
+            $fileData = $this->uploads($file,"services/$id/");
+            $validatedData['image'] = $fileData['filePath'] ;
+        }
+
         $services->update($validatedData);
   
         return redirect('services')->with('success', 'Game is successfully saved');
