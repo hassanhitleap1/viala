@@ -48,8 +48,8 @@ class VailaController extends Controller
 
         if($files = $request->file('images')) {
            
-            foreach ($files as $file){
-                $fileData = $this->uploads($file,"vailas/$model->id/images/");
+            foreach ($files as $key=> $file){
+                $fileData = $this->uploads($file,"vailas/$model->id/images/$key/");
                 $ImageVaila = new ImageVaila();
                 $ImageVaila->path=$fileData['filePath'] ;
                 $ImageVaila->vaila_id= $model->id;
