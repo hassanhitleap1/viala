@@ -49,7 +49,7 @@ class VailaController extends Controller
         if($files = $request->file('images')) {
            
             foreach ($files as $file){
-                $fileData = $this->uploads($file,"vailas/$model->id/images");
+                $fileData = $this->uploads($file,"vailas/$model->id/images/");
                 $ImageVaila = new ImageVaila();
                 $ImageVaila->path=$fileData['filePath'] ;
                 $ImageVaila->vaila_id= $model->id;
@@ -108,7 +108,7 @@ class VailaController extends Controller
         if($files = $request->file('images')) {
             ImageVaila::where('vaila_id',$vaila->id)->delete();
             foreach ($files as $file){
-                $fileData = $this->uploads($file,"vailas/$vaila->id/images");
+                $fileData = $this->uploads($file,"vailas/$vaila->id/images/");
                 $ImageVaila = new ImageVaila();
                 $ImageVaila->path=$fileData['filePath'] ;
                 $ImageVaila->vaila_id= $vaila->id;
