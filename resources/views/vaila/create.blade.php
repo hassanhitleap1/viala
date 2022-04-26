@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title_en') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title english') }}</span>
                                         <input type="text" class="form-control @error('title_en') is-invalid @enderror" aria-label="Sizing example input" name="title_en"  value="{{ old('title_en') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('title_en')
                                         <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc_en') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc english') }}</span>
                                         <textarea name="desc_en" class="form-control  @error('desc_en') is-invalid @enderror" value="{{ old('desc_en') }}" rows="4" cols="50">
                                                 {{ old('desc_en') }}
                                         </textarea>
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title_ar') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title arabic') }}</span>
                                         <input type="text" class="form-control @error('title_ar') is-invalid @enderror" aria-label="Sizing example input" name="title_ar"  value="{{ old('title_ar') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('title_ar')
                                         <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc_ar') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc arabic') }}</span>
                                         <textarea name="desc_ar" class="form-control  @error('desc_ar') is-invalid @enderror" value="{{ old('desc_ar') }}" rows="4" cols="50">
                                                 {{ old('desc_ar') }}
                                         </textarea>
@@ -80,7 +80,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title_he') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('title Hebrew') }}</span>
                                         <input type="text" class="form-control @error('title_he') is-invalid @enderror" aria-label="Sizing example input" name="title_he"  value="{{ old('title_he') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('title_he')
                                         <span class="invalid-feedback" role="alert">
@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc_he') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc Hebrew') }}</span>
                                         <textarea name="desc_he" class="form-control  @error('desc_he') is-invalid @enderror" value="{{ old('desc_he') }}" rows="4" cols="50">
                                                 {{ old('desc_he') }}
                                         </textarea>

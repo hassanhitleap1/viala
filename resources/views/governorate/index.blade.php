@@ -11,9 +11,9 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name en</th>
-                <th scope="col">name ar</th>
-                <th scope="col">name he</th>
+                <th scope="col">name english</th>
+                <th scope="col">name arabic</th>
+                <th scope="col">name Hebrew</th>
                 <th scope="col">image</th>
                 
                 <th scope="col">action</th>

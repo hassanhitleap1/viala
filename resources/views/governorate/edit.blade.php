@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('create new viala') }}</div>
+                    <div class="card-header">{{ __('update') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ url('governorate',$governorate->id) }}" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_en') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name english') }}</span>
                                         <input type="text" class="form-control @error('name_en') is-invalid @enderror" aria-label="Sizing example input" name="name_en"  value="{{ $governorate->name_en }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('name_en')
                                         <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_ar') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name arabic') }}</span>
                                         <input type="text" class="form-control @error('name_ar') is-invalid @enderror" aria-label="Sizing example input" name="name_ar"  value="{{ $governorate->name_ar }}"   aria-describedby="inputGroup-sizing-sm">
                                         @error('name_en')
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_he') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name Hebrew') }}</span>
                                         <input type="text" class="form-control @error('name_ar') is-invalid @enderror" aria-label="Sizing example input" name="name_he"  value="{{ $governorate->name_he }}"   aria-describedby="inputGroup-sizing-sm">
                                         @error('name_he')
                                         <span class="invalid-feedback" role="alert">

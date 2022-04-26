@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_en') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name english') }}</span>
                                         <input type="text" class="form-control @error('name_en') is-invalid @enderror" aria-label="Sizing example input" name="name_en"  value="{{ old('name_en') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('name_en')
                                         <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
 
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_ar') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name arabic') }}</span>
                                         <input type="text" class="form-control @error('name_ar') is-invalid @enderror" aria-label="Sizing example input" name="name_ar"  value="{{ old('name_ar') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('name_ar')
                                         <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name_he') }}</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name Hebrew') }}</span>
                                         <input type="text" class="form-control @error('name_he') is-invalid @enderror" aria-label="Sizing example input" name="name_he"  value="{{ old('name_he') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('name_he')
                                         <span class="invalid-feedback" role="alert">

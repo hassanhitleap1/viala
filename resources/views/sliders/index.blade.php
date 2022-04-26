@@ -11,7 +11,7 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name_he</th>
+                <th scope="col">image path</th>
                
             
 
