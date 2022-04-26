@@ -11,8 +11,8 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">title</th>
-                <th scope="col">desc</th>
+                <th scope="col">title english</th>
+                <th scope="col">desc english</th>
                 <th scope="col">arrival</th>
                 <th scope="col">status</th>
                 <th scope="col">has pool</th>
@@ -28,8 +28,8 @@
             @foreach($vailas as $key => $vaila)
                 <tr>
                     <th scope="row">{{$key}}</th>
-                    <td>{{$vaila->title}}</td>
-                    <td>{{$vaila->desc}}</td>
+                    <td>{{$vaila->title_en}}</td>
+                    <td>{{$vaila->desc_en}}</td>
                     <td>{{$vaila->new_arrivals ? 'new arrival': 'not new'}}</td>
                     <td>{{\App\Helper\StatusHelper::keyword_status($vaila->status)}}</td>
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}</td>
