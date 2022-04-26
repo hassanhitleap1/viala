@@ -107,8 +107,8 @@ class VailaController extends Controller
         unset($validatedData['services']);
         if($files = $request->file('images')) {
             ImageVaila::where('vaila_id',$vaila->id)->delete();
-            foreach ($files as $file){
-                $fileData = $this->uploads($file,"vailas/$vaila->id/images/");
+            foreach ($files as $key=> $file){
+                $fileData = $this->uploads($file,"vailas/$vaila->id/images/$key/");
                 $ImageVaila = new ImageVaila();
                 $ImageVaila->path=$fileData['filePath'] ;
                 $ImageVaila->vaila_id= $vaila->id;
