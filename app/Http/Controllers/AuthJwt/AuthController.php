@@ -87,6 +87,7 @@ class AuthController extends Controller
 
     public function social(SocialiteRequest $request)
     {
+        $type=isset( $request['type'] )  ?  User::CUSTOMER : User::Merchant;
      
         if($request->provider =="facebook"){
             $user = User::updateOrCreate([
@@ -96,6 +97,7 @@ class AuthController extends Controller
                 'provider' => $request->provider,
                 'name' => $request->name,
                 'password'=> Hash::make("pass1234"),
+                'type'=> $type
             
             ]);
            
@@ -107,6 +109,7 @@ class AuthController extends Controller
                 'provider' => $request->provider,
                 'name' => $request->name,
                 'password'=> Hash::make("pass1234"),
+                'type'=> $type
 
             ]);
         }
@@ -159,16 +162,16 @@ class AuthController extends Controller
     public function registration(RegistrationRequest  $request)
     {
         $next_id=User::get_next_id();
-        // $file = $request->file('avatar');
-        // $fileData = $this->uploads($file,"avatar/$next_id");
-        // $avatar = $fileData['filePath'] ."/".$fileData['fileName'];
+
+        $type=isset( $request['type'] )  ?  User::CUSTOMER : User::Merchant;
+
         $user= User::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
                 'phone'=> $request['phone'],
-        
-                // 'avatar'=>$avatar
+                'type'=>$type,
+               
             ]);
 
             $token = JWTAuth::fromUser($user);

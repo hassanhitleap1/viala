@@ -8,6 +8,7 @@ use App\Http\Requests\VailaRequest;
 use App\Http\Resources\VailaResource;
 use App\Models\ImageVaila;
 use App\Models\Orders;
+use App\Models\VaialServices;
 use App\Models\Vaila;
 use DateTime;
 use Illuminate\Http\Request;
@@ -50,43 +51,53 @@ class VailaController extends Controller
         $request['status']=0;
         $request['user_id']=auth('api-jwt')->user()->id;
         $request['number_booking']=0;
-        $insert=$request->except(['images']);
-      
+        $insert=$request->except(['images','services']);
+        $services=$request->services;
         $next_id=Vaila::get_next_id();
-     
-
-    
         if($file = $request->file('thumb')) {
             $fileData = $this->uploads($file,"vailas/$next_id/");
-            $insert['thumb'] = $fileData['filePath'] ."/".$fileData['fileName'];
-          
+            $insert['thumb'] = $fileData['filePath'] ;
         }
-        ;
+        
       
-     
         $vaila= Vaila::create($insert);
      
         $images=[];
 
      
-        if($files = $request->file('images') ) {
-            
-            foreach ($files as $file){       
-               
-                $fileData = $this->uploads($file,"vailas/$vaila->id/images/");
-               
-                $images []=[
-                    'path' =>  $fileData['filePath'] ,
-                    'vaila_id'=> $vaila->id
-                ];
+   
 
-            }
+        
 
-            
+        if($files = $request->file('images')) {
+           
+            foreach ($files as $key=> $file){
+                $fileData = $this->uploads($file,"vailas/$vaila->id/images/$key/");
+                $ImageVaila = new ImageVaila();
+                $ImageVaila->path=$fileData['filePath'] ;
+                $ImageVaila->vaila_id= $vaila->id;
+                $ImageVaila->save();
+    
+            }  
         }
-         
-        if(count($images))
-                ImageVaila::create($images);
+
+    
+
+        if($services){
+            $data_services=[];
+
+            foreach($services as $key => $service){
+                $mod_ser= new VaialServices();
+                $mod_ser->vaila_id=$vaila->id;
+                $mod_ser->services_id=$key;
+                $mod_ser->save();
+                
+            }
+        
+        }
+       
+
+
         return new VailaResource($vaila);
     }
 
@@ -96,24 +107,38 @@ class VailaController extends Controller
     }
 
     public function update(Vaila $vaila,VailaRequest $request){
-        $vaila= tap($vaila)->update($request->all());
 
+
+       
+        $services=$request->services;
+
+        $update_data=$request->except(['images','services']);
         if($files = $request->file('images')) {
-            foreach ($files as $file){
-                $fileData = $this->uploads($file,"vailas/$vaila->id/images");
-                $images []=[
-                    'path' =>  $fileData['filePath'] ,
-                    'vaila_id'=> $vaila->id
-                ];
-
-            }
-
-            if(count($images)){
-                ImageVaila::where('vaile_id',$vaila->id)->delete();
-                ImageVaila::create($images);
-            }
-
+            ImageVaila::where('vaile_id',$vaila->id)->delete();
+            foreach ($files as $key=> $file){
+                $fileData = $this->uploads($file,"vailas/$vaila->id/images/$key/");
+                $ImageVaila = new ImageVaila();
+                $ImageVaila->path=$fileData['filePath'] ;
+                $ImageVaila->vaila_id= $vaila->id;
+                $ImageVaila->save();
+    
+            }  
         }
+
+
+        if($services){
+            
+
+            foreach($services as $key => $service){
+                $mod_ser= new VaialServices();
+                $mod_ser->vaila_id=$vaila->id;
+                $mod_ser->services_id=$key;
+                $mod_ser->save();
+                
+            }
+        
+        }
+        $vaila= tap($vaila)->update($update_data);
 
         return new VailaResource($vaila);
     }
