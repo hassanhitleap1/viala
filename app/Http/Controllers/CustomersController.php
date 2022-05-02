@@ -6,6 +6,7 @@ use App\Models\Customers;
 use App\Models\Merchant;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomersController extends  Controller
 {
@@ -27,9 +28,13 @@ class CustomersController extends  Controller
         $validatedData = $request->validate($roulas);
         $next_id=User::get_next_id();
         if($file = $request->file('avatar')) {
-            $fileData = $this->uploads($file,"avatar/$next_id");
-            $validatedData['avatar'] = $fileData['filePath'] ."/".$fileData['fileName'];
+            $fileData = $this->uploads($file,"avatar/$next_id/");
+            $validatedData['avatar'] =  $fileData['filePath'] ;
         }
+
+        $validatedData['password']=  Hash::make($validatedData['password']);
+        $validatedData['type']=User::CUSTOMER; 
+        $model =Merchant::create($validatedData);
 
         $model =Customers::create($validatedData);
         return redirect('/customers')->with('success', ' successfully saved');

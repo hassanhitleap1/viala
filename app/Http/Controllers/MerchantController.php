@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Media;
 use App\Models\Merchant;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class MerchantController extends Controller
 {
-
+    use Media;
     const VIEW='merchant.';
 
     public function __construct()
@@ -27,12 +29,14 @@ class MerchantController extends Controller
         $validatedData = $request->validate($roulas);
         $next_id=User::get_next_id();
         if($file = $request->file('avatar')) {
-            $fileData = $this->uploads($file,"avatar/$next_id");
-            $validatedData['avatar'] = $fileData['filePath'] ."/".$fileData['fileName'];
+            $fileData = $this->uploads($file,"avatar/$next_id/");
+            $validatedData['avatar'] =  $fileData['filePath'] ;
         }
 
+        $validatedData['password']=  Hash::make($validatedData['password']);
+        $validatedData['type']=User::Merchant; 
         $model =Merchant::create($validatedData);
-        return redirect('/merchants')->with('success', ' successfully saved');
+        return redirect('merchant')->with('success', ' successfully saved');
 
     }
     public function  create(){
@@ -45,27 +49,27 @@ class MerchantController extends Controller
 
 
     public function  update(Merchant $merchant,Request $request){
-        $roulas= Merchants::rules();
+        $roulas= Merchant::rules();
         $validatedData = $request->validate($roulas);
         $merchant->update($validatedData);
-        return redirect('/merchants')->with('success', 'Game is successfully saved');
+        return redirect('merchant')->with('success', 'Game is successfully saved');
     }
 
     public function destroy(Merchant $merchant)
     {
         $merchant->delete();
-        return redirect('/merchants')->with('success', 'Game Data is successfully deleted');
+        return redirect('merchant')->with('success', 'Game Data is successfully deleted');
     }
 
     public function active(Merchant $merchant)
     {
         $merchant->update(["status"=>1]);
-        return redirect('/merchants')->with('success', 'Game Data is successfully ');
+        return redirect('merchant')->with('success', 'Game Data is successfully ');
     }
 
     public function disactive(Merchant $merchant)
     {
         $merchant->update(["status"=>0]);
-        return redirect('/merchants')->with('success', 'Game Data is successfully ');
+        return redirect('merchant')->with('success', 'Game Data is successfully ');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Scopes\FiltersUsers;
+
 use App\Scopes\MerchantScope;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,7 +13,9 @@ class Merchant extends User
     public  static function rules(){
         return [
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|unique:users',
+            'password'=>'required',
+            'email'=>'required|email|unique:users'
         ];
     }
     protected static function boot()

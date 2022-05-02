@@ -4,6 +4,7 @@
 
     <div class="container">
         <h1> customers </h1>
+        <a class="btn btn-secondary pull-right" href="{{url('customers/create')}}"> {{__('create new customer')}}</a>
         <hr />
         <table class="table">
             <thead>

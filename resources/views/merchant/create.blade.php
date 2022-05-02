@@ -8,8 +8,14 @@
                 <div class="card">
                     <div class="card-header">{{ __('create new merchant') }}</div>
 
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div>{{$error}}</div>
+                        @endforeach
+                    @endif
+
                     <div class="card-body">
-                        <form method="POST" action="{{ route('merchants.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('merchant.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
@@ -37,13 +43,25 @@
                                     </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('password') }}</span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input" name="password"  value="{{ old('password') }}"  aria-describedby="inputGroup-sizing-sm">
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('phone') }}</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" name="email"  value="{{ old('phone') }}"  aria-describedby="inputGroup-sizing-sm">
+                                        <input type="text" class="form-control" aria-label="Sizing example input" name="phone"  value="{{ old('phone') }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

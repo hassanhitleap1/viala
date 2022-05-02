@@ -4,6 +4,7 @@
 
     <div class="container">
         <h1> merchants </h1>
+        <a class="btn btn-secondary pull-right" href="{{url('merchant/create')}}"> {{__('create new merchant')}}</a>
         <hr />
         <table class="table">
             <thead>
@@ -27,7 +28,7 @@
                     </td>
                     <td> <a href="{{url("accounting/$merchant->id")}}">{{ $merchant->email}}</a></td>
                     <td> <a href="{{url("accounting/$merchant->id")}}">{{ $merchant->phone}}</a></td>
-                    <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
+                    <td>{{ \App\Helper\StatusHelper::has_attribuate($merchant->status)}}</td>
                     <td> <img src="{{storage_path($merchant->avatar)}}" width="250" height="25"> </td>
                     <td>
 
