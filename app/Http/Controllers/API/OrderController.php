@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 
 use App\Helper\AccountingHelper;
+use App\Helper\NotificationHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\BookingHistoryResource;
@@ -26,18 +27,12 @@ class OrderController extends Controller
 
 
     public function booking_history(){
-        // $orders=Orders::select('vaila.id,vaila.title_en,orders.id as order_id,orders.form_date,orders.to_date,orders.price as price_order')
-        //         ->join('vaila','vaila.id','order.vaila_id')
-        //         ->where( 'user_id',auth('api-jwt')->user()->id)->paginate(10);
-
+    
         $orders =Vaila::join('orders','orders.vaial_id','vaila.id')
             ->where( 'orders.user_id',auth('api-jwt')->user()->id)
             ->paginate(10);
         return BookingHistoryResource::collection($orders);
-       
-        // return VailaResource::collection(Vaila::whereIn('id',function($q){
-        //     $q->select('vaial_id')->from( 'orders')
-        // })->paginate(10));
+      
     }
 
 
@@ -78,6 +73,7 @@ class OrderController extends Controller
             'vaial_id'=>$request->vaial_id,
             'user_id'=> auth('api-jwt')->user()->id
         ]);
+
         $calculation=AccountingHelper::calculation_order($request->price);
 
         Accounting::create([
@@ -88,6 +84,7 @@ class OrderController extends Controller
         $viala=Vaila::find($request->vaial_id);
         $viala->number_booking= $viala->number_booking + 1;
         $viala->save();
+        NotificationHelper::booking_notify($order->merchant,1,auth('api-jwt')->user(),$request->form_date,$request->to_date);
         //MakeOrderEvent::dispatch($order);
         $order['merchant']=$order->merchant;
         return response()->json([

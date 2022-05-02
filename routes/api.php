@@ -46,3 +46,6 @@ Route::apiResource('rates',\App\Http\Controllers\API\RateController::class);
 Route::get('myfavourite',[\App\Http\Controllers\API\FavouritesController::class,'myfavourite']);
 Route::apiResource('favourites',\App\Http\Controllers\API\FavouritesController::class);
 
+Route::get('notification',[\App\Http\Controllers\API\NotificationController::class,'index']);
+Route::get('statistics',[\App\Http\Controllers\API\StatisticsController::class,'index']);
+
