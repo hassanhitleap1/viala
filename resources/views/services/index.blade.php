@@ -27,7 +27,7 @@
                     <td>{{$service->name_ar}}</td>
                     <td>{{$service->name_en}}</td>
                     <td>{{$service->name_he }}</td>
-                    <td> <img src="{{asset($service->image)}}" width="250" height="25"> </td>
+                    <td> <img src="{{asset($service->image)}}" class="img-fluid img-thumbnail" width="250" height="25"> </td>
                     <td>
                     <a href="{{url("services/$service->id/edit")}}"><i class="fas fa-edit"></i> </a>
 

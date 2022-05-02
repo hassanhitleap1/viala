@@ -26,7 +26,7 @@
                     <td>{{ $customer->email}}</td>
                     <td>{{ $customer->phone}}</td>
                     <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
-                    <td> <img src="{{asset($customer->avatar)}}" width="250" height="25"> </td>
+                    <td> <img src="{{asset($customer->avatar)}}" class="img-fluid img-thumbnail" width="250" height="25"> </td>
                     <td>
                         <a href="{{url("customers/$customer->id/edit")}}"><i class="fas fa-edit"></i></a>
                         

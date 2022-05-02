@@ -29,7 +29,7 @@
                     <td> <a href="{{url("accounting/$merchant->id")}}">{{ $merchant->email}}</a></td>
                     <td> <a href="{{url("accounting/$merchant->id")}}">{{ $merchant->phone}}</a></td>
                     <td>{{ \App\Helper\StatusHelper::has_attribuate($merchant->status)}}</td>
-                    <td> <img src="{{storage_path($merchant->avatar)}}" width="250" height="25"> </td>
+                    <td> <img src="{{storage_path($merchant->avatar)}}"  class="img-fluid img-thumbnail" width="250" height="25"> </td>
                     <td>
 
                         <a href="{{url("merchant/$merchant->id/edit")}}"><i class="fas fa-edit"></i></a>
