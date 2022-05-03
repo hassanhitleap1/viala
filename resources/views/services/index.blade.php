@@ -11,10 +11,10 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name arabic</th>
-                <th scope="col">name english</th>
-                <th scope="col">name Hebrew</th>
-                <th scope="col">image</th>
+                <th scope="col"> {{__('name arabic')}} </th>
+                <th scope="col"> {{__('name english')}} </th>
+                <th scope="col">{{__('name Hebrew')}} </th>
+                <th scope="col"> {{__('image')}} </th>
             
 
             </tr>

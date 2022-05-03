@@ -11,9 +11,9 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name </th>
-                <th scope="col">date</th>
-                <th scope="col">action</th>
+                <th scope="col"> {{__('name')}}  </th>
+                <th scope="col"> {{__('date')}}</th>
+                <th scope="col"> {{__('action')}}</th>
             
             
 

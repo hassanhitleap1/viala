@@ -4,22 +4,22 @@
 
 
     <div class="container">
-        <h1> vaila </h1>
+        <h1>  {{__('vaila')}} </h1>
         <a class="btn btn-secondary pull-right" href="{{url('vaila/create')}}"> {{__('create new vaila')}}</a>
         <hr />
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">title english</th>
-                <th scope="col">desc english</th>
-                <th scope="col">arrival</th>
-                <th scope="col">status</th>
-                <th scope="col">has pool</th>
-                <th scope="col">special</th>
-                <th scope="col">has barbikio</th>
-                <th scope="col">thumbnuil</th>
-                <th scope="col">action</th>
+                <th scope="col">  {{__('title english')}}</th>
+                <th scope="col">  {{__('desc english')}}</th>
+                <th scope="col">  {{__('arrival')}}</th>
+                <th scope="col">  {{__('status')}}</th>
+                <th scope="col">  {{__('has pool')}}</th>
+                <th scope="col">  {{__('special')}}</th>
+                <th scope="col"> {{__('has barbikio ')}}</th>
+                <th scope="col"> {{__('thumbnuil')}} </th>
+                <th scope="col">  {{__('action')}}</th>
 
             </tr>
             </thead>

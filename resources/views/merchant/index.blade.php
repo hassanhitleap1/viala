@@ -10,12 +10,12 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name</th>
-                <th scope="col">email</th>
-                <th scope="col">phone</th>
-                <th scope="col">status</th>
-                <th scope="col">avatar</th>
-                <th scope="col">action</th>
+                <th scope="col">  {{__('name')}}  </th>
+                <th scope="col">  {{__('email')}}  </th>
+                <th scope="col"> {{__('phone')}}</th>
+                <th scope="col"> {{__('status')}}</th>
+                <th scope="col"> {{__('avatar')}}</th>
+                <th scope="col"> {{__('action')}}</th>
             </tr>
             </thead>
             <tbody>

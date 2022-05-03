@@ -12,8 +12,7 @@
 
 
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset("style.css")}}">
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -36,37 +35,37 @@
         <ul class="list-unstyled components">
 
             <li>
-                <a href="{{url('home')}}">home</a>
+                <a href="{{url('home')}}">{{__('home')}}</a>
             </li>
             <li>
-                <a href="{{url('vaila')}}">vaila</a>
+                <a href="{{url('vaila')}}">{{__('vaila')}}</a>
             </li>
             <li>
-                <a href="{{url('orders')}}">orders</a>
-            </li>
-
-            <li>
-                <a href="{{url('customers')}}">customers</a>
-            </li>
-            <li>
-                <a href="{{url('merchant')}}">merchant</a>
+                <a href="{{url('orders')}}">{{__('orders')}}</a>
             </li>
 
             <li>
-                <a href="{{url('governorate')}}">governorate</a>
+                <a href="{{url('customers')}}"> {{__('customers')}} </a>
+            </li>
+            <li>
+                <a href="{{url('merchant')}}"> {{__('merchant')}} </a>
             </li>
 
             <li>
-                <a href="{{url('services')}}">services</a>
+                <a href="{{url('governorate')}}"> {{__('governorate')}} </a>
+            </li>
+
+            <li>
+                <a href="{{url('services')}}"> {{__('services')}} </a>
             </li>
             <li>
-                <a href="{{url('sliders')}}">sliders</a>
+                <a href="{{url('sliders')}}"> {{__('sliders')}} </a>
             </li>
             <li>
-                <a href="{{url('holiday')}}">holiday</a>
+                <a href="{{url('holiday')}}">{{__('holiday')}} </a>
             </li>
             <li>
-                <a href="{{url('settings')}}">settings</a>
+                <a href="{{url('settings')}}">{{__('settings')}} </a>
             </li>
             <li class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">

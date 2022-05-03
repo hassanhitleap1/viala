@@ -3,19 +3,19 @@
 @section('content')
 
     <div class="container">
-        <h1> customers </h1>
+        <h1>   {{__('customers')}} </h1>
         <a class="btn btn-secondary pull-right" href="{{url('customers/create')}}"> {{__('create new customer')}}</a>
         <hr />
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">name</th>
-                <th scope="col">email</th>
-                <th scope="col">phone</th>
-                <th scope="col">status</th>
-                <th scope="col">avatar</th>
-                <th scope="col">action</th>
+                <th scope="col"> {{__('name')}}  </th>
+                <th scope="col"> {{__('email')}}  </th>
+                <th scope="col"> {{__('phone')}}  </th>
+                <th scope="col"> {{__('status')}}  </th>
+                <th scope="col"> {{__('avatar')}}  </th>
+                <th scope="col"> {{__('action')}} </th>
             </tr>
             </thead>
             <tbody>

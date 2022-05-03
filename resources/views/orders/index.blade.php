@@ -9,11 +9,11 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">form date</th>
-                <th scope="col">to date</th>
-                <th scope="col">price</th>
-                <th scope="col">payment type</th>
-                <th scope="col">vaila</th>
+                <th scope="col">{{__('form date')}} </th>
+                <th scope="col">{{__('to date')}}</th>
+                <th scope="col"> {{__('price')}}</th>
+                <th scope="col"> {{__('payment type')}}</th>
+                <th scope="col"> {{__('vaila')}}</th>
 
             </tr>
             </thead>

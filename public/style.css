@@ -54,6 +54,7 @@ a:focus {
     display: flex;
     width: 100%;
     align-items: stretch;
+    direction: rtl;
 }
 
 #sidebar {
@@ -65,7 +66,7 @@ a:focus {
 }
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-right: -250px;
 }
 
 #sidebar .sidebar-header {
