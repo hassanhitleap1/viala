@@ -53,7 +53,11 @@
             @endforeach
             </tbody>
         </table>
-        {{ $merchants->links() }}
+        
+        <div class="d-flex">
+            {{$merchants->links('pagination::bootstrap-4')}}
+        </div>
+        
     </div>
 
 @endsection

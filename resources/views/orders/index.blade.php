@@ -31,7 +31,12 @@
 
             </tbody>
         </table>
-        {{ $orders->links() }}
+ 
+        <div class="d-flex">
+            {{$orders->links('pagination::bootstrap-4')}}
+        </div>
+        
     </div>
+      
 
 @endsection

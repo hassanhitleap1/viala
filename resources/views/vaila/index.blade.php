@@ -61,6 +61,10 @@
             @endforeach
             </tbody>
         </table>
+
+        <div class="d-flex">
+            {{$vailas->links('pagination::bootstrap-4')}}
+        </div>
     </div>
 
 @endsection
