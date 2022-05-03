@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Media;
 use App\Models\Customers;
 use App\Models\Merchant;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class CustomersController extends  Controller
 {
 
+    use Media;
     const VIEW='customers.';
 
     public function __construct()

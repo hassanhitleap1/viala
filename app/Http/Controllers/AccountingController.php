@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Accounting;
 use App\Models\Customers;
+use App\Models\Merchant;
 
 class AccountingController  extends Controller
 {
@@ -25,8 +26,11 @@ class AccountingController  extends Controller
      */
     public function index(Merchant $merchant)
     {
-        $accounting=Accounting::where("user_id",$merchant->id)->sum("for_me","for_app");
-        return view(self::VIEW."index" , compact('accounting'));
+     
+        $for_app=Accounting::where('user_id',$merchant->id)->sum('for_app');
+        $for_me=Accounting::where('user_id',$merchant->id)->sum('for_me');
+     
+        return view(self::VIEW."index" , compact('for_app','for_me','merchant'));
     }
 
     /**
