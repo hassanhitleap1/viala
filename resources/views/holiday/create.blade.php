@@ -2,9 +2,6 @@
 
 @section('content')
 
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -39,8 +36,10 @@
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('date') }}</span>
-                                        <input type="text" class="form-control @error('date') is-invalid @enderror" 
-                                        id="datepicker" aria-label="Sizing example input" name="date"  value="{{ old('name_ar') }}"  aria-describedby="inputGroup-sizing-sm">
+                                        <input type="date" class="form-control @error('date') is-invalid @enderror" 
+                                    
+                                        
+                                        aria-label="Sizing example input" name="date"  value="{{ old('name_ar') }}"  >
                                         @error('date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -71,10 +70,5 @@
         </div>
     </div>
 
-    <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
 
 @endsection

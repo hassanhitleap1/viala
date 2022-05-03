@@ -7,10 +7,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('update')  }} -  {{$customer->name}}</div>
-
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div>{{$error}}</div>
+                        @endforeach
+                    @endif
                     <div class="card-body">
                         <form method="POST" action="{{ route('customers.update',$customer->id) }}" enctype="multipart/form-data">
                             @csrf
+                            @method('PATCH')
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -43,7 +48,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('phone') }}</span>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" name="email"  value="{{ $customer->phone }}"  aria-describedby="inputGroup-sizing-sm">
+                                        <input type="text" class="form-control" aria-label="Sizing example input" name="phone"  value="{{ $customer->phone }}"  aria-describedby="inputGroup-sizing-sm">
                                         @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

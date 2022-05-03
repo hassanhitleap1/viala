@@ -24,7 +24,7 @@ class CustomersController extends  Controller
 
 
     public function store(Request $request){
-        $roulas= Customers::rules();
+        $roulas= Customers::rules()['create'];
         $validatedData = $request->validate($roulas);
         $next_id=User::get_next_id();
         if($file = $request->file('avatar')) {
@@ -50,8 +50,13 @@ class CustomersController extends  Controller
 
 
     public function  update(Customers $customer,Request $request){
-        $roulas= Customers::rules();
+        $roulas= Customers::rules($customer->id)['update'];
         $validatedData = $request->validate($roulas);
+        if($file = $request->file('avatar')) {
+            $fileData = $this->uploads($file,"avatar/$customer->id/");
+            $validatedData['avatar'] =  $fileData['filePath'] ;
+        }
+
         $customer->update($validatedData);
         return redirect('/customers')->with('success', 'Game is successfully saved');
     }

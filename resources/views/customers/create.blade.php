@@ -7,7 +7,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('create new customers') }}</div>
-
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div>{{$error}}</div>
+                        @endforeach
+                    @endif
                     <div class="card-body">
                         <form method="POST" action="{{ route('customers.store') }}" enctype="multipart/form-data">
                             @csrf

@@ -10,12 +10,21 @@ class Merchant extends User
 {
     protected $table="users";
     use SoftDeletes;
-    public  static function rules(){
+    public  static function rules($id = null){
         return [
-            'name' => 'required',
-            'phone' => 'required|unique:users',
-            'password'=>'required',
-            'email'=>'required|email|unique:users'
+            'create'=>[
+                'name' => 'required',
+                'phone' => 'required|unique:users',
+                'password'=>'required',
+                'email'=>'required|email|unique:users'
+            ],
+            'update'=>[
+                'name' => 'required',
+                'phone' => 'required|unique:users,phone,'.$id,
+                
+                'email'=>'required|email|unique:users,email,'.$id,
+            ]
+           
         ];
     }
     protected static function boot()
