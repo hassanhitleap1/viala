@@ -41,6 +41,26 @@
     "name arabic":"الاسم بالعربية",
     "name Hebrew":"الاسم بالعبري",
     "Save":"حفظ",
-    "date":"تاريخ"
+    "date":"تاريخ",
+    "title arabic":"العنوان بالعربي",
+    "desc arabic":"الوصف بالعربي",
+    "title Hebrew":"العنوان باعبري",
+    "desc Hebrew":"الوصف باعبري",
+    "price weekend":"سعر نهاية الاسبوع",
+    "price hoolday":"السعر في المناسبات",
+    "area":"المساحة" ,
+    "insurance amount":"مبلغ التأمين",
+    "number room":"عدد الغرف",
+    "reagin":"المدينة",
+    "create new viala":"انشاء فيلة جديدة",
+    "new arrivals":"وصلت جديد",
+    "has parcking":"يوجد مصفات",
+    "conditioners":"كوندشينات",
+    "for shbab":"السماح للشباب",
+    "kitchen":"مطبخ",
+    "images":"الصور",
+    "thumb":"صورة",
+    "holidays":"العطل الرسمية",
+    "create holiday":"انشاء عطلة رسمية"
 
 }

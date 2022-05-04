@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <h1> holidays </h1>
+        <h1>  {{__('holidays')}}</h1>
         <a class="btn btn-secondary pull-right" href="{{url('holiday/create')}}"> {{__('create holiday')}}</a>
         <hr />
         <table class="table">

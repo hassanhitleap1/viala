@@ -254,7 +254,8 @@
 
                             <hr/>
 
-                            <h1>services</h1>
+                          
+                            <h1>{{__('services')}}</h1>
                             <div class="row">
                                 @foreach($services as $service)
                                     <div class="col-md-3">
@@ -270,14 +271,14 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">thumb</label>
+                                        <label for="formFile" class="form-label">{{__('thumb')}}</label>
                                         <input class="form-control" type="file"  name="thumb" id="formFile" >
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">images</label>
+                                        <label for="formFile" class="form-label">{{__('images')}}</label>
                                         <input class="form-control"  type="file"  name="images[]" multiple>
                                         
 
