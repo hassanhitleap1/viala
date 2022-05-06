@@ -18,7 +18,7 @@ class Services extends    Model
         return [
             'name_en' => 'required',
             'name_ar' => 'required',
-            'name_he' => 'required',
+          
         
         ];
     }

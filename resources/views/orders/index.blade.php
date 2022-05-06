@@ -13,6 +13,7 @@
                 <th scope="col">{{__('to date')}}</th>
                 <th scope="col"> {{__('price')}}</th>
                 <th scope="col"> {{__('payment type')}}</th>
+                <th scope="col"> {{__('status')}}</th>
                 <th scope="col"> {{__('vaila')}}</th>
 
             </tr>
@@ -25,6 +26,7 @@
                     <td>{{$order->form_date}}</td>
                     <td>{{$order->price}}</td>
                     <td>{{$order->payment_type}}</td>
+                    <td>{{$order->status}}</td>
                     <td>{{is_null($order['vaila'])?'':$order['vaila']['title']}}</td>
             </tr>
             @endforeach

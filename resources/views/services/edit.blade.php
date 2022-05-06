@@ -44,17 +44,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name Hebrew') }}</span>
-                                        <input type="text" class="form-control @error('name_he') is-invalid @enderror" aria-label="Sizing example input" name="name_he"  value="{{ $service->name_he }}"  aria-describedby="inputGroup-sizing-sm">
-                                        @error('name_he')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
+                             
                                 
                                 <div class="form-check form-switch">
                                     <input class="form-check-input"  name="is_main"  @if ( $service->is_main )  checked @endif

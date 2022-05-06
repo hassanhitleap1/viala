@@ -61,6 +61,12 @@
     "images":"الصور",
     "thumb":"صورة",
     "holidays":"العطل الرسمية",
-    "create holiday":"انشاء عطلة رسمية"
+    "create holiday":"انشاء عطلة رسمية",
+    "code":"كود",
+    "price weddings":"سعر الاعراس",
+    "retainer":"العربون بالنسبة",
+    "entry hour":"وقت الدخول",
+    "out hour":"وقت الخروج",
+    "weddings":"هل تقام للاعراس"
 
 }

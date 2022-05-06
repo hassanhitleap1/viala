@@ -13,7 +13,7 @@
                 <th scope="col">#</th>
                 <th scope="col">  {{__('name english ')}} </th>
                 <th scope="col">  {{__('name arabic')}} </th>
-                <th scope="col">  {{__('name Hebrew')}} </th>
+                
                 <th scope="col">  {{__('image')}}</th>
                 
                 <th scope="col">  {{__('action')}}</th>
@@ -27,7 +27,7 @@
                     <th scope="row">{{++$key}}</th>
                     <td>{{$governorate->name_en}}</td>
                     <td>{{$governorate->name_ar}}</td>
-                    <td>{{$governorate->name_he}}</td>
+                   
                     <td> <img src="{{asset($governorate->image)}}" class="img-fluid img-thumbnail" width="250" height="25"> </td>
                     <td>
                         <a href="{{url("governorate/$governorate->id/edit")}}"><i class="fas fa-edit"></i> </a>

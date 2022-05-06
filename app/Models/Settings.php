@@ -18,15 +18,15 @@ class Settings  extends  Model
             'phone' => 'required',
             'terms_and_conditions_en' => 'required',
             'terms_and_conditions_ar' => 'required',
-            'terms_and_conditions_he' => 'required',
+         
 
             'privacy_policy_en' => 'required',
             'privacy_policy_ar' => 'required',
-            'privacy_policy_he' => 'required',
+      
 
             'about_en' => 'required',
             'about_ar' => 'required',
-            'about_he' => 'required',
+      
 
             
 

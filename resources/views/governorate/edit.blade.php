@@ -28,24 +28,14 @@
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name arabic') }}</span>
                                         <input type="text" class="form-control @error('name_ar') is-invalid @enderror" aria-label="Sizing example input" name="name_ar"  value="{{ $governorate->name_ar }}"   aria-describedby="inputGroup-sizing-sm">
-                                        @error('name_en')
+                                        @error('name_ar')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('name Hebrew') }}</span>
-                                        <input type="text" class="form-control @error('name_ar') is-invalid @enderror" aria-label="Sizing example input" name="name_he"  value="{{ $governorate->name_he }}"   aria-describedby="inputGroup-sizing-sm">
-                                        @error('name_he')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
+                             
                             </div>
 
 

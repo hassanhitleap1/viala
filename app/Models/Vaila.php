@@ -20,10 +20,14 @@ class Vaila extends  Model
         return [ "create"=>[
             'title_en' => 'required',
             'title_ar' => 'required',
-            'title_he' => 'required',
             'desc_en' => 'required',
+            'code' => 'required',
+          
+            'price_weddings'=> 'required',
+            'retainer'=> 'required',
+            'entry_hour'=>'required',
+            'out_hour'=>'required',
             'desc_ar' => 'required',
-            'desc_he' => 'required',
             'price'=>'required|numeric',
             'area'=>'required|numeric',
             'price_weekend'=>'required|numeric',
@@ -31,15 +35,21 @@ class Vaila extends  Model
             'number_room'=>'required|numeric',
             'governorate_id'=>'required|numeric',
             'thumb'=>'required',
-            'images'=>'required'
+            'images'=>'required',
         ],
             "update"=>[
                 'title_en' => 'required',
                 'title_ar' => 'required',
-                'title_he' => 'required',
+                'code' => 'required',
+         
+                'price_weddings'=> 'required',
+                'retainer'=> 'required',
+                'entry_hour'=>'required',
+                'out_hour'=>'required',
+               
                 'desc_en' => 'required',
                 'desc_ar' => 'required',
-                'desc_he' => 'required',
+               
                 'area'=>'required|numeric',
                 'price'=>'required|numeric',
                 'price_weekend'=>'required|numeric',
