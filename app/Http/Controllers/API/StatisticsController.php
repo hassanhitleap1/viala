@@ -17,7 +17,8 @@ class StatisticsController extends Controller
     }
 
     public function index(){
-        $total_number_order=Orders::join('vaila','vaila.id','orders.vaila_id')->where('vaila.user_id',auth('api-jwt')->user()->id)->count();
+        $total_number_order=Orders::join('vaila','vaila.id','orders.vaial_id')
+            ->where('vaila.user_id',auth('api-jwt')->user()->id)->count();
         $for_app=Accounting::where('user_id',auth('api-jwt')->user()->id)->sum('for_app');
         $for_me=Accounting::where('user_id',auth('api-jwt')->user()->id)->sum('for_me');
         return response()->json([
