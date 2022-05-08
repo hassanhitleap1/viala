@@ -47,6 +47,7 @@ class VailaController extends Controller
 
     public function store(VailaRequest $request){
 
+      
         $request['number_booking']=0;
         $request['status']=0;
         $request['user_id']=auth('api-jwt')->user()->id;
@@ -54,15 +55,17 @@ class VailaController extends Controller
         $insert=$request->except(['images','services']);
         $services=$request->services;
         $next_id=Vaila::get_next_id();
+       
         if($file = $request->file('thumb')) {
             $fileData = $this->uploads($file,"vailas/$next_id/");
             $insert['thumb'] = $fileData['filePath'] ;
         }
+
+        
         
       
         $vaila= Vaila::create($insert);
      
-        $images=[];
 
      
    
