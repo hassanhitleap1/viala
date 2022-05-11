@@ -19,7 +19,7 @@ class VailaController extends Controller
     use Media;
     public function __construct()
     {
-          $this->middleware('jwt.verify')->only(['store','update']);
+          $this->middleware('jwt.verify')->only(['store','update','myViala']);
     }
 
 

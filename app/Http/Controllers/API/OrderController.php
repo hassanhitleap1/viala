@@ -150,7 +150,7 @@ class OrderController extends Controller
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
-            'price'=>$request->price,
+            'price'=>0,
             'payment_type'=>'mix',
             'vaial_id'=>$request->vaial_id,
             'user_id'=> auth('api-jwt')->user()->id

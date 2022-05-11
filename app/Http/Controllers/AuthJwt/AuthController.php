@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\SocialiteRequest;
 use Exception;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -257,6 +258,14 @@ class AuthController extends Controller
 
      public function forgetPassword(ForgetPasswordRequest $request){  
         $user = User::where('email',$request->email)->first();
+        if(is_null($user)){
+            throw new HttpResponseException(response()->json([
+                'success'=>false,
+                "message" => 'email not found',
+                'errors' => ['email not found'],
+                'status' => 422
+            ], 422));
+        }
         $user->password = Hash::make("pass@123");
         $user->save();
         $data = array('name'=>"Virat Gandhi");
@@ -269,7 +278,7 @@ class AuthController extends Controller
 
          return response()->json([
             'success' => true,
-            'message' =>"successfully"
+            'message' =>"successfully send email new password"
         ]);
      }
      

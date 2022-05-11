@@ -79,7 +79,7 @@ class Vaila extends  Model
     }
 
     public static function myViala(){
-        return self::orderBy('user_id', auth('api-jwt')->user()->id);
+        return self::where('vaila.user_id', auth('api-jwt')->user()->id);
     }
 
 
@@ -105,6 +105,9 @@ class Vaila extends  Model
 
     public function comments(){
         return $this->hasMany(Comments::class);
+    }
+    public function reservations(){
+        return $this->hasMany(Orders::class,'vaial_id','id')->limit(3);
     }
 
     public function services(){
