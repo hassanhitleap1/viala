@@ -11,6 +11,7 @@ class OrdersResource extends JsonResource
     {
         $resource=parent::toArray($request);;
         $resource['merchant']=$this->merchant;
+        $resource['paymants']=$this->paymants;
         return $resource;
     }
 }

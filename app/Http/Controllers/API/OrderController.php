@@ -13,6 +13,7 @@ use App\Http\Resources\OrdersResource;
 use App\Http\Resources\VailaResource;
 use App\Models\Accounting;
 use App\Models\Orders;
+use App\Models\Paymants;
 use App\Models\Vaila;
 
 class OrderController extends Controller
@@ -50,9 +51,10 @@ class OrderController extends Controller
     }
 
     public function store(OrderRequest  $request){
+      
         $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
         $vaial=Vaila::find($request->vaial_id);
-
+      
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 
             $to_date= date("Y-m-d", strtotime($order[0]->to_date)); 
@@ -64,15 +66,32 @@ class OrderController extends Controller
                 'data'=>$vaial
             ], 422);
         }
+        $amount=0;
+        
+        foreach($request->paymants as $paymant){
+            $amount+=$paymant['amount'];
+            
+            
+        }
 
+        
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
             'price'=>$request->price,
-            'payment_type'=>$request->payment_type,
+            'payment_type'=>'mix',
             'vaial_id'=>$request->vaial_id,
             'user_id'=> auth('api-jwt')->user()->id
         ]);
+
+        
+        foreach($request->paymants as $paymant){
+            $paymantModel = new Paymants();
+            $paymantModel ->type	=$paymant['type'];
+            $paymantModel ->amount	=$paymant['amount'];
+            $paymantModel->order_id=$order->id;
+            $paymantModel->save();
+        }
 
         $calculation=AccountingHelper::calculation_order($request->price);
 
@@ -117,21 +136,30 @@ class OrderController extends Controller
             ], 422);
         }
 
+        $amount=0;
+        foreach($request->paymants as $paymant){
+            $amount+=$paymant['amount'];
+            
+            
+        }
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
             'price'=>$request->price,
-            'payment_type'=>$request->payment_type,
+            'payment_type'=>'mix',
             'vaial_id'=>$request->vaial_id,
             'user_id'=> auth('api-jwt')->user()->id
         ]);
-       // $calculation=AccountingHelper::calculation_order($request->price);
+       
+        foreach($request->paymants as $paymant){
+            $paymantModel = new Paymants();
+            $paymantModel ->type	=$paymant['type'];
+            $paymantModel ->amount	=$paymant['amount'];
+            $paymantModel->order_id=$order->id;
+            $paymantModel->save();
+        }
 
-        // Accounting::create([
-        //     'for_me'=>$calculation['for_app'],
-        //     'for_app'=>$calculation['for_app'],
-        //     'user_id'=>auth('api-jwt')->user()->id
-        // ]);
+
         $viala=Vaila::find($request->vaial_id);
         $viala->number_booking= $viala->number_booking + 1;
         $viala->save();

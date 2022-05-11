@@ -23,4 +23,10 @@ class Orders  extends Model
         ->join('users','users.id','vaila.user_id');
     }
 
+    
+    public function paymants(){
+        return $this->hasMany(Paymants::class,'id','order_id');
+    }
+
+    
 }
