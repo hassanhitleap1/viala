@@ -10,4 +10,8 @@ class AccountingHelper
       return ['for_app'=>$for_app,'for_me'=>$for_me];
   }
 
+  public static function getPrice($vaial){
+    return $vaial->price;
+  }
+
 }

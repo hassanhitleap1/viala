@@ -14,7 +14,6 @@ class  VailaResource extends JsonResource
      */
     public function toArray($request)
     {
-
         
         $resource=parent::toArray($request);
         $resource['comments']= $this->comments;
@@ -25,6 +24,9 @@ class  VailaResource extends JsonResource
         $resource["price_now"]=$this->price;
         $resource['thumb']=asset($this->thumb);
         $resource["IsFavorite"]=false;
+        $resource['entry_hour'] = date('h:i A', strtotime($this->entry_hour));
+        $resource['out_hour'] =  date('h:i A', strtotime($this->out_hour));
+
         return $resource;
     }
 }

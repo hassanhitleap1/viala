@@ -29,16 +29,33 @@ class FavouritesController extends Controller
     }
     public function store(FavouriteRequest $request){// 
       
-      
+      if(Favourite::where('vaila_id',$request->vaila_id)
+      ->where('user_id',auth('api-jwt')->user()->id)->count() ){
 
-        $Favourite = Favourite::updateOrCreate([
-            'vaila_id' => $request->vaila_id,
-            'user_id'=> auth('api-jwt')->user()->id
-        ], [
+        Favourite::where('vaila_id',$request->vaila_id)
+        ->where('user_id',auth('api-jwt')->user()->id)->delete();
+
+        return response()->json([
+            'success'=>true,
+            'status' => 201,
+            'massage'=>"sucessfully delete from Favourite",
+            'data'=>[]
+            ], 422);
+
+      }else{
+        $Favourite = Favourite::create([
             'vaila_id' => $request->vaila_id,
             'user_id'=> auth('api-jwt')->user()->id
         ]);
-        return new FavouriteResource($Favourite);
+
+        return response()->json([
+            'success'=>true,
+            'status' => 201,
+            'massage'=>"sucessfully add Favourite",
+            'data'=>[]
+            ], 422);
+      }
+     
     }
 
 

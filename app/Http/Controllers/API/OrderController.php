@@ -15,6 +15,7 @@ use App\Models\Accounting;
 use App\Models\Orders;
 use App\Models\Paymants;
 use App\Models\Vaila;
+use DateTime;
 
 class OrderController extends Controller
 {
@@ -53,8 +54,13 @@ class OrderController extends Controller
     public function store(OrderRequest  $request){
       
         $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
-        $vaial=Vaila::find($request->vaial_id);
-      
+        $vaial=Vaila::find($request->vaial_id);   
+        
+        $earlier = new DateTime($request->form_date);
+        $later = new DateTime($request->to_date);
+        $dayes_order= $later->diff($earlier)->format("%a") + 1; 
+        $total_price=AccountingHelper::getPrice( $vaial) * $dayes_order;
+
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 
             $to_date= date("Y-m-d", strtotime($order[0]->to_date)); 
@@ -70,15 +76,14 @@ class OrderController extends Controller
         
         foreach($request->paymants as $paymant){
             $amount+=$paymant['amount'];
-            
-            
         }
 
-        
+    
+       
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
-            'price'=>$request->price,
+            'price'=>$total_price,
             'payment_type'=>'mix',
             'vaial_id'=>$request->vaial_id,
             'user_id'=> auth('api-jwt')->user()->id
