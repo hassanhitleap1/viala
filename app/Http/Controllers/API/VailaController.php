@@ -20,6 +20,7 @@ class VailaController extends Controller
     public function __construct()
     {
           $this->middleware('jwt.verify')->only(['store','update','myViala']);
+          $this->middleware('marchant')->only(['store','update']);
     }
 
 

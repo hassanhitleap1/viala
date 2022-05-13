@@ -23,8 +23,9 @@ class OrderController extends Controller
 
     public function __construct()
     {
-           $this->middleware('jwt.verify')->only(['index','store','update','show','booking_history','previous_booking','destroy']);
-    }
+           $this->middleware('jwt.verify')->only(['index','store','update','show','booking_history','book_naw','previous_booking','destroy']);
+           $this->middleware('marchant')->only(['book_naw']);
+   }
 
 
 

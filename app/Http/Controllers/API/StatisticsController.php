@@ -14,6 +14,8 @@ class StatisticsController extends Controller
     public function __construct()
     {
           $this->middleware('jwt.verify')->only(['index']);
+          $this->middleware('marchant')->only(['index']);
+          
     }
 
     public function index(){
@@ -29,6 +31,17 @@ class StatisticsController extends Controller
             $q->select('orders.id')->from('orders')->join('vaila','vaila.id','orders.vaial_id')
             ->where('vaila.user_id',auth('api-jwt')->user()->id);
         })->sum('amount');
+
+        $total_cash_order=Paymants::where('type','cash')->whereIn('order_id',function($q){
+            $q->select('orders.id')->from('orders')->join('vaila','vaila.id','orders.vaial_id')
+            ->where('vaila.user_id',auth('api-jwt')->user()->id);
+        })->sum('amount');
+        $total_card_order=Paymants::where('type','card')->whereIn('order_id',function($q){
+            $q->select('orders.id')->from('orders')->join('vaila','vaila.id','orders.vaial_id')
+            ->where('vaila.user_id',auth('api-jwt')->user()->id);
+        })->sum('amount');
+
+        
         return response()->json([
             'success' => true,
           
@@ -37,7 +50,10 @@ class StatisticsController extends Controller
                'debit'=>$for_app,
                'credit'=>$for_me,
                'cash'=>$cash,
-               'card'=>$card
+               'card'=>$card,
+               'total_cash_order'=>$total_cash_order,
+               'total_card_order'=>$total_card_order
+
            ]
         ]);
     }

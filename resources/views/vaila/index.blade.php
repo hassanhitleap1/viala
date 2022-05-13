@@ -11,13 +11,12 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">  {{__('title english')}}</th>
-                <th scope="col">  {{__('desc english')}}</th>
+                <th scope="col">  {{__('title arabic')}}</th>
+                <th scope="col">  {{__('desc arabic')}}</th>
                 <th scope="col">  {{__('arrival')}}</th>
                 <th scope="col">  {{__('status')}}</th>
-                <th scope="col">  {{__('has pool')}}</th>
-                <th scope="col">  {{__('special')}}</th>
-                <th scope="col"> {{__('has barbikio ')}}</th>
+
+                <th scope="col"> {{__('has barbikio')}}</th>
                 <th scope="col"> {{__('thumbnuil')}} </th>
                 <th scope="col">  {{__('action')}}</th>
 
@@ -28,12 +27,10 @@
             @foreach($vailas as $key => $vaila)
                 <tr>
                     <th scope="row">{{$key}}</th>
-                    <td>{{$vaila->title_en}}</td>
-                    <td>{{$vaila->desc_en}}</td>
+                    <td>{{$vaila->title_ar}}</td>
+                    <td>{{$vaila->desc_ar}}</td>
                     <td>{{$vaila->new_arrivals ? 'new arrival': 'not new'}}</td>
                     <td>{{\App\Helper\StatusHelper::keyword_status($vaila->status)}}</td>
-                    <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}</td>
-                    <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->special)}}</td>
                     <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</td>
                     <td class="w-25" >  <img  class="img-fluid img-thumbnail" src="{{asset($vaila->thumb)}}  " width="250" height="25"> </td>
                     <td>
@@ -41,9 +38,9 @@
                         
                         <a href="{{route("web.vaila.show",$vaila->id)}}"><i class="fas fa-eye"></i></a>
                         @if($vaila->active)
-                             <a href="{{route("vaila.disactive",$vaila->id)}}">disactive</a>
+                             <a href="{{route("vaila.disactive",$vaila->id)}}">{{__('disactive')}}</a>
                         @else
-                            <a href="{{route("vaila.active",$vaila->id)}}">active</a>
+                            <a href="{{route("vaila.active",$vaila->id)}}">{{__('active')}}</a>
                         @endif
                          <form action="{{route("web.vaila.destroy",$vaila->id)}}" method="POST">
                             @csrf

@@ -17,7 +17,7 @@
 
                             
                             <div  class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('code') }}</span>
                                         <input type="text" class="form-control @error('code') is-invalid @enderror" aria-label="Sizing example input" name="code"  value="{{ $vaila->code}}"  aria-describedby="inputGroup-sizing-sm">
@@ -30,7 +30,7 @@
                                 </div>
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('entry hour') }}</span>
                                         <input type="time" class="form-control @error('entry_hour') is-invalid @enderror" aria-label="Sizing example input" name="entry_hour"  value="{{ $vaila->entry_hour}}"  aria-describedby="inputGroup-sizing-sm">
@@ -43,7 +43,7 @@
                                 </div>
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('out hour') }}</span>
                                         <input type="time" class="form-control @error('out_hour') is-invalid @enderror" aria-label="Sizing example input" name="out_hour"  value="{{ $vaila->out_hour}}"  aria-describedby="inputGroup-sizing-sm">
@@ -54,6 +54,24 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="col-md-3">
+                                    <div class="input-group input-group-sm mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('marchant') }}</span>
+                                            <select class="form-control  @error('user_id') is-invalid @enderror"  name="user_id" aria-describedby="inputGroup-sizing-sm" >
+                                                @foreach($users as $user)
+                                                    <option value="{{$user->id}}" @if($vaila->user_id == $user->id ) selected @endif>{{$user->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('user_id')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             </div>
 
 

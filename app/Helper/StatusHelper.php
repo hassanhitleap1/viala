@@ -10,10 +10,10 @@ class StatusHelper
                 return  "pending";
                 break;
             case 1:
-                return  "active";
+                return  "نشيط";
                 break;
         }
-        return  "active";
+        return  "نشيط";
     }
 
 
@@ -21,16 +21,26 @@ class StatusHelper
 
         switch ($attaribuate) {
             case 0:
-                return  "yes";
+                return  "نعم";
                 break;
             case 1:
-                return  "no";
+                return  "لا";
                 break;
 
         }
-        return  "no";
+        return  "لا";
     }
 
+    public static function gen_code(){
+        $length=15;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
 
 
 

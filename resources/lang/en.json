@@ -25,7 +25,7 @@
     "has pool":"يوجد مسبح",
     "has barbikio":"يوجد بابربكيو",
     "thumbnuil":"صوره",
-    "action":"action",
+    "action":"عمل",
     "form date":"من تاريح",
     "to date":"الى تاريخ",
     "price":"السعر",
@@ -67,6 +67,9 @@
     "retainer":"العربون بالنسبة",
     "entry hour":"وقت الدخول",
     "out hour":"وقت الخروج",
-    "weddings":"هل تقام للاعراس"
+    "weddings":"هل تقام للاعراس",
+    "disactive":"غير فعال",
+    "active":"فعال",
+    "marchant":"التاجر"
 
 }

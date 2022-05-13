@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\Media;
 use App\Models\Governorate;
 use App\Models\ImageVaila;
+use App\Models\Merchant;
 use App\Models\Services;
 use App\Models\VaialServices;
 use App\Models\Vaila;
@@ -33,7 +34,7 @@ class VailaController extends Controller
        $validatedData = $request->validate($roulas);
         $validatedData['number_booking']=0;
         $validatedData['status']=0;
-        $validatedData['user_id']=auth()->user()->id;
+
         $validatedData['number_booking']=0;
         $next_id=Vaila::get_next_id();
 
@@ -79,17 +80,18 @@ class VailaController extends Controller
     }
     public function  create(){
         $services=Services::all();
+        $users=Merchant::all();
         $governorates=Governorate::all();
-        return view(self::VIEW."create",compact('governorates','services'));
+        return view(self::VIEW."create",compact('governorates','services','users'));
     }
 
     public function  edit(Vaila $vaila){
         $services=Services::all();
         $selected_services=VaialServices::where('vaila_id',$vaila->id)->get()->pluck('services_id')->toArray();;
         $governorates=Governorate::all();
-     
+        $users=Merchant::all();
     
-        return view(self::VIEW."edit",compact('vaila','governorates','services','selected_services'));
+        return view(self::VIEW."edit",compact('vaila','governorates','services','users','selected_services'));
     }
 
     public function show(Vaila $vaila){
