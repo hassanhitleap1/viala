@@ -270,11 +270,11 @@ class AuthController extends Controller
         $user->save();
         $data = array('name'=>"Virat Gandhi");
         
-        // Mail::send(['text'=>'mail'], $data, function($message,$user) {
-        //     $message->to($user->email , 'new password is pass@123')->subject
-        //        ('Laravel Basic Testing Mail');
-        //     $message->from('xyz@gmail.com','Virat Gandhi');
-        //  });
+        Mail::send(['text'=>'mail'], $data, function($message,$user) {
+            $message->to($user->email , 'new password is pass@123')->subject
+               ('Laravel Basic Testing Mail');
+            $message->from(env('MAIL_USERNAME'),'tasheh');
+         });
 
          return response()->json([
             'success' => true,
