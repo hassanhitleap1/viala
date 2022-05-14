@@ -21,7 +21,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/vaila/active/{vaila}', [App\Http\Controllers\VailaController::class,'active'])->name('vaila.active');
 Route::get('/vaila/disactive/{vaila}', [App\Http\Controllers\VailaController::class,'disactive'])->name('vaila.disactive');
 Route::resource('/vaila', App\Http\Controllers\VailaController::class, ['as' => 'web']);
-Route::resource('/orders', App\Http\Controllers\OrderController::class);
+Route::resource('orders', App\Http\Controllers\OrderController::class,['as' => 'web']);
 Route::resource('/sliders', App\Http\Controllers\SliderController::class);
 
 Route::get('/customers/active/{customer}', [App\Http\Controllers\CustomersController::class,'active'])->name('customers.active');

@@ -4,14 +4,14 @@
 
 
     <div class="container">
-        <h1> governorate </h1>
+        <h1>  {{__('governorates')}} </h1>
         <a class="btn btn-secondary pull-right" href="{{url('governorate/create')}}"> {{__('create new governorate')}}</a>
         <hr />
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">  {{__('name english ')}} </th>
+                <th scope="col">  {{__('name english')}} </th>
                 <th scope="col">  {{__('name arabic')}} </th>
                 
                 <th scope="col">  {{__('image')}}</th>

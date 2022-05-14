@@ -41,7 +41,7 @@
 
                             <div class="col-md-6 ">
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">thumb</label>
+                                    <label for="formFile" class="form-label">{{ __('thumb') }}</label>
                                     <input class="form-control" type="file"  name="file"  >
                                 </div>
                             </div>

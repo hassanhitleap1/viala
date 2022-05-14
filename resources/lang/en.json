@@ -70,6 +70,16 @@
     "weddings":"هل تقام للاعراس",
     "disactive":"غير فعال",
     "active":"فعال",
-    "marchant":"التاجر"
+    "marchant":"التاجر",
+    "search":"بحث",
+    "create new customer":"انشاء مستخدم جديد",
+    "merchants":"أصحاب الفلل",
+    "create new merchant":"انشاء صاحب فلة جديد",
+    "password":"كلمة سر",
+    "image":"صورة",
+    "governorates":"المدن",
+    "create new governorate":"انشاء مدينة جديدة",
+    "create new services":"انشاء خدمة جديدة",
+    "is main":"رئيسية"
 
 }

@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('create new governate') }}</div>
+                    <div class="card-header">{{ __('create new governorate') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ url('governorate') }}" enctype="multipart/form-data">
@@ -42,7 +42,7 @@
 
                             <div class="col-md-6 ">
                                 <div class="mb-3">
-                                    <label for="formFile" class="form-label">thumb</label>
+                                    <label for="formFile" class="form-label">{{ __('thumb') }}</label>
                                     <input class="form-control" type="file"  name="file"  >
                                 </div>
                             </div>

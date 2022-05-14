@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('create new Services') }}</div>
+                    <div class="card-header">{{ __('update') }}</div>
 
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)
@@ -49,13 +49,13 @@
                                 <div class="form-check form-switch">
                                     <input class="form-check-input"  name="is_main"  @if ( $service->is_main )  checked @endif
                                      type="checkbox" >
-                                    <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('is_main')}}</label>
+                                    <label class="form-check-label"  for="flexSwitchCheckDefault">{{__('is main')}}</label>
                                 </div>
 
 
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">thumb</label>
+                                        <label for="formFile" class="form-label">{{ __('thumb') }}</label>
                                         <input class="form-control" type="file"  name="file"  >
                                     </div>
                                 </div>

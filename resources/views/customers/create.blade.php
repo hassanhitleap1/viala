@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('create new customers') }}</div>
+                    <div class="card-header">{{ __('create new customer') }}</div>
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)
                             <div>{{$error}}</div>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">avatar</label>
+                                        <label for="formFile" class="form-label">{{__('avatar')}}</label>
                                         <input class="form-control" type="file"  name="avatar" id="formFile" >
                                     </div>
                                 </div>

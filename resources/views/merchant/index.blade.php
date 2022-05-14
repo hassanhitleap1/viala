@@ -3,7 +3,9 @@
 @section('content')
 
     <div class="container">
-        <h1> merchants </h1>
+        <h1>  {{__('merchants')}}
+            
+        </h1>
         <a class="btn btn-secondary pull-right" href="{{url('merchant/create')}}"> {{__('create new merchant')}}</a>
         <hr />
         <table class="table">

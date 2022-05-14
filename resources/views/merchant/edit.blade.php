@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">avatar</label>
+                                        <label for="formFile" class="form-label">{{__('avatar')}}</label>
                                         <input class="form-control" type="file"  name="avatar" id="formFile" >
                                     </div>
                                 </div>
