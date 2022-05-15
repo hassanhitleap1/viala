@@ -19,7 +19,7 @@ class VailaController extends Controller
     use Media;
     public function __construct()
     {
-          $this->middleware('jwt.verify')->only(['store','update','myViala']);
+          $this->middleware('jwt.verify')->only(['store','update','myViala','destroy']);
           $this->middleware('marchant')->only(['store','update']);
     }
 
@@ -62,35 +62,31 @@ class VailaController extends Controller
             $insert['thumb'] = $fileData['filePath'] ;
         }
 
-        
-        
-      
-        $vaila= Vaila::create($insert);
-     
+        $insert["code"]=\App\Helper\StatusHelper::gen_code();
 
-     
-   
-
-        
-
-        if($files = $request->file('images')) {
-           
-            foreach ($files as $key=> $file){
-                $fileData = $this->uploads($file,"vailas/$vaila->id/images/$key/");
-                $ImageVaila = new ImageVaila();
-                $ImageVaila->path=$fileData['filePath'] ;
-                $ImageVaila->vaila_id= $vaila->id;
-                $ImageVaila->save();
-    
-            }  
+        if(!is_null($insert["entry_hour"])){
+            $insert["entry_hour"] = date("H:i", strtotime($insert['entry_hour']));
         }
-
+        if(!is_null($insert["out_hour"])){
+            $insert["out_hour"] = date("H:i", strtotime($insert['entry_hour']));
+        }
     
 
-        if($services){
-            $data_services=[];
+        $vaila= Vaila::create($insert);
+    
+        foreach ($request->file('images') as $key=> $file){
+            $fileData = $this->uploads($file,"vailas/$vaila->id/images/$key/");
+            $ImageVaila = new ImageVaila();
+            $ImageVaila->path=$fileData['filePath'] ;
+            $ImageVaila->vaila_id= $vaila->id;
+            $ImageVaila->save();
 
-            foreach($services as $key => $service){
+        }  
+
+    
+        if($services){
+
+            foreach($request->services as $key => $service){
                 $mod_ser= new VaialServices();
                 $mod_ser->vaila_id=$vaila->id;
                 $mod_ser->services_id=$key;
@@ -142,6 +138,15 @@ class VailaController extends Controller
             }
         
         }
+
+
+        if(!is_null($update_data["entry_hour"])){
+            $update_data["entry_hour"] = date("H:i", strtotime($update_data['entry_hour']));
+        }
+        if(!is_null($update_data["out_hour"])){
+            $update_data["out_hour"] = date("H:i", strtotime($update_data['entry_hour']));
+        }
+
         $vaila= tap($vaila)->update($update_data);
 
         return new VailaResource($vaila);
@@ -150,7 +155,14 @@ class VailaController extends Controller
 
     public function destroy(Vaila $vaila){
         $vaila->delete();
-        return Response('',201);
+        return response()->json([
+            'success'=>true,
+            "message" => "succefully deleted",
+            'errors' => [],
+        
+            'data'=>[]
+        ], 201);
+
     }
 
 

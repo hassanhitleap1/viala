@@ -39,6 +39,8 @@ Route::apiResource('vaila',\App\Http\Controllers\API\VailaController::class);
 
 Route::get('booking-history',[\App\Http\Controllers\API\OrderController::class,'booking_history']);
 Route::get('previous-booking',[\App\Http\Controllers\API\OrderController::class,'previous_booking']);
+Route::get('previous-booking/{vaial_id}',[\App\Http\Controllers\API\OrderController::class,'previous_booking_byid']);
+
 Route::apiResource('orders',\App\Http\Controllers\API\OrderController::class);
 Route::apiResource('comments',\App\Http\Controllers\API\CommentsController::class);
 Route::apiResource('rates',\App\Http\Controllers\API\RateController::class);

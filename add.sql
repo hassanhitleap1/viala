@@ -10,3 +10,9 @@ ALTER TABLE `services` CHANGE `name_he` `name_he` VARCHAR(255) CHARACTER SET utf
 
 CREATE TABLE `payments` ( `id` INT NOT NULL AUTO_INCREMENT , `amount` DOUBLE NOT NULL , `order_id` INT NOT NULL , `type` ENUM('cash','card') NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` DATETIME NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `orders` CHANGE `payment_type` `payment_type` ENUM('visa','cash','mix') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL;
+
+
+
+ALTER TABLE `vaila` CHANGE `desc_en` `desc_en` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL, CHANGE `desc_ar` `desc_ar` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+ALTER TABLE `vaila` CHANGE `price_weddings` `price_weddings` DOUBLE NULL DEFAULT '0.0'; 
+

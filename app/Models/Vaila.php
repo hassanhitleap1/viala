@@ -16,46 +16,35 @@ class Vaila extends  Model
 
     protected $guarded = [];
 
-    public  static function rules(){
+    public  static function rules($id = null){
         return [ "create"=>[
-            'title_en' => 'required',
-            'title_ar' => 'required',
-            'desc_en' => 'required',
-            'code' => 'required',
-          
-            'price_weddings'=> 'required',
+            'title_en' => 'required|unique:vaila',
+            'title_ar' => 'required|unique:vaila', 
             'retainer'=> 'required',
             'entry_hour'=>'required',
             'out_hour'=>'required',
-            'desc_ar' => 'required',
             'price'=>'required|numeric',
-            'area'=>'required|numeric',
+            'area'=>'numeric',
             'price_weekend'=>'required|numeric',
             'price_hoolday'=>'required|numeric',
             'number_room'=>'required|numeric',
             'governorate_id'=>'required|numeric',
             'thumb'=>'required',
-            'images'=>'required',
+            'images' => 'required',
+            'images.*' => 'mimes:jpeg,jpg,png,gif'
+
+
         ],
             "update"=>[
-                'title_en' => 'required',
-                'title_ar' => 'required',
-                'code' => 'required',
-         
-                'price_weddings'=> 'required',
+                'title_en' => 'unique:vaila,title_en,'.$id,
+                'title_ar' => 'unique:vaila,title_ar,'.$id, 
                 'retainer'=> 'required',
-                'entry_hour'=>'required',
-                'out_hour'=>'required',
-               
-                'desc_en' => 'required',
-                'desc_ar' => 'required',
-               
-                'area'=>'required|numeric',
-                'price'=>'required|numeric',
-                'price_weekend'=>'required|numeric',
-                'price_hoolday'=>'required|numeric',
-                'number_room'=>'required|numeric',
-                'governorate_id'=>'required|numeric',
+                'area'=>'numeric',
+                'price'=>'numeric',
+                'price_weekend'=>'numeric',
+                'price_hoolday'=>'numeric',
+                'number_room'=>'numeric',
+                'governorate_id'=>'numeric',
 
             ]
         ];

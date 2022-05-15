@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,6 +30,10 @@ class  BookingHistoryResource extends JsonResource
         $later = new DateTime($this->to_date);
         $resource['dayes_order']= $later->diff($earlier)->format("%a") + 1;  
         $resource['total_price']=$this->price *$resource['dayes_order']; 
+        $resource["form_date_day_ar"]=  Carbon::parse($this->from_date)->locale('ar')->dayName ;
+        $resource["form_date_day_en"]=Carbon::parse($this->from_date)->locale('en')->dayName ;
+        $resource["to_date_day_ar"]=  Carbon::parse($this->to_date)->locale('ar')->dayName ;
+        $resource["to_date_day_en"]=Carbon::parse($this->to_date)->locale('en')->dayName ;
         return  $resource;;
     }
 }

@@ -48,6 +48,18 @@ class OrderController extends Controller
     
     }
 
+
+    public function previous_booking_byid($id){
+        $orders =Vaila::join('orders','orders.vaial_id','vaila.id')
+            ->where( 'vaila.id',$id)
+            ->paginate(10);
+        return BookingHistoryResource::collection($orders);
+    
+    }
+
+
+
+
     public function index(){
         return OrderResource::collection(Orders::paginate(10));
     }
@@ -128,8 +140,8 @@ class OrderController extends Controller
     public function book_naw(OrderRequest  $request){
 
         $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
-        $vaial=Vaila::find($request->vaial_id);
-
+        $vaial=Vaila::find($request->vaial_id);   
+       
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 
             $to_date= date("Y-m-d", strtotime($order[0]->to_date)); 
@@ -142,12 +154,8 @@ class OrderController extends Controller
             ], 422);
         }
 
-        $amount=0;
-        foreach($request->paymants as $paymant){
-            $amount+=$paymant['amount'];
-            
-            
-        }
+   
+     
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
@@ -157,14 +165,7 @@ class OrderController extends Controller
             'user_id'=> auth('api-jwt')->user()->id
         ]);
        
-        foreach($request->paymants as $paymant){
-            $paymantModel = new Paymants();
-            $paymantModel ->type	=$paymant['type'];
-            $paymantModel ->amount	=$paymant['amount'];
-            $paymantModel->order_id=$order->id;
-            $paymantModel->save();
-        }
-
+  
 
         $viala=Vaila::find($request->vaial_id);
         $viala->number_booking= $viala->number_booking + 1;
