@@ -24,7 +24,8 @@ class VailaRequest extends \App\Http\Requests\Api\FormRequest
     public function rules()
     {
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
-            return   Vaila::rules($this->id)["update"];;
+           $id=request()->route()->parameter('vaila')->id;
+            return   Vaila::rules($id)["update"];;
            
         }else{
             return  Vaila::rules()["create"];

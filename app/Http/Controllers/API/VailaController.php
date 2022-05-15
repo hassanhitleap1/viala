@@ -64,10 +64,10 @@ class VailaController extends Controller
 
         $insert["code"]=\App\Helper\StatusHelper::gen_code();
 
-        if(!is_null($insert["entry_hour"])){
+        if(isset($insert["entry_hour"]) && !is_null($insert["entry_hour"])){
             $insert["entry_hour"] = date("H:i", strtotime($insert['entry_hour']));
         }
-        if(!is_null($insert["out_hour"])){
+        if(isset($insert["out_hour"]) && !is_null($insert["out_hour"])){
             $insert["out_hour"] = date("H:i", strtotime($insert['entry_hour']));
         }
     
@@ -113,6 +113,7 @@ class VailaController extends Controller
         $services=$request->services;
 
         $update_data=$request->except(['images','services']);
+    
         if($files = $request->file('images')) {
             ImageVaila::where('vaile_id',$vaila->id)->delete();
             foreach ($files as $key=> $file){
@@ -139,13 +140,14 @@ class VailaController extends Controller
         
         }
 
-
-        if(!is_null($update_data["entry_hour"])){
+       
+        if( isset($update_data["entry_hour"]) && !is_null($update_data["entry_hour"])){
             $update_data["entry_hour"] = date("H:i", strtotime($update_data['entry_hour']));
         }
-        if(!is_null($update_data["out_hour"])){
+        if(isset($update_data["out_hour"]) && !is_null($update_data["out_hour"])){
             $update_data["out_hour"] = date("H:i", strtotime($update_data['entry_hour']));
         }
+        
 
         $vaila= tap($vaila)->update($update_data);
 

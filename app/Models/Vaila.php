@@ -20,7 +20,6 @@ class Vaila extends  Model
         return [ "create"=>[
             'title_en' => 'required|unique:vaila',
             'title_ar' => 'required|unique:vaila', 
-            'retainer'=> 'required',
             'entry_hour'=>'required',
             'out_hour'=>'required',
             'price'=>'required|numeric',
@@ -32,13 +31,10 @@ class Vaila extends  Model
             'thumb'=>'required',
             'images' => 'required',
             'images.*' => 'mimes:jpeg,jpg,png,gif'
-
-
         ],
             "update"=>[
-                'title_en' => 'unique:vaila,title_en,'.$id,
-                'title_ar' => 'unique:vaila,title_ar,'.$id, 
-                'retainer'=> 'required',
+                'title_en' => 'string|unique:vaila,title_en,'.$id,
+                'title_ar' => 'string|unique:vaila,title_ar,'.$id, 
                 'area'=>'numeric',
                 'price'=>'numeric',
                 'price_weekend'=>'numeric',
