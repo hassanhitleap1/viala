@@ -15,6 +15,8 @@ class  OrderResource extends JsonResource
     public function toArray($request)
     {
         $resource=parent::toArray($request);;
+        $resource['from_date']= date("Y-m-d", strtotime( $this->form_date));  
+        $resource['to_date']= date("Y-m-d", strtotime( $this->to_date)); 
         $resource['merchant']=$this->merchant;
         $resource['paymants']=$this->paymants;
         return $resource;
