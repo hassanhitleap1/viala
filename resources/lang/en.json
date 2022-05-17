@@ -26,7 +26,7 @@
     "has barbikio":"يوجد بابربكيو",
     "thumbnuil":"صوره",
     "action":"عمل",
-    "form date":"من تاريح",
+    "form date":"من تاربخ",
     "to date":"الى تاريخ",
     "price":"السعر",
     "payment type":"طريقة الدفع",
@@ -80,6 +80,11 @@
     "governorates":"المدن",
     "create new governorate":"انشاء مدينة جديدة",
     "create new services":"انشاء خدمة جديدة",
-    "is main":"رئيسية"
+    "is main":"رئيسية",
+    "pending":"قيد الانتظار",
+    "success":"ناجح",
+    "cash":"نقدا",
+    "card":"بطاقة",
+    "mix":"نقدا و بطاقة"
 
 }

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1> orders </h1>
+        <h1> {{__('orders')}} </h1>
         <hr />
         <form action="{{url('orders')}}" method="get">
             
@@ -44,15 +44,25 @@
             </tr>
             </thead>
             <tbody>
+            <?php  $i=$orders->currentpage()*$orders->perpage()-$orders->perpage();?>
             @foreach($orders as $key => $order)
                 <tr>
-                <th scope="row">{{++$key}}</th>
-                <td>{{$order->form_date}}</td>
-                    <td>{{$order->form_date}}</td>
+                <th scope="row">{{++$i}}</th>
+                <td>{{date("Y-m-d", strtotime( $order->form_date)) }}</td>
+                    <td>{{ date("Y-m-d", strtotime( $order->to_date)) }}</td>
                     <td>{{$order->price}}</td>
-                    <td>{{$order->payment_type}}</td>
-                    <td>{{$order->status}}</td>
-                    <td>{{is_null($order['vaila'])?'':$order['vaila']['title']}}</td>
+                    <td>{{__($order->payment_type)}}</td>
+                    <td>{{__($order->status)}}</td>
+
+                    <td> 
+
+                        @if(!is_null($order['vaila']))
+                        
+                        <a href="{{route("web.vaila.show",$order['vaila']['id'])}}">
+                            {{$order['vaila']['title_ar']}} 
+                        </a>
+                        @endif
+                        </td>
                     <td>
                     <a href="{{url("orders/$order->id/edit")}}"><i class="fas fa-edit"></i> </a>
 

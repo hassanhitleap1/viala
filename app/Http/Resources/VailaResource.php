@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helper\AccountingHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
     class  VailaResource extends JsonResource
@@ -22,7 +23,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
         $resource['governorate']= $this->governorate;
         $resource['reservations']= $this->reservations;
         $resource["services"]= ServicesResource::collection($this->services);
-        $resource["price_now"]=$this->price;
+        $resource["price_now"]=AccountingHelper::getPrice($this);
         $resource['thumb']=asset($this->thumb);
         $resource["IsFavorite"]=false;
         $resource['entry_hour'] = date('h:i A', strtotime($this->entry_hour));

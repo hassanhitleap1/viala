@@ -2,6 +2,9 @@
 
 namespace App\Helper;
 
+use App\Models\Holiday;
+use Carbon\Carbon;
+
 class AccountingHelper
 {
   public static function calculation_order($price){
@@ -11,7 +14,17 @@ class AccountingHelper
   }
 
   public static function getPrice($vaial){
-    return $vaial->price;
+    if(Holiday::where('date',date('Y-m-d'))->count()){
+      return $vaial->price_hoolday;
+    }elseif(Carbon::now()->locale('en')->dayName== "Thursday" || Carbon::now()->locale('en')->dayName =="Friday"){
+      return $vaial->price_weekend;
+    }else{
+      return $vaial->price;
+    }
+
+    
+    
+
   }
 
 }
