@@ -29,9 +29,34 @@ class VailaController extends Controller
     public function store(Request $request){
         $roulas= Vaila::rules()["create"];;
         $services=$request->services;
+
         
+
+        if($request->weddings =="on"){
+            $validatedData['weddings'] = 1;
+        }else{
+            $validatedData['weddings'] = 0;
+        }
+
+        if($request->new_arrivals =="on"){
+            $validatedData['new_arrivals'] = 1;
+        }else{
+            $validatedData['new_arrivals'] = 0;
+        }
+
+
+        if($request->for_shbab =="on"){
+            $validatedData['for_shbab'] = 1;
+        }else{
+            $validatedData['for_shbab'] = 0;
+        }
+
+     
+       
      
        $validatedData = $request->validate($roulas);
+
+       $validatedData['user_id']=$request->user_id;
         $validatedData['number_booking']=0;
         $validatedData['status']=0;
 
@@ -100,11 +125,32 @@ class VailaController extends Controller
 
     public function  update($id,Request $request){
         $vaila = Vaila::find($id);
-        $roulas= Vaila::rules()["update"];
+        $roulas= Vaila::rules($id)["update"];
 
         $services=$request->services;
      
         $validatedData = $request->validate($roulas);
+
+
+        if($request->weddings =="on"){
+            $validatedData['weddings'] = 1;
+        }else{
+            $validatedData['weddings'] = 0;
+        }
+
+        if($request->new_arrivals =="on"){
+            $validatedData['new_arrivals'] = 1;
+        }else{
+            $validatedData['new_arrivals'] = 0;
+        }
+
+
+        if($request->for_shbab =="on"){
+            $validatedData['for_shbab'] = 1;
+        }else{
+            $validatedData['for_shbab'] = 0;
+        }
+        
 
         unset($validatedData['services']);
         if($files = $request->file('images')) {
@@ -123,6 +169,7 @@ class VailaController extends Controller
            
         }
 
+        $validatedData['user_id']=$request->user_id;
         $vaila->update($validatedData);
         if($services){
             $data_services=[];

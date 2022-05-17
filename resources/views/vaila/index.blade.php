@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <h1>  {{__('vaila')}} </h1>
+     
         <a class="btn btn-secondary pull-right" href="{{url('vaila/create')}}"> {{__('create new vaila')}}</a>
         <hr />
         <table class="table">
@@ -13,34 +13,31 @@
                 <th scope="col">#</th>
                 <th scope="col">  {{__('title arabic')}}</th>
                 <th scope="col">  {{__('desc arabic')}}</th>
-                <th scope="col">  {{__('arrival')}}</th>
                 <th scope="col">  {{__('status')}}</th>
-
-                <th scope="col"> {{__('has barbikio')}}</th>
                 <th scope="col"> {{__('thumbnuil')}} </th>
                 <th scope="col">  {{__('action')}}</th>
 
             </tr>
             </thead>
             <tbody>
-
+               
+            <?php  $i=$vailas->currentpage()*$vailas->perpage()-$vailas->perpage();?>
             @foreach($vailas as $key => $vaila)
                 <tr>
-                    <th scope="row">{{$key}}</th>
+                    <th scope="row">{{++$i}}</th>
                     <td>{{$vaila->title_ar}}</td>
                     <td>{{$vaila->desc_ar}}</td>
-                    <td>{{$vaila->new_arrivals ? 'new arrival': 'not new'}}</td>
-                    <td>{{\App\Helper\StatusHelper::keyword_status($vaila->status)}}</td>
-                    <td> {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}</td>
-                    <td class="w-25" >  <img  class="img-fluid img-thumbnail" src="{{asset($vaila->thumb)}}  " width="250" height="25"> </td>
+             
+                    <td>{{\App\Helper\StatusHelper::keyword_status($vaila->active)}}</td>
+                    <td class="w-25" >  <img  class="img-fluid img-thumbnail" src="{{asset($vaila->thumb)}}  " width="250" height="20"> </td>
                     <td>
-                        <a  href="{{url("vaila/$vaila->id/edit")}}"><i class="fas fa-edit"></i></a>
+                        <a  href="{{url("vaila/$vaila->id/edit")}}"><i class="fas fa-edit"></i></a><br />
                         
-                        <a href="{{route("web.vaila.show",$vaila->id)}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route("web.vaila.show",$vaila->id)}}"><i class="fas fa-eye"></i></a><br />
                         @if($vaila->active)
-                             <a href="{{route("vaila.disactive",$vaila->id)}}">{{__('disactive')}}</a>
+                             <a href="{{route("vaila.disactive",$vaila->id)}}"> <i class="fas fa-toggle-on"></i> </a><br />
                         @else
-                            <a href="{{route("vaila.active",$vaila->id)}}">{{__('active')}}</a>
+                            <a href="{{route("vaila.active",$vaila->id)}}"> <i class="fas fa-toggle-off"></i> </a><br />
                         @endif
                          <form action="{{route("web.vaila.destroy",$vaila->id)}}" method="POST">
                             @csrf

@@ -3,236 +3,259 @@
 @section('content')
 
 
+
     <div class="container">
         <h1> {{$vaila->title}} </h1>
         
         <div class="container">
             <div class="row">
                 <div class="col">
-                    title
+                   {{__('code')}}  
                 </div>
                 <div class="col">
-                    {{$vaila->title_en}}
+                    {{$vaila->code}}
+                </div>
+               
+            </div>
+            <hr/>
+                 
+
+
+            <div class="row">
+                <div class="col">
+                   {{__('entry hour')}}  
                 </div>
                 <div class="col">
-                    {{$vaila->title_ar}}
+                    {{$vaila->entry_hour}}
+                </div>
+               
+            </div>
+            <hr/>
+
+
+            <div class="row">
+                <div class="col">
+                   {{__('out hour')}}  
                 </div>
                 <div class="col">
-                    {{$vaila->title_he}}
+                    {{$vaila->out_hour}}
                 </div>
+               
             </div>
             <hr/>
 
             <div class="row">
                 <div class="col">
-                    descroption
-                </div>
-                <div class="col">
-                    {{$vaila->desc_en}}
-                </div>
-                <div class="col">
-                    {{$vaila->desc_ar}}
-                </div>
-                <div class="col">
-                    {{$vaila->desc_he}}
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col">
-                status
-                </div>
-                <div class="col">
-                {{\App\Helper\StatusHelper::keyword_status($vaila->status)}}
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col">
-                new arrivals
-                </div>
-                <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->new_arrivals)}}
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col">
-                special
-                </div>
-                <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->special)}}
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col">
-                user
+                   {{__('marchant')}}  
                 </div>
                 <div class="col">
                 {{$vaila->user->name}}
                 </div>
-            </div>
-            
-            <hr/>
-            <div class="row">
-                <div class="col">
-                governorate
-                </div>
-                <div class="col">
-                {{$vaila->governorate->name_en}}
-             
-                </div>
+               
             </div>
             <hr/>
+
             <div class="row">
                 <div class="col">
-                has pool
+                   {{__('title english')}}  
                 </div>
                 <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->has_pool)}}
+                {{$vaila->title_en}}
                 </div>
+               
             </div>
             <hr/>
+
+
             <div class="row">
                 <div class="col">
-                has barbikio
+                   {{__('desc english')}}  
                 </div>
                 <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->has_barbikio)}}
+                {{$vaila->desc_en}}
                 </div>
+               
             </div>
-            
             <hr/>
+
+
             <div class="row">
                 <div class="col">
-                for shbab
+                   {{__('title arabic')}}  
                 </div>
                 <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->for_shbab)}}
+                {{$vaila->title_ar}}
                 </div>
+               
             </div>
-            
             <hr/>
+
+
             <div class="row">
                 <div class="col">
-                for shbab
+                   {{__('desc arabic')}}  
+                </div>
+                <div class="col">
+                {{$vaila->desc_ar}}
+                </div>
+               
+            </div>
+            <hr/>
+
+
+            <div class="row">
+                <div class="col">
+                   {{__('price')}}  
                 </div>
                 <div class="col">
                 {{$vaila->price}}
                 </div>
+               
             </div>
             <hr/>
 
+
+
+
+            
             <div class="row">
                 <div class="col">
-                price hoolday
-                </div>
-                <div class="col">
-                {{$vaila->price_hoolday}}
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col">
-                price weekend
+                   {{__('price weekend')}}  
                 </div>
                 <div class="col">
                 {{$vaila->price_weekend}}
                 </div>
-            </div>
-            
-            <hr/>
-            <div class="row">
-                <div class="col">
-                number room
-                </div>
-                <div class="col">
-                {{$vaila->number_room}}
-                </div>
-            </div>
-            <hr/>
-            
-
-            <div class="row">
-                <div class="col">
-                garden
-                </div>
-                <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->garden)}}
-                </div>
-            </div>
-            
-            <hr/>
-            <div class="row">
-                <div class="col">
-                conditioners
-                </div>
-                <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->conditioners)}}
-                </div>
+               
             </div>
             <hr/>
 
+
             <div class="row">
                 <div class="col">
-                wifi
+                   {{__('price hoolday')}}  
                 </div>
                 <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->wifi)}}
+                {{$vaila->price_hoolday}}
                 </div>
+               
             </div>
             <hr/>
+
+
             <div class="row">
                 <div class="col">
-                wifi
+                   {{__('price weddings')}}  
                 </div>
                 <div class="col">
-                {{\App\Helper\StatusHelper::has_attribuate($vaila->wifi)}}
+                {{$vaila->price_weddings}}
                 </div>
+               
             </div>
             <hr/>
+
+
             <div class="row">
                 <div class="col">
-                view
+                   {{__('area')}}  
                 </div>
                 <div class="col">
-                {{$vaila->view}}
+                {{$vaila->area}}
                 </div>
+               
             </div>
             <hr/>
+
+
+
             <div class="row">
                 <div class="col">
-                number booking
-                </div>
-                <div class="col">
-                {{$vaila->number_booking}}
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col">
-                rates
-                </div>
-                <div class="col">
-                {{$vaila->rates}}
-                </div>
-            </div>
-            <hr/>
-             <div class="row">
-                <div class="col">
-                insurance amount
+                   {{__('insurance amount')}}  
                 </div>
                 <div class="col">
                 {{$vaila->insurance_amount}}
                 </div>
+               
             </div>
+            <hr/>
+
+
             
+            <div class="row">
+                <div class="col">
+                   {{__('retainer')}}  
+                </div>
+                <div class="col">
+                {{$vaila->retainer}}
+                </div>
+               
+            </div>
+            <hr/>
+
+
+            <div class="row">
+                <div class="col">
+                   {{__('number room')}}  
+                </div>
+                <div class="col">
+                {{$vaila->number_room}}
+                </div>
+               
+            </div>
+            <hr/>
+
+
+            
+            <div class="row">
+                <div class="col">
+                   {{__('reagin')}}  
+                </div>
+                <div class="col">
+                {{$vaila->governorate->name_ar}}
+                </div>
+               
+            </div>
+            <hr/>
+
+
+                      
+            <div class="row">
+                <div class="col">
+                   {{__('weddings')}}  
+                </div>
+                <div class="col">
+                {{\App\Helper\StatusHelper::has_attribuate($vaila->weddings)}}
+                </div>
+               
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                   {{__('new arrivals')}}  
+                </div>
+                <div class="col">
+                {{\App\Helper\StatusHelper::has_attribuate($vaila->new_arrivals)}}
+                </div>
+               
+            </div>
+            <hr/>
+
+            <div class="row">
+                <div class="col">
+                   {{__('for shbab')}}  
+                </div>
+                <div class="col">
+                {{\App\Helper\StatusHelper::has_attribuate($vaila->for_shbab)}}
+                </div>
+               
+            </div>
+            <hr/>
+
             @foreach($vaila->services as $service)
             <hr/>
              <div class="row">
                 <div class="col">
-                {{$service->name_en}}
+                {{$service->name_ar}}
                 </div>
                 <div class="col">
                 true
@@ -240,9 +263,39 @@
             </div>
 
             @endforeach
-           
-        </div>
 
+
+
+            <div class="row">
+                <div class="col">
+                   {{__('thumb')}}  
+                </div>
+                <div class="col">
+                    <img  class="img-fluid img-thumbnail" src="{{asset($vaila->thumb)}}  " width="250" height="20">
+                </div>
+               
+            </div>
+            <hr/>
+
+
+            <div class="row">
+                <div class="col">
+                   {{__('images')}}  
+                </div>
+                <div class="col">
+                    @foreach($vaila->imagevaila as $img)
+                    <img  class="img-fluid img-thumbnail" src="{{asset($img->path)}}  " width="250" height="20">
+                    @endforeach
+                </div>
+               
+            </div>
+            <hr/>
+
+
+
+        </div>
     </div>
 
+                            
+                           
 @endsection

@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('create new viala') }}</div>
+                  
 
                     <div class="card-body">
                         <form method="POST" action="{{ url('vaila',$vaila->id) }}" enctype="multipart/form-data">
@@ -90,9 +90,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc english') }}</span>
-                                        <textarea name="desc_en" class="form-control  @error('desc_en') is-invalid @enderror"  rows="4" cols="50">
-                                                {{ $vaila->desc_en }}
-                                        </textarea>
+                                        <textarea name="desc_en" class="form-control  @error('desc_en') is-invalid @enderror"  rows="4" cols="50">{{ $vaila->desc_en }}</textarea>
 
                                         @error('desc')
                                         <span class="invalid-feedback" role="alert">
@@ -118,9 +116,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm mb-3">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('desc arabic') }}</span>
-                                        <textarea name="desc_ar" class="form-control  @error('desc_ar') is-invalid @enderror"  rows="4" cols="50">
-                                                {{ $vaila->desc_ar }}
-                                        </textarea>
+                                        <textarea name="desc_ar" class="form-control  @error('desc_ar') is-invalid @enderror"  rows="4" cols="50">{{ $vaila->desc_ar }}</textarea>
 
                                         @error('desc_ar')
                                         <span class="invalid-feedback" role="alert">

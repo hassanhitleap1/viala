@@ -43,7 +43,7 @@ class VailaController extends Controller
     }
 
     public function index(){
-        return VailaResource::collection(Vaila::paginate(10));
+        return VailaResource::collection(Vaila::where("vaila.active",1)->paginate(10));
     }
 
     public function store(VailaRequest $request){

@@ -55,16 +55,16 @@ class Vaila extends  Model
 
 
     public static function newArival(){
-        return self::where('new_arrivals',1);
+        return self::where('new_arrivals',1)->where("vaila.active",1);;
     }
 
 
     public static function bestSell(){
-        return self::orderBy('number_booking','DESC');
+        return self::orderBy('number_booking','DESC')->where("vaila.active",1);;
     }
 
     public static function myViala(){
-        return self::where('vaila.user_id', auth('api-jwt')->user()->id);
+        return self::where('vaila.user_id', auth('api-jwt')->user()->id)->where("vaila.active",1);;
     }
 
 
@@ -76,6 +76,7 @@ class Vaila extends  Model
        // whereNotNull('lag')->whereNotNull('lat')
         //whereRaw("ACOS(SIN(RADIANS('lag'))*SIN(RADIANS($lag))+COS(RADIANS('lat'))*COS(RADIANS($lat))*COS(RADIANS('lang')-RADIANS($lag)))*6380 < 10")
         orderByRaw("sqrt(power(vaila.lag - $lat, 2) + power(vaila.lag - $lag, 2))")
+        ->where("vaila.active",1)
         ->orderBy('number_booking','DESC');
     }
 

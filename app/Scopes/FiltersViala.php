@@ -23,7 +23,7 @@ class FiltersViala implements Scope
     public function apply(Builder $builder, Model $model)
     {
        
-
+        
         // if(AuthHelper::checkAuth()){
         //     dd("ddd");
         // }

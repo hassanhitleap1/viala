@@ -7,7 +7,7 @@ class StatusHelper
     public static function keyword_status($status){
         switch ($status) {
             case 0:
-                return  "pending";
+                return  "غير نشيط";
                 break;
             case 1:
                 return  "نشيط";
