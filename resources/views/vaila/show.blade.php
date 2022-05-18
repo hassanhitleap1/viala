@@ -258,7 +258,7 @@
                 {{$service->name_ar}}
                 </div>
                 <div class="col">
-                true
+                نعم
                 </div>
             </div>
 
