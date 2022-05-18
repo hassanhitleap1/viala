@@ -9,7 +9,6 @@
                   @csrf
                   <div class="row">
                      <div class="col-md-6">
-                         
                         <div class="input-group input-group-sm mb-3">
                            <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('email') }}</span>
                            <input type="text" class="form-control @error('email') is-invalid @enderror" aria-label="Sizing example input" name="email"
@@ -35,14 +34,21 @@
                         </div>
                      </div>
                   </div>
+
+
+
+
+
+
+
+
+
                   <div class="row">
                      <div class="col-md-12">
                         <div class="input-group input-group-sm mb-3">
                            <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('terms and conditions english') }}</span>
                            <textarea name="terms_and_conditions_en" class="form-control  @error('terms_and_conditions_en') is-invalid @enderror"
-                              rows="4" cols="50">
-                           {{ $settings->terms_and_conditions_en }}
-                           </textarea>
+                              rows="4" cols="50">{{ $settings->terms_and_conditions_en }}</textarea>
                            @error('terms_and_conditions_en')
                            <span class="invalid-feedback" role="alert">
                            <strong>{{ $message }}</strong>
@@ -55,9 +61,7 @@
                      <div class="col-md-12">
                         <div class="input-group input-group-sm mb-3">
                            <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('terms and conditions arabic') }}</span>
-                           <textarea name="terms_and_conditions_en" class="form-control  @error('terms_and_conditions_ar') is-invalid @enderror"  rows="4" cols="50">
-                           {{ $settings->terms_and_conditions_ar }}
-                           </textarea>
+                           <textarea name="terms_and_conditions_ar" class="form-control  @error('terms_and_conditions_ar') is-invalid @enderror"  rows="4" cols="50">{{ $settings->terms_and_conditions_ar }}</textarea>
                            @error('terms_and_conditions_ar')
                            <span class="invalid-feedback" role="alert">
                            <strong>{{ $message }}</strong>
@@ -70,29 +74,11 @@
 
 
                   <div class="row">
-                     <div class="col-md-12">
-                        <div class="input-group input-group-sm mb-3">
-                           <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('terms and conditions Hebrew') }}</span>
-                           <textarea name="terms_and_conditions_he" class="form-control  @error('terms_and_conditions_he') is-invalid @enderror"  rows="4" cols="50">
-                           {{ $settings->terms_and_conditions_he }}
-                           </textarea>
-                           @error('terms_and_conditions_he')
-                           <span class="invalid-feedback" role="alert">
-                           <strong>{{ $message }}</strong>
-                           </span>
-                           @enderror
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="row">
                     <div class="col-md-12">
                         <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('privacy policy english') }}</span>
                             <textarea name="privacy_policy_en" class="form-control  @error('privacy_policy_en') is-invalid @enderror"
-                            rows="4" cols="50">
-                            {{ $settings->privacy_policy_en }}
-                            </textarea>
+                            rows="4" cols="50">{{ $settings->privacy_policy_en }}</textarea>
                             @error('privacy_policy_en')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -106,39 +92,22 @@
                     <div class="col-md-12">
                         <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('privacy policy arabic') }}</span>
-                        <textarea name="privacy_policy_ar" class="form-control  @error('privacy_policy_ar') is-invalid @enderror"  rows="4" cols="50">
-                        {{ $settings->privacy_policy_ar}}
-                        </textarea>
+                        <textarea name="privacy_policy_ar" class="form-control  @error('privacy_policy_ar') is-invalid @enderror"  rows="4" cols="50">{{ $settings->privacy_policy_ar}}</textarea>
                         @error('privacy_policy_ar')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+                  </div>
          
-      
-                <div class="col-md-12">
-                    <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('privacy policy Hebrew') }}</span>
-                        <textarea name="privacy_policy_he" class="form-control  @error('privacy_policy_he') is-invalid @enderror"  rows="4" cols="50">
-                        {{ $settings->privacy_policy_he }}
-                        </textarea>
-                                @error('privacy_policy_he')
-                                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                        </div>
-                    </div>
-                </div>
+            
     
          <div class="row"> 
    <div class="col-md-12">
    <div class="input-group input-group-sm mb-3">
    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('about english') }}</span>
-   <textarea name="about_en" class="form-control  @error('about_en') is-invalid @enderror"  rows="4" cols="50">
-   {{ $settings->about_en }}
-   </textarea>
+   <textarea name="about_en" class="form-control  @error('about_en') is-invalid @enderror"  rows="4" cols="50">{{ $settings->about_en }}</textarea>
    @error('about_en')
    <span class="invalid-feedback" role="alert">
    <strong>{{ $message }}</strong>
@@ -150,9 +119,7 @@
 <div class="col-md-12">
 <div class="input-group input-group-sm mb-3">
 <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('about arabic') }}</span>
-<textarea name="about_ar" class="form-control  @error('about_ar') is-invalid @enderror"  rows="4" cols="50">
-{{ $settings->about_ar }}
-</textarea>
+<textarea name="terms_and_conditions_ar" class="form-control  @error('about_ar') is-invalid @enderror"  rows="4" cols="50">{{ $settings->about_ar }}</textarea>
 @error('about_ar')
 <span class="invalid-feedback" role="alert">
 <strong>{{ $message }}</strong>
@@ -162,21 +129,7 @@
 </div>
 </div>
    </div>
-   <div class="row">
-<div class="col-md-12">
-<div class="input-group input-group-sm mb-3">
-<span class="input-group-text" id="inputGroup-sizing-sm">{{ __('about Hebrew') }}</span>
-<textarea name="about_he" class="form-control  @error('about_he') is-invalid @enderror"  rows="4" cols="50">
-{{ $settings->about_he }}
-</textarea>
-@error('about_he')
-<span class="invalid-feedback" role="alert">
-<strong>{{ $message }}</strong>
-</span>
-@enderror
-</div>
-</div>
-</div>
+
 </div>
 </div>
 <div class="row mb-0">
