@@ -85,6 +85,12 @@
     "success":"ناجح",
     "cash":"نقدا",
     "card":"بطاقة",
-    "mix":"نقدا و بطاقة"
+    "mix":"نقدا و بطاقة",
+    "terms and conditions english":"الشروط والأحكام باللغة الإنجليزية",
+    "terms and conditions arabic":"الشروط والأحكام عربي",
+    "privacy policy english":"سياسة الخصوصية باللغة الإنجليزية",
+    "privacy policy arabic":"سياسة الخصوصية العربية",
+    "about english":"عن اللغة الإنجليزية",
+    "about arabic":"عن العربية"
 
 }

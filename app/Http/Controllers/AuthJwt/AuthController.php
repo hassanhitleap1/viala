@@ -191,6 +191,14 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
 
+        if(auth('api-jwt')->user()->status==0){
+            return response()->json([
+                'success' => false,
+                "massage"=>'this user is not active',
+                'errors'=>['credentials'=>['Login credentials are invalid']]
+            ], 402);
+        }
+
         return response()->json([
             'success' => true,
             'access_token' => $token,

@@ -119,7 +119,7 @@
 <div class="col-md-12">
 <div class="input-group input-group-sm mb-3">
 <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('about arabic') }}</span>
-<textarea name="terms_and_conditions_ar" class="form-control  @error('about_ar') is-invalid @enderror"  rows="4" cols="50">{{ $settings->about_ar }}</textarea>
+<textarea name="about_ar" class="form-control  @error('about_ar') is-invalid @enderror"  rows="4" cols="50">{{ $settings->about_ar }}</textarea>
 @error('about_ar')
 <span class="invalid-feedback" role="alert">
 <strong>{{ $message }}</strong>
