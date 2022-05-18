@@ -21,9 +21,9 @@ class Customers extends  User
         return [
             'create'=>[
                 'name' => 'required',
-                'phone' => 'required|unique:users',
+                'phone' => 'required|unique:users,phone',
                 'password'=>'required',
-                'email'=>'required|email|unique:users'
+                'email'=>'required|email|unique:users,email'
             ],
             'update'=>[
                 'name' => 'required',

@@ -36,7 +36,7 @@ class CustomersController extends  Controller
 
         $validatedData['password']=  Hash::make($validatedData['password']);
         $validatedData['type']=User::CUSTOMER; 
-        $model =Merchant::create($validatedData);
+
 
         $model =Customers::create($validatedData);
         return redirect('/customers')->with('success', ' successfully saved');
@@ -71,13 +71,18 @@ class CustomersController extends  Controller
 
     public function active(Customers $customer)
     {
-        $customer->update(["status"=>1]);
+        
+        $customer->status=1;
+        $customer->save();
         return redirect('/customers')->with('success', 'Game Data is successfully ');
     }
 
     public function disactive(Customers $customer)
     {
-        $customer->update(["status"=>0]);
+
+        $customer->status=0;
+        $customer->save();
+        
         return redirect('/customers')->with('success', 'Game Data is successfully ');
     }
 }

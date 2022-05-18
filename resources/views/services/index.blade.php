@@ -16,6 +16,7 @@
                 <th scope="col"> {{__('name english')}} </th>
         
                 <th scope="col"> {{__('image')}} </th>
+                <th scope="col"> {{__('action')}} </th>
             
 
             </tr>

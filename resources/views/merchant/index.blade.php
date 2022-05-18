@@ -16,30 +16,31 @@
                 <th scope="col">  {{__('email')}}  </th>
                 <th scope="col"> {{__('phone')}}</th>
                 <th scope="col"> {{__('status')}}</th>
-                <th scope="col"> {{__('avatar')}}</th>
+                
                 <th scope="col"> {{__('action')}}</th>
             </tr>
             </thead>
             <tbody>
+            <?php  $i=$merchants->currentpage()*$merchants->perpage()-$merchants->perpage();?>
             @foreach($merchants as $key=> $merchant)
                 <tr>
-                    <th scope="row">{{++ $key}}</th>
+                    <th scope="row">{{++ $i}}</th>
                     <td>
                         <a href="{{url("accounting/$merchant->id")}}">{{ $merchant->name}}</a>
 
                     </td>
                     <td> <a href="{{url("accounting/$merchant->id")}}">{{ $merchant->email}}</a></td>
                     <td> <a href="{{url("accounting/$merchant->id")}}">{{ $merchant->phone}}</a></td>
-                    <td>{{ \App\Helper\StatusHelper::has_attribuate($merchant->status)}}</td>
-                    <td> <img src="{{asset($merchant->avatar)}}"  class="img-fluid img-thumbnail" width="250" height="25"> </td>
+                    <td>{{ \App\Helper\StatusHelper::keyword_status($merchant->status)}}</td>
+  
                     <td>
 
-                        <a href="{{url("merchant/$merchant->id/edit")}}"><i class="fas fa-edit"></i></a>
-                        <a href="{{url("merchant/$merchant->id/show")}}"><i class="fas fa-eye"></i></a>
+                        <a href="{{url("merchant/$merchant->id/edit")}}"><i class="fas fa-edit"></i></a> <br/> 
+
                         @if($merchant->status)
-                            <a href="{{route("merchant.disactive",$merchant->id)}}">disactive</a>
+                            <a href="{{route("merchant.disactive",$merchant->id)}}"><i class="fas fa-toggle-on"></i> </a><br />
                         @else
-                            <a href="{{route("merchant.active",$merchant->id)}}">active</a>
+                            <a href="{{route("merchant.active",$merchant->id)}}"><i class="fas fa-toggle-off"></i> </a> <br />
                         @endif
                         <form action="{{route("merchant.destroy",$merchant->id)}}" method="POST">
                             @csrf

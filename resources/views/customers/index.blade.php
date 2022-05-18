@@ -14,27 +14,27 @@
                 <th scope="col"> {{__('email')}}  </th>
                 <th scope="col"> {{__('phone')}}  </th>
                 <th scope="col"> {{__('status')}}  </th>
-                <th scope="col"> {{__('avatar')}}  </th>
                 <th scope="col"> {{__('action')}} </th>
             </tr>
             </thead>
             <tbody>
+            <?php  $i=$customers->currentpage()*$customers->perpage()-$customers->perpage();?>
             @foreach($customers as $key=> $customer)
                 <tr>
-                    <th scope="row">{{++ $key}}</th>
+                    <th scope="row">{{++ $i}}</th>
                     <td>{{ $customer->name}}</td>
                     <td>{{ $customer->email}}</td>
                     <td>{{ $customer->phone}}</td>
-                    <td>{{ \App\Helper\StatusHelper::has_attribuate($customer->status)}}</td>
-                    <td> <img src="{{asset($customer->avatar)}}" class="img-fluid img-thumbnail" width="250" height="25"> </td>
+                    <td>{{ \App\Helper\StatusHelper::keyword_status($customer->status)}}</td>
+                  
                     <td>
-                        <a href="{{url("customers/$customer->id/edit")}}"><i class="fas fa-edit"></i></a>
+                        <a href="{{url("customers/$customer->id/edit")}}"><i class="fas fa-edit"></i></a> <br />
                         
 
                         @if($customer->status)
-                            <a href="{{route("customers.disactive",$customer->id)}}">disactive</a>
+                            <a href="{{route("customers.disactive",$customer->id)}}"> <i class="fas fa-toggle-on"></i> </a><br />
                         @else
-                            <a href="{{route("customers.active",$customer->id)}}">active</a>
+                            <a href="{{route("customers.active",$customer->id)}}"><i class="fas fa-toggle-off"></i> </a> <br />
                         @endif
 
                         <form action="{{route("customers.destroy",$customer->id)}}" method="POST">

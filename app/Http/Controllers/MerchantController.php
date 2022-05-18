@@ -67,13 +67,18 @@ class MerchantController extends Controller
 
     public function active(Merchant $merchant)
     {
-        $merchant->update(["status"=>1]);
+
+               
+        $merchant->status=1;
+        $merchant->save();
+
         return redirect('merchant')->with('success', 'Game Data is successfully ');
     }
 
     public function disactive(Merchant $merchant)
     {
-        $merchant->update(["status"=>0]);
+        $merchant->status=0;
+        $merchant->save();
         return redirect('merchant')->with('success', 'Game Data is successfully ');
     }
 }
