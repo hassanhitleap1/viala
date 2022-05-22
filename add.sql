@@ -16,3 +16,9 @@ ALTER TABLE `orders` CHANGE `payment_type` `payment_type` ENUM('visa','cash','mi
 ALTER TABLE `vaila` CHANGE `desc_en` `desc_en` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL, CHANGE `desc_ar` `desc_ar` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
 ALTER TABLE `vaila` CHANGE `price_weddings` `price_weddings` DOUBLE NULL DEFAULT '0.0'; 
 
+
+
+ALTER TABLE `vaila` CHANGE `thumb` `thumb` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1.jpg';
+
+
+

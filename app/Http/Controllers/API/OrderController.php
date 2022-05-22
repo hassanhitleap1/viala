@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 
 use App\Helper\AccountingHelper;
+use App\Helper\FCM;
 use App\Helper\NotificationHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
@@ -66,7 +67,20 @@ class OrderController extends Controller
 
     public function store(OrderRequest  $request){
       
-        $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
+        $order =Orders::where('vaial_id',$request->vaial_id)
+                ->where(function($q) use($request){
+                    $q->whereDate('form_date' ,'<=', $request->form_date);
+                    $q->whereDate('to_date' ,'>=', $request->form_date);
+                })
+               
+                ->orwhere(function($q) use($request){
+                    $q->whereDate('form_date' ,'<=', $request->to_date);
+                    $q->whereDate('to_date' ,'>=', $request->to_date);
+                })
+
+            ->get();
+
+           
         $vaial=Vaila::find($request->vaial_id);   
         
         $earlier = new DateTime($request->form_date);
@@ -102,6 +116,8 @@ class OrderController extends Controller
             'user_id'=> auth('api-jwt')->user()->id
         ]);
 
+
+
         
         foreach($request->paymants as $paymant){
             $paymantModel = new Paymants();
@@ -111,7 +127,7 @@ class OrderController extends Controller
             $paymantModel->save();
         }
 
-        $calculation=AccountingHelper::calculation_order($request->price);
+        $calculation=AccountingHelper::calculation_order($amount);
 
         Accounting::create([
             'for_me'=>$calculation['for_app'],
@@ -139,7 +155,19 @@ class OrderController extends Controller
 
     public function book_naw(OrderRequest  $request){
 
-        $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
+        $order =Orders::where('vaial_id',$request->vaial_id)
+        ->where(function($q) use($request){
+            $q->whereDate('form_date' ,'<=', $request->form_date);
+            $q->whereDate('to_date' ,'>=', $request->form_date);
+        })
+       
+        ->orwhere(function($q) use($request){
+            $q->whereDate('form_date' ,'<=', $request->to_date);
+            $q->whereDate('to_date' ,'>=', $request->to_date);
+        })
+       
+        
+        ->get();
         $vaial=Vaila::find($request->vaial_id);   
        
         if($order->count()){

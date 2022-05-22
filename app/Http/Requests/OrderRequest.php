@@ -26,7 +26,7 @@ class OrderRequest  extends \App\Http\Requests\Api\FormRequest
     public function rules()
     {
         return  [
-            'form_date' => 'required|after:yesterday',
+            'form_date' => 'required',
             'to_date' => 'required',
             'vaial_id'=>'required',
         ];
