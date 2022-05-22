@@ -106,7 +106,7 @@ class OrderController extends Controller
         }
 
     
-       
+      
         $order =Orders::create([
             'form_date'=>$request->form_date,
             'to_date'=>$request->to_date,
@@ -127,6 +127,7 @@ class OrderController extends Controller
             $paymantModel->save();
         }
 
+       
         $calculation=AccountingHelper::calculation_order($amount);
 
         Accounting::create([
