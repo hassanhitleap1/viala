@@ -21,6 +21,7 @@ class StatisticsController extends Controller
     public function index(){
         $total_number_order=Orders::join('vaila','vaila.id','orders.vaial_id')
             ->where('vaila.user_id',auth('api-jwt')->user()->id)->count();
+
         $for_app=Accounting::where('user_id',auth('api-jwt')->user()->id)->sum('for_app');
         $for_me=Accounting::where('user_id',auth('api-jwt')->user()->id)->sum('for_me');
         $cash=Paymants::where('type','cash')->whereIn('order_id',function($q){
@@ -32,14 +33,18 @@ class StatisticsController extends Controller
             ->where('vaila.user_id',auth('api-jwt')->user()->id);
         })->sum('amount');
 
-        $total_cash_order=Paymants::where('type','cash')->whereIn('order_id',function($q){
-            $q->select('orders.id')->from('orders')->join('vaila','vaila.id','orders.vaial_id')
-            ->where('vaila.user_id',auth('api-jwt')->user()->id);
-        })->sum('amount');
-        $total_card_order=Paymants::where('type','card')->whereIn('order_id',function($q){
-            $q->select('orders.id')->from('orders')->join('vaila','vaila.id','orders.vaial_id')
-            ->where('vaila.user_id',auth('api-jwt')->user()->id);
-        })->sum('amount');
+        $total_cash_order=Orders::join('vaila','vaila.id','orders.vaial_id')
+            ->join('payments','payments.order_id','=','orders.id')
+            ->where('vaila.user_id',auth('api-jwt')->user()->id)
+            ->where('payments.type','cash')
+            ->groupBy('orders.id')->count();;
+
+
+        $total_card_order=Orders::join('vaila','vaila.id','orders.vaial_id')
+            ->join('payments','payments.order_id','=','orders.id')
+            ->where('vaila.user_id',auth('api-jwt')->user()->id)
+            ->where('payments.type','card')
+            ->groupBy('orders.id')->count();;
 
         
         return response()->json([

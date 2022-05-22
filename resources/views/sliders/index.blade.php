@@ -4,14 +4,14 @@
 
 
     <div class="container">
-        <h1> slider </h1>
+        <h1> {{__('slider')}} </h1>
         <a class="btn btn-secondary pull-right" href="{{url('sliders/create')}}"> {{__('create new slider')}}</a>
         <hr />
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">image path</th>
+                <th scope="col">{{__('image')}}</th>
                
             
 

@@ -191,13 +191,13 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
 
-        if(auth('api-jwt')->user()->status==0){
-            return response()->json([
-                'success' => false,
-                "massage"=>'this user is not active',
-                'errors'=>['credentials'=>['Login credentials are invalid']]
-            ], 402);
-        }
+        // if(auth('api-jwt')->user()->status==0){
+        //     return response()->json([
+        //         'success' => false,
+        //         "massage"=>'this user is not active',
+        //         'errors'=>['credentials'=>['Login credentials are invalid']]
+        //     ], 402);
+        // }
 
         return response()->json([
             'success' => true,
@@ -274,13 +274,13 @@ class AuthController extends Controller
                 'status' => 422
             ], 422));
         }
-        $user->password = Hash::make("pass@123");
+        $user->password = Hash::make("123456789");
         $user->save();
         $data = array('name'=>"Virat Gandhi");
         
       
       // send email
-        mail($user->email,"My subject",'new password is pass@123');
+        mail($user->email,"My subject",'new password is 123456789');
         //  Mail::send(['text'=>'mail'], $data, function($message) use($user){
         //     $message->to($user->email, 'new password is pass@123')->subject
         //        ('Laravel Basic Testing Mail');

@@ -30,10 +30,13 @@ class VailaController extends Controller
         $roulas= Vaila::rules()["create"];;
         $services=$request->services;
 
-        
+     
+       $validatedData = $request->validate($roulas);
 
-        if($request->weddings =="on"){
-            $validatedData['weddings'] = 1;
+
+
+       if($request->weddings =="on"){
+        $validatedData['weddings'] = 1;
         }else{
             $validatedData['weddings'] = 0;
         }
@@ -51,10 +54,6 @@ class VailaController extends Controller
             $validatedData['for_shbab'] = 0;
         }
 
-     
-       
-     
-       $validatedData = $request->validate($roulas);
 
        $validatedData['user_id']=$request->user_id;
         $validatedData['number_booking']=0;
