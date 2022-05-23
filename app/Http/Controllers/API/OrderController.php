@@ -65,29 +65,31 @@ class OrderController extends Controller
         return OrderResource::collection(Orders::paginate(10));
     }
 
-    public function store(OrderRequest  $request){
-      
-        $order =Orders::where('vaial_id',$request->vaial_id)
-                ->where(function($q) use($request){
-                    $q->whereDate('form_date' ,'<=', $request->form_date);
-                    $q->whereDate('to_date' ,'>=', $request->form_date);
-                })
-               
-                ->orwhere(function($q) use($request){
-                    $q->whereDate('form_date' ,'<=', $request->to_date);
-                    $q->whereDate('to_date' ,'>=', $request->to_date);
-                })
+    private function checkedVaila($request){
+        return Orders::where('vaial_id',$request->vaial_id)
+        ->where(function($q) use($request){
 
-            ->get();
-
+            $q->orwhere(function($q) use($request){
+                $q->whereDate('form_date' ,'<=', $request->form_date);
+                $q->whereDate('to_date' ,'>=', $request->form_date);
+            });
            
-        $vaial=Vaila::find($request->vaial_id);   
-        
+            $q->orwhere(function($q) use($request){
+                $q->whereDate('form_date' ,'<=', $request->to_date);
+                $q->whereDate('to_date' ,'>=', $request->to_date);
+            });
+        })->get();
+    }
+
+    public function store(OrderRequest  $request){
+        $order = $this->checkedVaila($request);    
+        $vaial=Vaila::findOrfail($request->vaial_id);   
         $earlier = new DateTime($request->form_date);
         $later = new DateTime($request->to_date);
         $dayes_order= $later->diff($earlier)->format("%a") + 1; 
         $total_price=AccountingHelper::getPrice( $vaial) * $dayes_order;
-
+        
+    
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 
             $to_date= date("Y-m-d", strtotime($order[0]->to_date)); 
@@ -156,20 +158,9 @@ class OrderController extends Controller
 
     public function book_naw(OrderRequest  $request){
 
-        $order =Orders::where('vaial_id',$request->vaial_id)
-        ->where(function($q) use($request){
-            $q->whereDate('form_date' ,'<=', $request->form_date);
-            $q->whereDate('to_date' ,'>=', $request->form_date);
-        })
-       
-        ->orwhere(function($q) use($request){
-            $q->whereDate('form_date' ,'<=', $request->to_date);
-            $q->whereDate('to_date' ,'>=', $request->to_date);
-        })
-       
+        $order = $this->checkedVaila($request);    
+        $vaial=Vaila::findOrfail($request->vaial_id);  
         
-        ->get();
-        $vaial=Vaila::find($request->vaial_id);   
        
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 
@@ -194,11 +185,9 @@ class OrderController extends Controller
             'user_id'=> auth('api-jwt')->user()->id
         ]);
        
-  
 
-        $viala=Vaila::find($request->vaial_id);
-        $viala->number_booking= $viala->number_booking + 1;
-        $viala->save();
+        $vaial->number_booking= $vaial->number_booking + 1;
+        $vaial->save();
         //MakeOrderEvent::dispatch($order);
         $order['merchant']=$order->merchant;
         return response()->json([

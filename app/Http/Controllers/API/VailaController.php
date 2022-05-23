@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helper\AccountingHelper;
 use App\Helper\Media;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VailaRequest;
@@ -168,13 +169,34 @@ class VailaController extends Controller
     }
 
 
+    private function checkedVaila($request){
+        return Orders::where('vaial_id',$request->vaial_id)
+        ->where(function($q) use($request){
+
+            $q->orwhere(function($q) use($request){
+                $q->whereDate('form_date' ,'<=', $request->form_date);
+                $q->whereDate('to_date' ,'>=', $request->form_date);
+            });
+           
+            $q->orwhere(function($q) use($request){
+                $q->whereDate('form_date' ,'<=', $request->to_date);
+                $q->whereDate('to_date' ,'>=', $request->to_date);
+            });
+        })->get();
+    }
+
+
     public function check_avialable(Request $request){
-        $order =Orders::where('vaial_id',$request->vaial_id)->whereBetween('form_date', [$request->form_date, $request->to_date])->get();
-        $vaial=Vaila::find($request->vaial_id)->toArray();
-        $earlier = new DateTime($request->from_date);
+
+        $order = $this->checkedVaila($request); 
+        $vaial=Vaila::findOrfail($request->vaial_id);
+
+        $earlier = new DateTime($request->form_date);
         $later = new DateTime($request->to_date);
-        $dayes = $later->diff($earlier)->format("%a"); 
-        $total_price= $vaial['price'] * $dayes; 
+        $dayes_order= $later->diff($earlier)->format("%a") + 1; 
+
+        $total_price=AccountingHelper::getPrice( $vaial) * $dayes_order;
+        
         $vaial['total_price']=$total_price;
         if($order->count()){
             $form_date=     date("Y-m-d", strtotime($order[0]->form_date)); 

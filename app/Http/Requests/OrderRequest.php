@@ -26,8 +26,12 @@ class OrderRequest  extends \App\Http\Requests\Api\FormRequest
     public function rules()
     {
         return  [
-            'form_date' => 'required',
-            'to_date' => 'required',
+            'form_date' => 
+            [   'required',
+                'date_format:Y-m-d',// format without hours, minutes and seconds.
+                'after_or_equal:' . date('Y-m-d'), // not 'now' string
+            ],
+            'to_date' => 'required|after_or_equal:form_date',
             'vaial_id'=>'required',
         ];
 
