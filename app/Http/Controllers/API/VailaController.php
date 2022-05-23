@@ -128,7 +128,7 @@ class VailaController extends Controller
 
 
         if($services){
-            
+            VaialServices::where('vaila_id',$vaila->id)->delete();
 
             foreach($services as $key => $service){
                 $mod_ser= new VaialServices();
