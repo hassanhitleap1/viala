@@ -14,7 +14,7 @@ class FCM
     public static  $login_name="";
     public static  $login_password="AIzaSyDOe6Sh5Kozl346QRGqfWI-sG0vLi3_reU";
     public static  $baseURL="https://fcm.googleapis.com/fcm/send";
-    public static $secretlegalekey='Key:AAAAnKp5W5c:APA91bFU_w6T-sQkBwZtToaOp8gm-bdHpdmQgdXk3CNxy1CZWQeedymXPuiOTMXnd-r2kHQcNAxgRqUXq6P1yIksiuiG3ZzjkFq0bc0y6WeurzsLCKMeHAoKsytD0tmsvSkkUY60FUik';
+    public static $secretlegalekey='AAAAJhFjbbo:APA91bGa9hPgrwV_fAeSd0dRvEPKD24SbJxclgBXQ_oW8fEpp7-EgWFp9fiGzr2K3GCDfmTObnDXAJzzpa5h7-LFj-8JwETfxGu5NScu0xyC1b5iMRz-p7X4sranpFxqv4r7s17BmMII';
 
     public static  function  sendweb($to= "",$title= "",$messege= ""){
 

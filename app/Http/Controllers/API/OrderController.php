@@ -130,7 +130,7 @@ class OrderController extends Controller
         }
 
        
-        $calculation=AccountingHelper::calculation_order($amount);
+        $calculation=AccountingHelper::calculation_order($total_price);
 
         Accounting::create([
             'for_me'=>$calculation['for_app'],
