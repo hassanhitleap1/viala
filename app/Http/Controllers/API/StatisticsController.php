@@ -33,11 +33,7 @@ class StatisticsController extends Controller
             ->where('vaila.user_id',auth('api-jwt')->user()->id);
         })->sum('amount');
 
-        $total_cash_order=Orders::join('vaila','vaila.id','orders.vaial_id')
-            ->join('payments','payments.order_id','=','orders.id')
-            ->where('vaila.user_id',auth('api-jwt')->user()->id)
-            ->where('payments.type','cash')
-            ->groupBy('orders.id')->count();;
+     
 
 
         $total_card_order=Orders::join('vaila','vaila.id','orders.vaial_id')
@@ -45,6 +41,21 @@ class StatisticsController extends Controller
             ->where('vaila.user_id',auth('api-jwt')->user()->id)
             ->where('payments.type','card')
             ->groupBy('orders.id')->count();;
+
+
+        $total_cash_order=Orders::join('vaila','vaila.id','orders.vaial_id')
+            ->join('payments','payments.order_id','=','orders.id')
+            ->where('vaila.user_id',auth('api-jwt')->user()->id)
+            ->where('payments.type','cash')
+            ->whereNotIn('orders.id', function($q){
+                $q->select('orders.id')->from('orders')
+                ->join('vaila','vaila.id','orders.vaial_id')
+                ->join('payments','payments.order_id','=','orders.id')
+                ->where('vaila.user_id',auth('api-jwt')->user()->id)
+                ->where('payments.type','card');
+            })
+            ->groupBy('orders.id')->count();;
+
 
         
         return response()->json([
