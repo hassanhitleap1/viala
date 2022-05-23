@@ -268,7 +268,7 @@
 
             <div class="row">
                 <div class="col">
-                   {{__('thumb')}}  
+                   {{__('image vaila')}}  
                 </div>
                 <div class="col">
                     <img  class="img-fluid img-thumbnail" src="{{asset($vaila->thumb)}}  " width="250" height="20">
@@ -280,13 +280,12 @@
 
             <div class="row">
                 <div class="col">
-                   {{__('images')}}  
-                </div>
-                <div class="col">
-                    @foreach($vaila->imagevaila as $img)
-                    <img  class="img-fluid img-thumbnail" src="{{asset($img->path)}}  " width="250" height="20">
+                   {{__('image vaila')}}  
+                   @foreach($vaila->imagevaila as $img)
+                        <img  class="img-fluid img-thumbnail" src="{{asset($img->path)}}  " width="250" height="20">
                     @endforeach
                 </div>
+                
                
             </div>
             <hr/>

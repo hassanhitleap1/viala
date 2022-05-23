@@ -290,14 +290,14 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">{{__('thumb')}}</label>
+                                        <label for="formFile" class="form-label">{{__('image vaila')}}</label>
                                         <input class="form-control" type="file"  name="thumb" id="formFile" >
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 ">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">{{__('images')}}</label>
+                                        <label for="formFile" class="form-label">{{__('slider vaila')}}</label>
                                         <input class="form-control"  type="file"  name="images[]" multiple>
                                         
 

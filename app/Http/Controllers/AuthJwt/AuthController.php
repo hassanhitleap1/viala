@@ -92,24 +92,26 @@ class AuthController extends Controller
      
         if($request->provider =="facebook"){
             $user = User::updateOrCreate([
-                'facebook_id' => $request->uiid,
+                'email' => $request->email,
                 'provider'=>$request->provider,
             ], [
+                'facebook_id' => $request->uiid,
                 'provider' => $request->provider,
                 'name' => $request->name,
-                'password'=> Hash::make("pass1234"),
+                'password'=> Hash::make("123456789"),
                 'type'=> $type
             
             ]);
            
         }else{
             $user = User::updateOrCreate([
-                'google_id' => $request->uiid,
+                'email' => $request->email,
                 'provider'=>$request->provider,
             ], [
+                'google_id' => $request->uiid,
                 'provider' => $request->provider,
                 'name' => $request->name,
-                'password'=> Hash::make("pass1234"),
+                'password'=> Hash::make("123456789"),
                 'type'=> $type
 
             ]);
