@@ -90,7 +90,7 @@ class VailaController extends Controller
             foreach($request->services as $key => $service){
                 $mod_ser= new VaialServices();
                 $mod_ser->vaila_id=$vaila->id;
-                $mod_ser->services_id=$key;
+                $mod_ser->services_id=$service;
                 $mod_ser->save();
                 
             }
@@ -126,18 +126,17 @@ class VailaController extends Controller
     
             }  
         }
-
-
-        if(count($services)){
+       
+      
+        if(count($request->services)){
             VaialServices::where('vaila_id',$vaila->id)->delete();
             foreach($services as $key => $service){
                 $mod_ser= new VaialServices();
                 $mod_ser->vaila_id=$vaila->id;
-                $mod_ser->services_id=$key;
+                $mod_ser->services_id=$service;
                 $mod_ser->save();
                 
             }
-        
         }
 
        
