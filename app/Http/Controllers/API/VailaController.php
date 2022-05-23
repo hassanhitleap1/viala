@@ -134,7 +134,7 @@ class VailaController extends Controller
             foreach($services as $key => $service){
                 $mod_ser= new VaialServices();
                 $mod_ser->vaila_id=$vaila->id;
-                $mod_ser->services_id=$service;
+                $mod_ser->services_id=$key;
                 $mod_ser->save();
                 
             }
