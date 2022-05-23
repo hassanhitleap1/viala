@@ -12,7 +12,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User  extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable,SoftDeletes ;
+    use HasFactory, Notifiable ;
 
     const CUSTOMER=1;
     const ADMIN=3;

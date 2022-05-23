@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Merchant extends User
 {
     protected $table="users";
-    use SoftDeletes;
+    // use SoftDeletes;
     public  static function rules($id = null){
         return [
             'create'=>[

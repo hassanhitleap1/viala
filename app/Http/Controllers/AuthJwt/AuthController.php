@@ -92,8 +92,8 @@ class AuthController extends Controller
      
         if($request->provider =="facebook"){
             $user = User::updateOrCreate([
-                'email' => $request->email,
                 'provider'=>$request->provider,
+                'email'=>$request->email,
             ], [
                 'facebook_id' => $request->uiid,
                 'provider' => $request->provider,
@@ -109,6 +109,7 @@ class AuthController extends Controller
                 'provider'=>$request->provider,
             ], [
                 'google_id' => $request->uiid,
+                'email'=>$request->email,
                 'provider' => $request->provider,
                 'name' => $request->name,
                 'password'=> Hash::make("123456789"),
