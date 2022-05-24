@@ -109,7 +109,7 @@ class VailaController extends Controller
 
     public function update(Vaila $vaila,VailaRequest $request){
 
-
+        
        
         $services=$request->services;
 
@@ -127,10 +127,11 @@ class VailaController extends Controller
             }  
         }
        
-      
-        if(count($request->services)){
+  
+        if(isset($request->services) && count($request->services)){
             VaialServices::where('vaila_id',$vaila->id)->delete();
-            foreach($services as $key => $service){
+            foreach($request->services as $key => $service){
+             
                 $mod_ser= new VaialServices();
                 $mod_ser->vaila_id=$vaila->id;
                 $mod_ser->services_id=$service;

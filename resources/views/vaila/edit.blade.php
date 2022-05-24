@@ -313,11 +313,76 @@
 
                                 </div>
                             </div>
+
+                            <input type="hidden" name="lag" id="lag" value="{{ $vaila->lag }}" >
+                            <input type="hidden" name="lat" id="lat" value="{{ $vaila->lat }}" >
+                            
+                            <div id="map"></div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+     
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAtih0W4V2Bvs5HhpCx-T7sic05fS5yPo&callback=initMap&v=weekly"
+      defer
+    ></script>
+
+    <style>
+
+        #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+        }
+    </style>
+
+<script>
+
+    var marker ;
+    var uluru = {lat: <?= (float) $vaila->lat?>, lng:  <?= (float) $vaila->lag?>};
+    var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
+      center: uluru
+      // You can set more attributes value here like map marker icon etc
+    });
+     marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+      draggable: true
+    });
+
+    var lat = marker.position.lat();
+    var lang = marker.position.lng() ;
+
+
+    $("#lat").val(lat);
+   
+    $("#lag").val(lang);
+
+    google.maps.event.addListener(marker, 'dragend', function(evt){
+         lat = marker.position.lat();
+        lang = marker.position.lng() ;
+        $("#lat").val(lat);
+        $("#lag").val(lang);
+  
+    });
+
+
+  }
+
+</script>
+
+
 
 @endsection

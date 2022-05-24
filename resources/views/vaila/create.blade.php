@@ -316,7 +316,9 @@
 
                                 </div>
                             </div>
-
+                            <input type="hidden" name="lag" id="lag" value="{{ old('lag')}}" >
+                            <input type="hidden" name="lat" id="lat" value="{{ old('lat')}}" >
+                            
                             <div id="map"></div>
                         </form>
                     </div>
@@ -329,23 +331,70 @@
 
    
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAtih0W4V2Bvs5HhpCx-T7sic05fS5yPo&callback=initMap&v=weekly"
+      defer
+    ></script>
+
+    <style>
+
+        #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+        }
+    </style>
 
 <script>
+
+    var marker ;
+    var uluru = {lat: 30.5852, lng: 36.2384};
+    var map;
   function initMap() {
-    var uluru = {lat: -25.363, lng: 131.044};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
       center: uluru
       // You can set more attributes value here like map marker icon etc
     });
-    var marker = new google.maps.Marker({
+     marker = new google.maps.Marker({
       position: uluru,
-      map: map
+      map: map,
+      draggable: true
     });
+
+    var lat = marker.position.lat();
+    var lang = marker.position.lng() ;
+
+
+    $("#lat").val(lat);
+   
+    $("#lag").val(lang);
+
+    google.maps.event.addListener(marker, 'dragend', function(evt){
+         lat = marker.position.lat();
+        lang = marker.position.lng() ;
+        $("#lat").val(lat);
+        $("#lag").val(lang);
+  
+    });
+
+
   }
+
+
+
+ 
+    
+
+
+
+
+
+
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAtih0W4V2Bvs5HhpCx-T7sic05fS5yPo&callback=initMap"></script>
 
 
 
