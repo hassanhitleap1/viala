@@ -25,8 +25,8 @@ class NotificationHelper {
         $notiy->body_ar=$body_ar;
         $notiy->body_he=$body_he;
         $notiy->type= $type;
-
+        $notiy->save();
         FCM::send($merchant->fcm,$title_en ,$title_en);
-        Notification::insert($notify_array);
+       
     }
 }
