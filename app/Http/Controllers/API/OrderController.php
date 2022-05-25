@@ -133,7 +133,7 @@ class OrderController extends Controller
         $calculation=AccountingHelper::calculation_order($total_price);
 
         Accounting::create([
-            'for_me'=>$calculation['for_app'],
+            'for_me'=>$calculation['for_me'],
             'for_app'=>$calculation['for_app'],
             'user_id'=>auth('api-jwt')->user()->id
         ]);
