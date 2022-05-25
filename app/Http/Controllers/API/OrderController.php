@@ -135,7 +135,7 @@ class OrderController extends Controller
         Accounting::create([
             'for_me'=>$calculation['for_me'],
             'for_app'=>$calculation['for_app'],
-            'user_id'=>auth('api-jwt')->user()->id
+            'user_id'=>$vaial->user_id
         ]);
         $viala=Vaila::find($request->vaial_id);
         $viala->number_booking= $viala->number_booking + 1;
