@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helper\AccountingHelper;
 use App\Helper\Media;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderCheckRequest;
 use App\Http\Requests\VailaRequest;
 use App\Http\Resources\VailaResource;
 use App\Models\ImageVaila;
@@ -185,7 +186,7 @@ class VailaController extends Controller
     }
 
 
-    public function check_avialable(Request $request){
+    public function check_avialable(OrderCheckRequest $request){
 
         $order = $this->checkedVaila($request); 
         $vaial=Vaila::findOrfail($request->vaial_id);
