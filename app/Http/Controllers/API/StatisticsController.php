@@ -24,10 +24,12 @@ class StatisticsController extends Controller
 
         $for_app=Accounting::where('user_id',auth('api-jwt')->user()->id)->sum('for_app');
         $for_me=Accounting::where('user_id',auth('api-jwt')->user()->id)->sum('for_me');
+
         $cash=Paymants::where('type','cash')->whereIn('order_id',function($q){
             $q->select('orders.id')->from('orders')->join('vaila','vaila.id','orders.vaial_id')
             ->where('vaila.user_id',auth('api-jwt')->user()->id);
         })->sum('amount');
+
         $card=Paymants::where('type','card')->whereIn('order_id',function($q){
             $q->select('orders.id')->from('orders')->join('vaila','vaila.id','orders.vaial_id')
             ->where('vaila.user_id',auth('api-jwt')->user()->id);
@@ -63,8 +65,8 @@ class StatisticsController extends Controller
           
            'data' => [
                'total_number_order'=>$total_number_order,
-               'debit'=>$for_app,
-               'credit'=>$for_me,
+               'debit'=>$for_me ,
+               'credit'=>$for_app,
                'cash'=>$cash,
                'card'=>$card,
                'total_cash_order'=>$total_cash_order,
