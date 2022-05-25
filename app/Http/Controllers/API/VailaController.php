@@ -204,7 +204,7 @@ class VailaController extends Controller
 
             return response()->json([
                 'success'=>false,
-                "message" => "this vaial not available booked from $form_date to $to_date",
+                "message" => "this villa not available booked from $form_date to $to_date",
                 'errors' => [],
                 'status' => 422,
                 'data'=>$vaial,

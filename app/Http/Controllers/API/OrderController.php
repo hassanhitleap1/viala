@@ -95,7 +95,7 @@ class OrderController extends Controller
             $to_date= date("Y-m-d", strtotime($order[0]->to_date)); 
             return response()->json([
                 'success'=>false,
-                "message" => "this vaial not available booked from $form_date to $to_date",
+                "message" => "this villa not available booked from $form_date to $to_date",
                 'errors' => [],
                 'status' => 422,
                 'data'=>$vaial
