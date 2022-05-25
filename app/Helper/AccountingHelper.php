@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class AccountingHelper
 {
-  public static function calculation_order($price){
+  public static function calculation_order($price ,$paymants){
       $for_app=$price * 0.20;
       $for_me= $price -$for_app;
       return ['for_app'=>$for_app,'for_me'=>$for_me];
