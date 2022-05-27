@@ -127,7 +127,7 @@ class VailaController extends Controller
         $roulas= Vaila::rules($id)["update"];
 
         $services=$request->services;
-     
+      
         $validatedData = $request->validate($roulas);
 
 
@@ -149,7 +149,7 @@ class VailaController extends Controller
         }else{
             $validatedData['for_shbab'] = 0;
         }
-        
+
 
         unset($validatedData['services']);
         if($files = $request->file('images')) {
@@ -167,7 +167,7 @@ class VailaController extends Controller
 
            
         }
-
+       
         $validatedData['user_id']=$request->user_id;
         $vaila->update($validatedData);
         if($services){
