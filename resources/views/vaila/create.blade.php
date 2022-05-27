@@ -308,6 +308,39 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="col-md-3">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('خطوط الطول') }}</span>
+                                        <input type="text" class="form-control @error('lag') is-invalid @enderror"  name="lag" id="lag" value="{{ old('lag') }}" >
+
+                                        @error('lag')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('خطوط العرض') }}</span>
+                                        <input type="text" class="form-control @error('lat') is-invalid @enderror" aria-label="Sizing example input" name="lat" id="lat"  value="{{ old('lat')}}"  aria-describedby="inputGroup-sizing-sm">
+                                        @error('lat')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
@@ -316,8 +349,7 @@
 
                                 </div>
                             </div>
-                            <input type="hidden" name="lag" id="lag" value="{{ old('lag')}}" >
-                            <input type="hidden" name="lat" id="lat" value="{{ old('lat')}}" >
+                            
                             
                             <div id="map"></div>
                         </form>
